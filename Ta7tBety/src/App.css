@@ -1,0 +1,663 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+#root {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  /* padding: 2rem;  */
+  text-align: center;
+}
+/* 
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+
+.Ta7tBety-Header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem;
+  align-items: baseline;
+  padding: 0 3rem;
+}
+
+.HeaderBorderBottom {
+  border-bottom: 0.063rem solid #3a4d6f;
+}
+.Ta7tBety-Header ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-Elements a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.header-Elements li {
+  display: flex;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.header-Elements a:hover {
+  font-weight: 700;
+}
+
+.header-icons li {
+  margin-left: 1.5rem;
+  font-size: 1.5rem;
+}
+
+a,
+li,
+p,
+span {
+  color: #15243f;
+}
+
+.lobster-regular {
+  font-family: "Lobster";
+  font-weight: 600;
+  font-size: 2em;
+  font-style: normal;
+}
+
+/**********Home Page**********/
+
+.HomeSectionOne {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 5rem 0 5rem 0;
+}
+.ExtraLightBG {
+  background-color: #cfd9e9;
+  box-shadow: 0rem 3rem 2rem 2rem #cfd9e9;
+}
+.LeftSection {
+  width: 40%;
+  align-self: center;
+}
+
+.inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+.heading-LeftSecOne {
+  font-weight: 700;
+  font-style: normal;
+  font-size: 3rem;
+  text-align: left;
+  color: #15243f;
+}
+
+.learnmoreBtn,
+.Certified-Services > button {
+  background-color: #15243f;
+  color: white;
+  border: #15243f solid;
+  border-radius: 5em;
+  float: left;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.3rem 1.3rem;
+  margin: 2rem 0;
+}
+
+.RightSection {
+  width: 45%;
+}
+.ServiceProvidersImg {
+  width: 30rem;
+  height: 30rem;
+}
+
+/**********Location Secyion**********/
+
+.LocationSection,
+.HomeSectionTwo,
+.BestProvider {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10rem 5rem 0 0rem;
+}
+.LocImg {
+  width: 18rem;
+  height: 18rem;
+  align-self: center;
+  border-radius: 9rem;
+}
+.LocInputSection {
+  width: 60%;
+  align-self: center;
+}
+
+.Loc-h3 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #15243f;
+  margin: 2rem;
+}
+.LocInput {
+  width: 25rem;
+  height: 3.5rem;
+  padding: 1rem 3rem;
+  border: 0.1rem solid #15243f;
+  border-radius: 0.8rem;
+  margin: 1rem;
+}
+
+.LocBtn {
+  padding: 1rem;
+  background-color: #15243f;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: #15243f solid;
+  border-radius: 0.8rem;
+}
+
+.location-input-icons {
+  position: relative;
+}
+
+.fa-location-dot {
+  position: absolute;
+  top: 1.7rem;
+  left: 9.5rem;
+  font-size: 2rem;
+  color: #15243f;
+}
+
+.fa-location-crosshairs {
+  position: absolute;
+  top: 1.7rem;
+  left: 31rem;
+  font-size: 2rem;
+  color: #15243f;
+}
+
+/***************** HomeSectionTwo ************/
+
+.HomeSectionTwo {
+  background-color: #cfd9e9;
+  padding: 1rem 5rem 0 10rem;
+  margin: 10rem 0rem 5rem 0rem;
+  box-shadow: 0rem 3rem 1rem #cfd9e9, 0rem -3rem 1rem #cfd9e9;
+  /* box-shadow: 0rem -1rem 1rem 7rem #CFD9E9; */
+}
+
+.Certified-Services {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Headings {
+  width: 45%;
+  text-align: left;
+  color: #3a4d6f;
+}
+.Headings > h2 {
+  font-weight: 800;
+}
+
+.view-all-services {
+  background-color: #3a4d6f;
+  color: white;
+  border: #3a4d6f solid;
+  border-radius: 2em;
+  font-size: 1.3rem;
+  padding: 0.2rem 1rem;
+  font-weight: 700;
+}
+.view-bttn {
+  width: 50%;
+}
+
+.Categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 5rem;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 20%;
+  height: 10rem;
+  background-color: #fff;
+  margin: 2rem;
+  border-radius: 1.5rem;
+}
+.category img {
+  width: 100%;
+  height: 8rem;
+  border-radius: 1.5rem;
+}
+.category .viewbtn {
+  height: 3rem;
+  width: 2.5rem;
+  position: relative;
+  left: 8rem;
+  bottom: 3rem;
+  border-radius: 6rem;
+  border: none;
+  background-color: #15243f;
+  padding: 0.3rem;
+  border: #fff solid 0.2rem;
+}
+
+.viewbtn .fa-chevron-right {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.category .catg-name {
+  color: #15243f;
+  position: relative;
+  text-align: left;
+  position: relative;
+  left: 1rem;
+  top: 0.4rem;
+  font-size: 1rem;
+}
+
+.BestProvider {
+  background-color: #fff;
+}
+.bestProvider {
+  color: #15243f;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: left;
+}
+.BestProvider {
+  padding: 5rem 0rem 0 0rem;
+  position: relative;
+}
+
+.BesProviderSlider {
+  margin: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.BesProviderSlider .slide {
+  background-color: #cfd9e9;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.BesProviderSlider .slide img {
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.BesProviderSlider .slide .fa-star {
+  color: #ffd43b;
+}
+
+.fa-comment {
+  color: white;
+  font-size: 2rem;
+  padding: 0.7rem;
+}
+.ChatbotIcon {
+  background-color: #15243f;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 3rem;
+  position: sticky;
+  left: 79rem;
+  bottom: 1.5rem;
+}
+
+/***************** Footer ************/
+
+.Footer {
+  background-color: #3a4d6f;
+  padding-top: 3rem;
+}
+.FooterContent {
+  color: aliceblue;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+.hotline {
+  width: 50%;
+}
+
+.FollowUsOn {
+  width: 50%;
+}
+.Footer p {
+  color: aliceblue;
+  margin: 0;
+}
+
+.FollowUsOn i {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+.FooterIcons {
+  margin-top: 2rem;
+}
+
+.CopyRights {
+  background: #fff;
+  align-content: center;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.CopyRights p {
+  color: #3a4d6f;
+}
+.TBfooter {
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.sectionOne {
+  text-align: left;
+  background-color: #3a4d6f;
+  height: 20rem;
+}
+
+.sectionOne h2,
+h4,
+.TBAboutUS {
+  color: #fff;
+}
+
+.TBAboutUS {
+  font-size: 2rem;
+}
+
+.sectionOneHeadings {
+  position: relative;
+  bottom: 13rem;
+  margin-left: 5rem;
+}
+.bgimg img {
+  /* width: 3rem; */
+  width: 100%;
+  height: 20rem;
+  opacity: 0.1;
+  position: relative;
+  top: 0;
+}
+
+/****************** AboutUs Section Two ****************************/
+
+.bulletPoints {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.bulletPoints .points {
+  width: 40%;
+}
+
+.why {
+  margin: 3rem 5rem;
+  text-align: left;
+  font-weight: 700;
+}
+
+.points {
+  display: flex;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.points .fa-circle {
+  margin: 0.5rem;
+}
+
+.points h5 {
+  color: #3a4d6f;
+}
+
+.WhyToChooseUs {
+  border: #99a8c2 0.2rem solid;
+  margin: 5rem 0rem 10rem 0rem;
+  position: relative;
+}
+
+.WhyIcons {
+  padding: 1rem;
+  background-color: #3a4d6f;
+  border-radius: 2rem;
+  position: relative;
+  bottom: -5rem;
+  left: 8.5%;
+  width: 83%;
+  display: flex;
+}
+.WhyIcons .img1 {
+  width: 5rem;
+  margin-right: 0.5rem;
+}
+
+.WhyIcons .img200 {
+  width: 7rem;
+}
+
+.WhyIcons .orders {
+  width: 10rem;
+}
+
+.WhyIcons .review {
+  width: 8rem;
+}
+.WhyIcons .rate {
+  width: 5rem;
+}
+
+.WhyIcons .Provider,
+.SucOrder,
+.ClientReview {
+  margin: 1rem;
+}
+
+.WhyIcons .Rate {
+  margin: 2rem 1rem;
+}
+.border-Right {
+  border-right: 0.2rem solid white;
+  padding: 1rem;
+}
+
+.Rate {
+  margin-top: 1rem;
+}
+
+/**************** Positive Reviews ***************/
+
+.HappyReviews {
+  box-shadow: 0rem 0rem 3rem 0rem #99a8c2;
+  background-color: #cfd9e9;
+  padding: 3rem;
+}
+
+.PReviewHeadings {
+  text-align: left;
+  color: #3a4d6f;
+}
+
+.PReviewHeadings-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.PReviewHeadings h2 {
+  font-weight: 700;
+}
+
+.PReviewHeadings h5 {
+  font-variant: small-caps;
+}
+
+.PComment-LeftButton {
+  border: none;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  /* padding: 0.8rem; */
+  background-color: #15243f;
+  background-color: #3a4d6f;
+  border-right: #fff solid 0.1rem;
+}
+
+.PComment-RightButton {
+  border: none;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  /* padding: 0.8rem; */
+  background-color: #3a4d6f;
+}
+
+.fa-chevron-left, .fa-chevron-right {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  color: #fff;
+}
+
+.flex {
+  display: flex;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+
+.reviewComment {
+  width: 95%;
+  text-align: center;
+  color: #3a4d6f;
+}
+
+.commentIcons {
+  width: 90%;
+  justify-content:space-around;
+  margin-bottom: 1rem;
+}
+
+.comment {
+  width: 40%;
+  background-color: #fff;
+  padding: 1rem 3rem;
+  border-radius: 2rem;
+}
+
+.justContentSpaceBet {
+  justify-content: space-between;
+}
+
+.justContentSpaceArround {
+  justify-content: space-around;
+}
+
+.justContentSpaceEvenly {
+  justify-content: space-evenly;
+}
+
+.alignItemsCenter {
+  align-items: center;
+}
+
+.commentIcons .fa-star {
+  color: #ffd43b;
+  margin-left: 0.2rem;
+}
+
+
+.commentIcons .fa-quote-right {
+font-size: 2rem;
+color: #3a4d6f;
+}
+
+.custName{
+  margin-top: 1rem;
+  color: #15243f;
+}
+
+.custImage{
+  width: 5rem;
+  height: 5rem;
+  border-radius: 2.5rem;
+  position: relative;
+  bottom: -2.5rem;
+  left: 13rem;
+}
+
+
+.Comments{
+  margin: 3rem ;
+}
+
+.BestProvidersImages img{
+  width: 10rem;
+  height: 10rem;
+  border-radius: 5rem;
+  text-align: center;
+  border: #3a4d6f solid 0.1rem;
+  margin-top: 2rem;
+}
+.BestProvidersImages{
+
+  justify-content: center;
+}
+
+.BestProvidersImages .BPrvdrimage{
+  width: 30%;
+}
+
+.AboutUsBestProviders{
+  margin: 4rem;
+}
