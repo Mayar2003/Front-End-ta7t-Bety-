@@ -661,3 +661,71 @@ color: #3a4d6f;
 .AboutUsBestProviders{
   margin: 4rem;
 }
+
+
+
+
+/**************** Help Center ************/
+
+.contactUsheading{
+  font-weight: 700;
+  text-align: left;
+  margin: 3rem 5rem 5rem;
+  color:#15243f;
+  font-size:2.5rem;
+}
+.ContactUsIcons{
+  align-content: center;
+  justify-content: space-between;
+  margin: 3rem;
+}
+
+.ContactUsIcons i{
+ width: 20%;
+ font-size: 7rem;
+}
+
+
+
+
+.FAQ{
+  background-color:#cfd9e9;
+  padding: 2rem;
+  box-shadow: 0rem 0rem 2rem 2rem #cfd9e9 ;
+  margin: 10rem 0rem;
+}
+
+
+.FAQheading{
+  text-align: left;
+  margin: 0rem 5rem ;
+  font-weight: 700;
+  
+}
+
+.FAQ .accordion{
+  width: 90%;
+  margin: 1rem 5%;
+}
+
+
+.accordion-item{
+  margin: 3rem;
+}
+
+.accordion-button {
+  color: #3a4d6f ;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.accordion-item , .accordion-button{
+  border-radius: 1rem !important;
+}
+
+
+
+
+
+/* .accordion{
+  align-content: center;
+} */
