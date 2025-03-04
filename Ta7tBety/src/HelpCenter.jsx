@@ -5,8 +5,8 @@ import './App.css'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 import HelpCenterSectionOne from './Components/HelpCenterSectionOne'
-import HelpCenterContactUs from './HelpCenterContactUs'
-import HelpCenterFAQ from './HelpCenterFAQ'
+import HelpCenterContactUs from './Components/HelpCenterContactUs'
+import HelpCenterFAQ from './Components/HelpCenterFAQ'
 
 
 

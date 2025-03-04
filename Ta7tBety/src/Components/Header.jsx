@@ -1,3 +1,6 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 function Header(){
 return(
     <>
@@ -5,19 +8,30 @@ return(
     <div className="Ta7tBety-Header">
     <span className="lobster-regular">Ta7t Bety</span>
     <div className="header-Elements">
+        <nav>
         <ul>
-            <li><a href="">Home</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/AboutUS">About Us</Link></li>
+            <li><Link to="">Services</Link></li>
+            <li><Link to="/HelpCenter">Help Center</Link></li>
+
+            {/* <li><Link to={}></Link></li>
+            <li><Link to={}></Link></li>
+            <li><Link to={}></Link></li> */}
+
+            {/* <li><a href="">Home</a></li>
             <li><a href="" >About Us</a></li>
             <li><a href="">Services</a></li>
-            <li><a href="">Help Center</a></li>
+            <li><a href="">Help Center</a></li> */}
         </ul>
+        </nav>
     </div>
 
     <div className="header-icons">
         <ul>
             <li><i class="fa-solid fa-magnifying-glass"></i></li>
             <li><i class="fa-regular fa-heart"></i></li>
-            <li><i class="fa-regular fa-user"></i></li>
+            <li><Link to="/Profile"><i class="fa-regular fa-user"></i></Link></li>
         </ul>
     </div>
     </div>

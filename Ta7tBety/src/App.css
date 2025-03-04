@@ -82,6 +82,11 @@
   font-size: 1.5rem;
 }
 
+.header-icons i:hover{
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
 a,
 li,
 p,
@@ -147,7 +152,7 @@ span {
   height: 30rem;
 }
 
-/**********Location Secyion**********/
+/**********Location Section**********/
 
 .LocationSection,
 .HomeSectionTwo,
@@ -723,9 +728,202 @@ color: #3a4d6f;
 }
 
 
+/************** Profile Page ****************/
 
 
+.ProfileInfo{
+  border: 0.1rem solid #3a4d6f;
+  margin: 3rem 1rem;
+}
+.mainProfuleLeftDiv{
+  border-right:#3a4d6f solid 0.1rem;
+  width: 15%;
+  margin: 2rem 0rem;
+  padding: 1rem 0rem;
 
-/* .accordion{
-  align-content: center;
-} */
+}
+
+.Choices{
+  width: 90%;
+  margin-left: 2rem;
+}
+.Choices p {
+  margin: 2rem 0rem;
+  text-align: left;
+  padding: 0.5rem 1rem ;
+}
+
+.Choices p:hover {
+ border-left:#3a4d6f 0.3rem solid ;
+ font-weight: 500;
+}
+
+.Info{
+  width: 80%;
+  margin: 2rem;
+}
+
+.ProfilePhoto-button{
+  width: 100%;
+  margin-bottom: 4rem;
+}
+.ProfilePhoto-button img{
+  width: 6rem;
+  height: 6rem;
+  margin-right: 2rem;
+}
+
+.ProfilePhoto-button a ,.PersonalInfo a{
+  text-decoration: none;
+  color: #99a8c2;
+  font-size: 1.3rem;
+  font-variant: small-caps;
+}
+
+.ProfilePhoto-button button{
+  background-color: #15243f;
+  color: aliceblue;
+  font-size: 1.4rem;
+  font-weight: 500;
+  font-variant: small-caps;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.4rem 0.7rem;
+  margin:1rem
+}
+
+.PersonalInfo {
+  width: 100%;
+}
+
+.PersonalInfo label{
+  color: #15243f;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.PersonalInfo input{
+  border: none;
+  border-radius: 0.5rem;
+  border:#3a4d6f solid 0.1rem;
+  padding: 0.3rem;
+  color:#3a4d6f;
+  width: 15rem;
+}
+
+.PersonalInfo .bgcBblueInput{
+  background-color:#cfd9e9;
+}
+
+.popUp{
+  width: 40%;
+  position: absolute;
+  top: 30%;
+  left:30%;
+  border:#99a8c2 solid 0.1rem;
+  background-color: #fff;
+}
+
+
+.popUpHeader{
+  background-color:#cfd9e9;
+  padding: 0.5rem;
+  align-items: center;
+}
+
+
+.popUp .fa-xmark{
+  font-size: 1.5rem;
+}
+.popUp .fa-xmark:hover{
+  cursor: pointer;
+}
+
+.row{
+  color: #3a4d6f;
+  font-size: 1.2rem;
+  margin: 1rem;
+  font-weight: 500;
+}
+.row input{
+  border:#3a4d6f 0.1rem solid ;
+  border-radius: 0.5rem;
+  color:#99a8c2   
+}
+
+.fa-lock{
+  position:absolute;
+  top:7.4rem;
+  right:5rem;
+  color:#99a8c2   
+}
+
+.popUpForm{
+  margin:4rem 0rem 8rem 0rem; 
+  padding: 0rem;
+}
+.col-5 {
+  text-align: left;
+}
+.PopUpButtons button , .SendCodebtn , .Cancelbtn{
+  border-radius: 0.2rem;
+  border: #15243f 0.1rem solid;
+  border-radius: 0.7rem;
+  font-size: 1rem;
+  font-weight: 400; 
+  margin: 0.5rem;
+  padding:0.2rem 1rem;
+}
+
+.SubmitBttn , .SendCodebtn{
+  background-color:#15243f;
+  color:aliceblue;
+}
+.PopUpButtons{
+  margin-top: 5rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+
+.lightOverlay{
+  background-color:rgb(207, 217, 233, 0.4 ) ;
+  width:100%;
+  height: 100%;
+  position:fixed;
+  bottom:0;
+  top:0;
+  right:0;
+  left:0;       
+
+}
+
+.VRphoneNum .Buttons{
+  justify-content: center;
+}
+
+.Cancelbtn , .SendCodebtn {
+  margin: 2rem 1rem ;
+
+}
+
+.VRphoneNumMsg{
+  color: #3a4d6f;
+  text-align:center;
+  width: 70%;
+  margin: 2rem;
+}
+
+.VRnumMsg{
+  width: 70%;
+  margin: 5% 15%
+}
+
+
+/*********************************Sign in **************************/
+
+.signinBody{
+  /* background-image: url(/Ta7tBety/Graduation project assestst/Graduation project/); */
+  background-image: url(/Ta7tBety/Graduation\project\assestst/Graduation\project/andrew-kliatskyi-r4HT6aurLQw-unsplash.jpg);
+}
