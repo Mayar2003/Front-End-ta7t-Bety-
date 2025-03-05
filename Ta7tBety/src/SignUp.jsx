@@ -9,10 +9,7 @@ function SignUp() {
 
   return (
     <>
-     <Header></Header>
      <SignUpComp></SignUpComp>
-     <Footer></Footer>
-
     </>
   )
 }

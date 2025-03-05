@@ -14,6 +14,8 @@ return(
             <li><Link to="/AboutUS">About Us</Link></li>
             <li><Link to="">Services</Link></li>
             <li><Link to="/HelpCenter">Help Center</Link></li>
+            <li><Link to="/Signin">Sign In</Link></li>
+            <li><Link to="/Signup">Sign Up</Link></li>
 
             {/* <li><Link to={}></Link></li>
             <li><Link to={}></Link></li>

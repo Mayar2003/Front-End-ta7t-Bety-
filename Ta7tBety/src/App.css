@@ -921,9 +921,280 @@ color: #3a4d6f;
 }
 
 
-/*********************************Sign in **************************/
+/*********************************Sign in & Sign Up **************************/
 
-.signinBody{
-  /* background-image: url(/Ta7tBety/Graduation project assestst/Graduation project/); */
-  background-image: url(/Ta7tBety/Graduation\project\assestst/Graduation\project/andrew-kliatskyi-r4HT6aurLQw-unsplash.jpg);
+.signinBody , .signupBody{
+ background-image:url("../../Graduation project assestst//Graduation project//pikaso_edit.jpeg");
+ position: relative;
+ width: 100%;
+ height: 55rem;
+ background-size: cover;
+}
+
+.BlueOverlay{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* background-color:#3a4d6f; */
+  background-color: rgb(21,36,63,0.8);
+  /* opacity:80%; */
+}
+
+
+.signinBage , .signUpBage{
+  padding: 1rem;
+  position: absolute;
+  background-color: #fff;
+  color: #15243f;
+  width: 40%;
+  margin: 3% 30% ;
+  border-radius: 1rem;
+}
+
+.SignInH2 , .CreateAccH2{
+font-weight: 700;
+}
+
+.HiSignin , .FilSignUp{
+  color: #3a4d6f;
+}
+
+.FilSignUp{
+  width: 70%;
+  margin-left: 15%;;
+}
+
+.signinIcons i {
+  font-size: 3rem;
+  border:#3a4d6f 0.1rem solid ;
+  border-radius: 2.5rem;
+  width: 5rem;
+  height: 5rem;
+  padding: 1rem;
+}
+
+.signupBody label , .signinBody label {
+  background-color: #fff;
+  padding: 0.5rem;
+  position: absolute;
+  color: #3a4d6f;
+  font-size: 1.2rem;
+
+}
+
+.SigninEmail label , .SignUpName label{
+  background-color: #fff;
+  padding: 0.5rem;
+  position: absolute;
+  top: 6rem;
+  left: 8rem;
+  color: #3a4d6f;
+  font-size: 1.2rem;
+}
+
+.SignUpName label{
+  top:7.5rem;
+  left: 7rem;
+}
+
+.SignUpEmail label{
+  top:12.5rem;
+  left:7rem
+}
+.SignUpPassword label{
+  top:18rem;
+  left:7rem
+}
+.SignUpConfirmPassword label{
+  top:23rem;
+  left: 7rem;
+}
+
+.SigninPassword label{
+  background-color: #fff;
+  padding: 0.5rem;
+  position: absolute;
+  top: 11rem;
+  left: 8rem;
+  color: #3a4d6f;
+  font-size: 1.2rem;
+
+}
+
+.SigninEmail , .SigninPassword , .SignUpName , .SignUpEmail , .SignUpPassword , .SignUpConfirmPassword{
+ margin-top: 2rem;
+}
+
+.SigninForm input , .SignUpForm input{
+  border:#99a8c2 solid 0.1rem ;
+ border-radius: 2rem;
+ padding: 0.8rem 1rem;
+ width: 70%;
+
+}
+
+.SigninPassword .fa-lock  {
+  top:13.5rem;
+  right: 7.5rem;
+  font-size: 1.4rem;
+}
+
+.forgetPass{
+  color: #99a8c2;
+  text-decoration: underline;
+  font-weight: 500;
+  text-align: end;
+  margin: 2rem 1rem;
+}
+
+.SignInbtn , .SignUpbtn , .Verifybtn{
+  background-color:#3a4d6f;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  box-shadow: 0.1rem 0.1rem 0.5rem #99a8c2 ;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.5rem 7rem;
+}
+
+.SignUpbtn{
+  margin-top: 2rem;
+}
+
+
+.SignUpConfirmPassword .fa-lock{
+  top:25.5rem;
+  right: 7rem;
+  font-size: 1.4rem;
+}
+
+.SignUpPassword .fa-lock  {
+  top:20rem;
+  right: 7rem;
+  font-size: 1.4rem;
+}
+
+.LineThrough{
+  border-bottom: 0.1rem solid #99a8c2;
+}
+
+
+.orWith{
+  margin: 10% ;
+  width: 80%;
+  
+}
+.OrSigninWith{
+  color: #99a8c2;
+  background-color: #fff;
+  position: absolute;
+  top:26rem;
+  left:11.5rem;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+
+
+.OrSignupWith{
+  color: #99a8c2;
+  background-color: #fff;
+  position: absolute;
+  top:34.2rem;
+  left:11.5rem;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+
+
+.SignUpDiv{
+  margin-top: 2rem;
+  color: #99a8c2;
+}
+
+
+.forgetPass a{
+  color: #99a8c2;
+}
+
+
+/************ Verify Code ********************/
+
+.CodeFrom{
+  width: 80%;
+  margin: 0rem 20% ;
+  
+}
+.VerifyForm input{
+ width: 14%;
+ padding: 0rem 0.8rem;
+ margin: 1rem 0.5rem;
+ font-size: 2rem;
+ border: none;
+ border-radius: 1rem;
+ border: #99a8c2 solid 0.1rem ;
+}
+
+.DidnotRec{
+  color: #99a8c2;
+}
+.Resend{
+  color:#3a4d6f;
+}
+
+.ResendCode{
+  margin: 1rem 0rem;
+}
+
+.Verifybtn{
+  margin: 1rem;
+}
+
+
+/************New Password *****************/
+.NewPassParagraph{
+  width: 70%;
+  margin: 0rem 15% ;
+}
+
+.Password label{
+  top:7.5rem;
+  left: 7rem;
+}
+
+
+.ConfirmPassword label{
+  top:12.5rem;
+  left: 7rem;
+}
+
+.Password .fa-lock{
+  top:9.8rem;
+  right: 7rem;
+  font-size: 1.4rem;
+}
+
+.ConfirmPassword .fa-lock{
+  top:15rem;
+  right: 7rem;
+  font-size: 1.4rem;
+}  
+
+.NewPassbtn{
+  padding: 0.5rem 3rem;
+  margin-top:3rem ;
+}
+
+
+.LinkToNormalWord{
+  text-decoration: none;
+}
+
+.SignUpbtn a{
+  text-decoration: none;
+  color: #fff;
 }

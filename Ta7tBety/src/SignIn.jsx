@@ -9,10 +9,7 @@ function SignIn() {
 
   return (
     <>
-     <Header></Header>
      <SignInComp></SignInComp>
-     <Footer></Footer>
-
     </>
   )
 }
