@@ -4,26 +4,33 @@ function ProfileMainSection() {
   const [changeEmailPopUp, setchangeEmailPopUp] = useState(false);
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
   const [changePhonePopUp, setchangePhonePopUp] = useState(false);
+  const [changeVerifyCodePopUp, setchangeVerifyCodePopUp] = useState(false);
+  const [changeNewPhoneNumPopUp, setchangeNewPhoneNumPopUp] = useState(false);
 
-  
-    function EmailToggleModal (e){
-      setchangeEmailPopUp(!changeEmailPopUp);
-      e.preventDefault();
-    }
+  function EmailToggleModal(e) {
+    setchangeEmailPopUp(!changeEmailPopUp);
+    e.preventDefault();
+  }
 
-    function PasswordToggleModal (e){
-      setchangePasswordPopUp(!changePasswordPopUp);
-      e.preventDefault();
-    }
+  function PasswordToggleModal(e) {
+    setchangePasswordPopUp(!changePasswordPopUp);
+    e.preventDefault();
+  }
 
+  function PhoneToggleModal(e) {
+    setchangePhonePopUp(!changePhonePopUp);
+    e.preventDefault();
+  }
 
+  // function VerifyCodeToggleModal(e) {
+  //   setchangeVerifyCodePopUp(!changeVerifyCodePopUp);
+  //   e.preventDefault();
+  // }
 
-    function PhoneToggleModal (e){
-      setchangePhonePopUp(!changePhonePopUp);
-      e.preventDefault();
-    }
-
-    
+  // function NewPhoneNumToggleModal(e) {
+  //   setchangeNewPhoneNumPopUp(!changeNewPhoneNumPopUp);
+  //   e.preventDefault();
+  // }
 
   return (
     <>
@@ -65,7 +72,9 @@ function ProfileMainSection() {
                   </a>
                 </div>
                 <div class="col-3">
-                  <a href="" onClick={PasswordToggleModal}>change password</a>
+                  <a href="" onClick={PasswordToggleModal}>
+                    change password
+                  </a>
                 </div>
               </div>
 
@@ -88,28 +97,20 @@ function ProfileMainSection() {
                   <input className="bgcBblueInput" type="text" />
                 </div>
                 <div class="col-4">
-                  <a href="" onClick={PhoneToggleModal}>change phone number</a>
+                  <a href="" onClick={PhoneToggleModal}>
+                    change phone number
+                  </a>
                 </div>
                 <div class="col-3"></div>
               </div>
             </div>
           </div>
         </div>
-
-
-
-
-
       </div>
 
-
-
-
-     
-
-        {changeEmailPopUp && (
-          <div className="EmailPopUp">
-            <div className="lightOverlay">
+      {changeEmailPopUp && (
+        <div className="EmailPopUp">
+          <div className="lightOverlay">
             <div className="popUp">
               <div className="popUpHeader flex justContentSpaceBet">
                 <h5 className="ChangeEmail">Change Email</h5>
@@ -122,117 +123,132 @@ function ProfileMainSection() {
               <div class="container text-center popUpForm">
                 <div class="row align-items-start">
                   <div class="col-5">
-                  <label htmlFor="">Currnt Password</label>
+                    <label htmlFor="">Currnt Password</label>
                   </div>
-                  <div class="col-6"><input className="bgcBblueInput" type="text" placeholder="Current Password" />
-                  <div class="col-1"></div>
-                  <i class="fa-solid fa-lock"></i>
+                  <div class="col-6">
+                    <input
+                      className="bgcBblueInput"
+                      type="text"
+                      placeholder="Current Password"
+                    />
+                    <div class="col-1"></div>
+                    <i class="fa-solid fa-lock"></i>
                   </div>
                 </div>
-
 
                 <div class="row align-items-start">
                   <div class="col-5">
-                  <label htmlFor="">New Email</label>
+                    <label htmlFor="">New Email</label>
                   </div>
-                  <div class="col-6"><input className="bgcBblueInput" type="text" placeholder="New Email" />
-                  <div class="col-1"></div>
+                  <div class="col-6">
+                    <input
+                      className="bgcBblueInput"
+                      type="text"
+                      placeholder="New Email"
+                    />
+                    <div class="col-1"></div>
                   </div>
                 </div>
-
-
 
                 <div class="row align-items-start">
                   <div class="col-5">
-                  <label htmlFor="">Retype Email</label>
+                    <label htmlFor="">Retype Email</label>
                   </div>
-                  <div class="col-6"><input className="bgcBblueInput" type="text" placeholder="Retype Email" />
-                  <div class="col-1"></div>
+                  <div class="col-6">
+                    <input
+                      className="bgcBblueInput"
+                      type="text"
+                      placeholder="Retype Email"
+                    />
+                    <div class="col-1"></div>
                   </div>
                 </div>
-               
-            <div className="PopUpButtons">
-            <button onClick={() => setchangeEmailPopUp(false)}>CANCEL</button>
-            <button className="SubmitBttn">SUBMIT</button>
-            </div>
+
+                <div className="PopUpButtons">
+                  <button onClick={() => setchangeEmailPopUp(false)}>
+                    CANCEL
+                  </button>
+                  <button className="SubmitBttn">SUBMIT</button>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {changePasswordPopUp && (
+        <div className="PasswordPopUp">
+          <div className="lightOverlay">
+            <div className="popUp">
+              <div className="popUpHeader flex justContentSpaceBet">
+                <h5 className="ChangeEmail">Change Password</h5>
+                <i
+                  class="fa-solid fa-xmark"
+                  onClick={() => setchangePasswordPopUp(false)}
+                ></i>
+              </div>
+
+              <div class="container text-center popUpForm">
+                <div class="row align-items-start">
+                  <div class="col-5">
+                    <label htmlFor="">Currnt Password</label>
+                  </div>
+                  <div class="col-6">
+                    <input
+                      className="bgcBblueInput"
+                      type="text"
+                      placeholder="Current Password"
+                    />
+                    <div class="col-1"></div>
+                    <i class="fa-solid fa-lock"></i>
+                  </div>
+                </div>
+
+                <div class="row align-items-start">
+                  <div class="col-5">
+                    <label htmlFor="">New Password</label>
+                  </div>
+                  <div class="col-6">
+                    <input
+                      className="bgcBblueInput"
+                      type="text"
+                      placeholder="New Password"
+                    />
+                    <div class="col-1"></div>
+                    <i class="fa-solid fa-lock"></i>
+                  </div>
+                </div>
+
+                <div class="row align-items-start">
+                  <div class="col-5">
+                    <label htmlFor="">Retype New Password</label>
+                  </div>
+                  <div class="col-6">
+                    <input
+                      className="bgcBblueInput"
+                      type="text"
+                      placeholder="Retype Email"
+                    />
+                    <div class="col-1"></div>
+                    <i class="fa-solid fa-lock"></i>
+                  </div>
+                </div>
+
+                <div className="PopUpButtons">
+                  <button onClick={() => setchangePasswordPopUp(false)}>
+                    CANCEL
+                  </button>
+                  <button className="SubmitBttn">SUBMIT</button>
+                </div>
+              </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-
-
-
-
-
-
-
-
-        {changePasswordPopUp && (
-                    <div className="PasswordPopUp">
-                      <div className="lightOverlay">
-                      <div className="popUp">
-                        <div className="popUpHeader flex justContentSpaceBet">
-                          <h5 className="ChangeEmail">Change Password</h5>
-                          <i
-                            class="fa-solid fa-xmark"
-                            onClick={() => setchangePasswordPopUp(false)}
-                          ></i>
-                        </div>
-
-                        <div class="container text-center popUpForm">
-                          <div class="row align-items-start">
-                            <div class="col-5">
-                            <label htmlFor="">Currnt Password</label>
-                            </div>
-                            <div class="col-6"><input className="bgcBblueInput" type="text" placeholder="Current Password" />
-                            <div class="col-1"></div>
-                            <i class="fa-solid fa-lock"></i>
-                            </div>
-                          </div>
-
-
-                          <div class="row align-items-start">
-                            <div class="col-5">
-                            <label htmlFor="">New Password</label>
-                            </div>
-                            <div class="col-6"><input className="bgcBblueInput" type="text" placeholder="New Password" />
-                            <div class="col-1"></div>
-                            <i class="fa-solid fa-lock"></i>
-
-                            </div>
-                          </div>
-
-
-
-                          <div class="row align-items-start">
-                            <div class="col-5">
-                            <label htmlFor="">Retype New Password</label>
-                            </div>
-                            <div class="col-6"><input className="bgcBblueInput" type="text" placeholder="Retype Email" />
-                            <div class="col-1"></div>
-                            <i class="fa-solid fa-lock"></i>
-                            </div>
-                          </div>
-                        
-                      <div className="PopUpButtons">
-                      <button onClick={() => setchangePasswordPopUp(false)}>CANCEL</button>
-                      <button className="SubmitBttn">SUBMIT</button>
-                      </div>
-                        </div>
-                      </div>
-                      </div>
-                    </div>
-                  )}
-
-
-
-
-
-{changePhonePopUp && (
-          <div className="PhonePopUp">
-            <div className="lightOverlay">
+      {changePhonePopUp && (
+        <div className="PhonePopUp">
+          <div className="lightOverlay">
             <div className="popUp">
               <div className="popUpHeader flex justContentSpaceBet">
                 <h5 className="ChangeEmail">Verify Phone Number</h5>
@@ -242,29 +258,140 @@ function ProfileMainSection() {
                 ></i>
               </div>
 
-
-
               <div class="VRphoneNum">
-
-                  <h5 className="VRnumMsg">Before you change your phone number, verify your current number (+201******439)</h5>
+                <h5 className="VRnumMsg">
+                  Before you change your phone number, verify your current
+                  number (+201******439)
+                </h5>
 
                 <div className="Buttons flex  ">
-
-                  <div >
-                    <button className="Cancelbtn" onClick={() =>  setchangePhonePopUp(false)}>CANCEL</button>
+                  <div>
+                    <button
+                      className="Cancelbtn"
+                      onClick={() => setchangePhonePopUp(false)}
+                    >
+                      CANCEL
+                    </button>
                   </div>
-              
-                  <div >
-                    <button className="SendCodebtn">Send Code</button>
+
+                  <div>
+                    <button
+                      className="SendCodebtn"
+                      onClick={() => {
+                        setchangePhonePopUp(false);
+                        setchangeVerifyCodePopUp(true);
+                      }}
+                    >
+                      Send Code
+                    </button>
                   </div>
                 </div>
-
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {changeVerifyCodePopUp && (
+        <div className="PhonePopUp">
+          <div className="lightOverlay">
+            <div className="popUp">
+              <div className="popUpHeader flex justContentSpaceBet">
+                <h5 className="ChangeEmail">Verify Phone Number</h5>
+                <i
+                  class="fa-solid fa-xmark"
+                  onClick={() => setchangeVerifyCodePopUp(false)}
+                ></i>
+              </div>
+              <h5 className="VRnumMsg">Enter Code</h5>
+
+              <div className="VerifyCodePopUpForm">
+                <form className="CodeFrom flex " action="">
+                  <input type="text" />
+                  <input type="text" />
+                  <input type="text" />
+                  <input type="text" />
+                  <input type="text" />
+                </form>
+              </div>
+
+              <div className="sendNewCode flex justContentSpaceArround">
+                <h6>
+                  <a href="">Send New Code</a>
+                </h6>
+                <h6>1:30</h6>
+              </div>
+
+              <div class="VRphoneNumCode">
+                <div className="VerifyCodePopUpButtons flex">
+                  <div>
+                    <button
+                      className="Cancelbtn"
+                      onClick={() => setchangeVerifyCodePopUp(false)}
+                    >
+                      CANCEL
+                    </button>
+                  </div>
+
+                  <div>
+                    <button
+                      className="SendCodebtn"
+                      onClick={() => {
+                        setchangeVerifyCodePopUp(false);
+                        setchangeNewPhoneNumPopUp(true);
+                      }}
+                    >
+                      VERIFY
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
+      {changeNewPhoneNumPopUp && (
+        <div className="PhonePopUp">
+          <div className="lightOverlay">
+            <div className="popUp">
+              <div className="popUpHeader flex justContentSpaceBet">
+                <h5 className="ChangeEmail">Verify Phone Number</h5>
+                <i
+                  class="fa-solid fa-xmark"
+                  onClick={() => setchangeNewPhoneNumPopUp(false)}
+                ></i>
+              </div>
+
+              <div className="NewPhoneNumPopUpForm  ">
+                <form className="CodeFrom flex justContentSpaceBet" action="">
+                  <label htmlFor="" className="NewNum">
+                    New Number
+                  </label>
+                  <input type="text" placeholder="New Number" />
+                </form>
+              </div>
+
+              <div class="VRphoneNumCode">
+                <div className="VerifyCodePopUpButtons flex">
+                  <div>
+                    <button
+                      className="Cancelbtn"
+                      onClick={() => setchangeNewPhoneNumPopUp(false)}
+                    >
+                      CANCEL
+                    </button>
+                  </div>
+
+                  <div>
+                    <button className="SendCodebtn">CHANGE</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

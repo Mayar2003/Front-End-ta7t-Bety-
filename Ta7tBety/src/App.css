@@ -1198,3 +1198,44 @@ font-weight: 700;
   text-decoration: none;
   color: #fff;
 }
+
+
+
+/******************************/
+.VerifyCodePopUpForm input{
+  width: 13%;
+  padding: 0rem 0.1rem;
+  margin: 0rem 0.3rem;
+  font-size: 1.8rem;
+  border: none;
+  border-radius: 0.8rem;
+  border: #99a8c2 solid 0.1rem ;
+}
+
+.VerifyCodePopUpButtons{
+  justify-content: center;
+
+}
+
+.sendNewCode{
+margin: 1rem;
+}
+
+.sendNewCode a{
+  text-decoration: none;
+}
+
+.NewPhoneNumPopUpForm{
+  margin: 3rem 1rem 1rem 1rem;
+  width: 80%;
+}
+
+.NewPhoneNumPopUpForm input{
+ border:#99a8c2 solid 0.1rem;
+ border-radius: 0.5rem;
+}
+
+.NewPhoneNumPopUpForm{
+  font-weight: 500;
+  color:#15243f;
+}
