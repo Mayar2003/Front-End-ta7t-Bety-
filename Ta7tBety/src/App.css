@@ -1201,7 +1201,7 @@ font-weight: 700;
 
 
 
-/******************************/
+/*****************Pop Ups*************/
 .VerifyCodePopUpForm input{
   width: 13%;
   padding: 0rem 0.1rem;
@@ -1238,4 +1238,85 @@ margin: 1rem;
 .NewPhoneNumPopUpForm{
   font-weight: 500;
   color:#15243f;
+}
+
+/****************Login btn*************/
+
+.header-icons .loginHeaderbtn{
+color:#15243f;
+font-size: 1.2rem;
+font-weight: 500;
+width: 5rem;
+padding: 0rem;
+margin: 0rem;
+}
+
+ .btn-light{
+  background-color: #fff;
+  border:none;
+  color:#15243f;
+  font-size: 1.2rem;  
+  font-weight: 500;
+ }
+
+ .btn-light:hover{
+  background-color: #fff;
+ }
+
+.Dropdown.Toggle{
+  background-color: #fff;
+}
+
+.DropDownMenue{
+  background-color:#15243f;
+  border:white 0.3rem solid;
+  border-radius: 1rem;
+}
+
+.SignOption{
+  padding: 0.5rem 0rem;
+  margin: 0.5rem;
+  border-radius: 0.7rem;
+  text-align: center;
+  color:#15243f;
+  font-size: 1.3rem;
+  font-weight: 500;
+  width:80%;
+  margin: 3% 10%;
+  background-color: #fff;
+}
+
+.SignOption a{
+  text-decoration: none;
+}
+.SignOption:hover{
+  background-color:white;
+}
+
+.SignupOption , .SignupOption a{
+  color:#fff
+}
+
+.SignupOption:hover{
+  background-color:white;
+  
+}
+
+.SignupOption span{
+  color:#fff;
+  text-decoration: underline;
+}
+
+
+.SignupOption:hover a , .SignupOption:hover span{
+  color:#15243f;
+
+}
+
+
+.header-icons .fa-user{
+  width: 2rem;
+  height: 2rem;
+  border: #15243f 0.19rem solid;
+  border-radius: 2em;
 }
