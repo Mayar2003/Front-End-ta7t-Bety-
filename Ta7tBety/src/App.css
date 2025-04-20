@@ -6,43 +6,71 @@
   /* padding: 2rem;  */
   text-align: center;
 }
-/* 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/**********General**********/
+.decorationNone{
+  text-decoration: none;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.textAlignCenter{
+  text-align: center;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.textAlignLeft{
+  text-align: left;
+} 
+.textAlignRight{
+  text-align: right;
+} 
+.alignSelfCenter{
+  align-self: center;
+}
+.alignItemsCenter{
+  align-items: center;
+}
+.alignContentCenter{
+  align-content: center;
+} 
+
+.JustifyContentCenter {
+  justify-content: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.justContentSpaceBet {
+  justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.justContentSpaceArround {
+  justify-content: space-around;
 }
 
-.card {
-  padding: 2em;
+.justContentSpaceEvenly {
+  justify-content: space-evenly;
 }
 
-.read-the-docs {
-  color: #888;
-} */
+.alignItemsCenter {
+  align-items: center;
+}
 
+.W100 {
+  width: 100%;
+}
+
+.W80 {
+  width: 80%;
+}
+.W90 {
+  width: 90%;
+}
+.W50 {
+  width: 50%;
+}
+.W20 {
+  width: 20%;
+}
+
+.Wrap{
+  flex-wrap: wrap;
+}
+/********************/
 .Ta7tBety-Header {
   display: flex;
   justify-content: space-between;
@@ -280,7 +308,7 @@ span {
   border-radius: 1.5rem;
 }
 .category .viewbtn {
-  height: 3rem;
+  height: 2.5rem;
   width: 2.5rem;
   position: relative;
   left: 8rem;
@@ -295,6 +323,7 @@ span {
 .viewbtn .fa-chevron-right {
   color: #fff;
   font-size: 1rem;
+  line-height: 0.1rem;
 }
 
 .category .catg-name {
@@ -600,21 +629,6 @@ h4,
   border-radius: 2rem;
 }
 
-.justContentSpaceBet {
-  justify-content: space-between;
-}
-
-.justContentSpaceArround {
-  justify-content: space-around;
-}
-
-.justContentSpaceEvenly {
-  justify-content: space-evenly;
-}
-
-.alignItemsCenter {
-  align-items: center;
-}
 
 .commentIcons .fa-star {
   color: #ffd43b;
@@ -731,11 +745,11 @@ color: #3a4d6f;
 /************** Profile Page ****************/
 
 
-.ProfileInfo{
+.ProfilPage {
   border: 0.1rem solid #3a4d6f;
   margin: 3rem 1rem;
 }
-.mainProfuleLeftDiv{
+.mainProfileLeftDiv , .MyOrdersLeftDiv , .SavedAdressesLeftDiv{
   border-right:#3a4d6f solid 0.1rem;
   width: 15%;
   margin: 2rem 0rem;
@@ -743,29 +757,26 @@ color: #3a4d6f;
 
 }
 
-.Choices{
+.Choices , .MyOrdersChoices {
   width: 90%;
   margin-left: 2rem;
 }
-.Choices p {
+.Choices p, .MyOrdersChoices p {
   margin: 2rem 0rem;
   text-align: left;
   padding: 0.5rem 1rem ;
 }
 
-.Choices p:hover {
+.Choices p:hover, .MyOrdersChoices p:hover {
  border-left:#3a4d6f 0.3rem solid ;
  font-weight: 500;
 }
 
-.Info{
-  width: 80%;
-  margin: 2rem;
-}
 
 .ProfilePhoto-button{
   width: 100%;
   margin-bottom: 4rem;
+  margin: 1rem 3rem;
 }
 .ProfilePhoto-button img{
   width: 6rem;
@@ -800,6 +811,7 @@ color: #3a4d6f;
   color: #15243f;
   font-weight: 500;
   font-size: 1.2rem;
+  text-align: left ;
 }
 
 .PersonalInfo input{
@@ -814,6 +826,7 @@ color: #3a4d6f;
 .PersonalInfo .bgcBblueInput{
   background-color:#cfd9e9;
 }
+
 
 .popUp{
   width: 40%;
@@ -862,9 +875,7 @@ color: #3a4d6f;
   margin:4rem 0rem 8rem 0rem; 
   padding: 0rem;
 }
-.col-5 {
-  text-align: left;
-}
+
 .PopUpButtons button , .SendCodebtn , .Cancelbtn{
   border-radius: 0.2rem;
   border: #15243f 0.1rem solid;
@@ -919,7 +930,92 @@ color: #3a4d6f;
   width: 70%;
   margin: 5% 15%
 }
+/************** SavedAddresses *************/
+.AddrsInfoName{
+  font-size: 1rem;
+  font-weight: 400;
+  color: #3a4d6f;
+}
 
+.AddrsInfo{
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3a4d6f;
+}
+
+.addAdressbtn ,.Editbtn,.Deletebtn{
+  border: 0.1rem solid #cfd9e9;
+  border-radius: 1.5rem;
+  background-color: white;
+  padding:0.3rem 0.5rem;
+  color: #3a4d6f;
+}
+.addAddressbtn .fa-plus{
+  border: #15243f solid 0.1rem;
+  border-radius: 2rem;
+  padding: 0.2rem 0.3rem;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #3a4d6f;
+}
+
+.Editbtn,.Deletebtn{
+  padding: 0.3rem 1rem;
+}
+
+.SavedAdressesBtnDiv{
+  row-gap: 3rem;
+  margin-top: 3rem;
+ 
+}
+
+.SavedAdressesMainDiv{
+  border-bottom: #cfd9e9 solid 0.1rem;
+  height: 85%;
+  width: 90%;
+}
+.ProfileSavedAdresses{
+  justify-content: center;
+}
+
+
+
+/************** MyOrders *************/
+.MyOrdersLeftDiv{
+  width: 20%;
+}
+
+
+.trackOrderBtn{
+  background-color:#cfd9e9;
+  border: none;
+  border-radius: 1rem;
+  color: #3a4d6f;
+  font-weight: 500;
+  padding: 0.2rem 0.7rem ;
+}
+
+.trackOrderBtnDiv{
+  align-self: center;
+
+}
+
+.Order{
+  margin: 0.7rem 5rem ;
+  border-bottom: #cfd9e9 solid 0.1rem;
+  width: 80%;
+}
+
+.LastOrder{
+  border: none;
+}
+.OrderImg{
+ width: 5rem;
+ height:5rem;
+ border-radius: 1.3rem;
+ margin-right: 1rem;
+}
 
 /*********************************Sign in & Sign Up **************************/
 
@@ -939,9 +1035,7 @@ color: #3a4d6f;
   bottom: 0;
   left: 0;
   right: 0;
-  /* background-color:#3a4d6f; */
   background-color: rgb(21,36,63,0.8);
-  /* opacity:80%; */
 }
 
 
@@ -1314,9 +1408,36 @@ margin: 0rem;
 }
 
 
-.header-icons .fa-user{
+.header-icons .Headerfa-user{
   width: 2rem;
   height: 2rem;
   border: #15243f 0.19rem solid;
   border-radius: 2em;
+  line-height: 1.6rem;
+
 }
+
+.header-icons .Headerfa-user:hover{
+  color: #15243f;
+}
+
+
+/*****************Profile Header Dropdown*************/
+
+.ProfileDropDowMenue .DropdownItem a{
+  text-decoration: none;
+  color: white;
+
+}
+.ProfileDropDowMenue .DropdownItem a:hover{
+  font-size: 1.1rem;
+}
+
+
+
+.no-hover:hover{
+  background-color: transparent !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+

@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <>
-     <Header></Header>
+     <Header></Header> 
      <HomeSectionOne></HomeSectionOne>
      <HomeSectionTwo></HomeSectionTwo>
      <Footer></Footer>

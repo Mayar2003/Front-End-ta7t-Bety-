@@ -11,7 +11,7 @@ function SignUpComp(){
                     <p className="FilSignUp">Fill your information below or register with your Social Account</p>
 
                     <div className="SignUpForm">
-                    <form action="">
+                    <form onSubmit={handleSubmit}>
                         <div className="SignUpName">
                         <label className="NameLabelonframe" htmlFor="">Name</label>
                         <input type="text" />
@@ -19,14 +19,14 @@ function SignUpComp(){
 
                         <div className="SignUpEmail">
                         <label className="EmailLabelonframe" htmlFor="">Email</label>
-                        <input type="text" />
+                        <input name="email" placeholder="Email" onChange={handleChange} required />
                  
                         </div>
 
 
                         <div className="SignUpPassword">
                         <label className="PasswordLabelonframe" htmlFor="">Password</label>
-                        <input type="text" />
+                        <input name="password" type="password" placeholder="Password" onChange={handleChange} required/>
                         <i class="fa-solid fa-lock"></i>
                  
                         </div>
@@ -41,7 +41,9 @@ function SignUpComp(){
                         </div>
 
 
-                    <button className="SignUpbtn"><Link to="/VerifyCode" >Sign Up</Link></button>
+                    <button className="SignUpbtn" type="submit" disabled={loading}> 
+                        {loading ? 'Signing up...' : 'Sign Up'} <Link to="/VerifyCode" >Sign Up</Link></button>\{error && <p style={{ color: 'red' }}>{error}</p>}
+                        
                     </form>
                     </div>
 

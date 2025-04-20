@@ -23,8 +23,7 @@ function Header() {
                 <li>
                   <Link to="/HelpCenter">Help Center</Link>
                 </li>
-                {/* <li><Link to="/Signin">Sign In</Link></li> */}
-                {/* <li><Link to="/Signup">Sign Up</Link></li> */}
+              
               </ul>
             </nav>
           </div>
@@ -37,12 +36,26 @@ function Header() {
               <li>
                 <i class="fa-regular fa-heart"></i>
               </li>
+      
               <li>
-                <Link to="/Profile">
-                  <i class="fa-regular fa-user"></i>
-                </Link>
+                <Dropdown>
+                  <Dropdown.Toggle className="btn-light">
+                  <Link to="/Profile"><i class="fa-regular fa-user Headerfa-user"></i></Link>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="DropDownMenue ProfileDropDowMenue">
+                    <Dropdown.Item className="DropdownItem no-hover" href="#/action-1"><Link to="/Profile/ProfileMyOrders"> <i class="fa-solid fa-file-lines"></i> My Orders</Link></Dropdown.Item>
+                    <Dropdown.Item className="DropdownItem no-hover" href="#/action-1"><Link to="/Profile/ProfileAccountInfo"><i class="fa-regular fa-user"></i> Account Info</Link></Dropdown.Item>
+                    <Dropdown.Item className="DropdownItem no-hover" href="#/action-1"><Link to="/Profile/ProfileSavedAdresses"><i class="fa-solid fa-map-location-dot"></i> Saved Addresses</Link></Dropdown.Item>
+                    <Dropdown.Item className="DropdownItem no-hover" href="#/action-1"><Link to="/Signin"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</Link></Dropdown.Item>
+
+            
+                
+                  </Dropdown.Menu>
+                </Dropdown>
               </li>
 
+              
               <li>
                 <Dropdown>
                   <Dropdown.Toggle className="btn-light">
@@ -62,29 +75,6 @@ function Header() {
 
 
 
-
-              {/* <div className="dropdown">
-                <button
-                  className="btn loginHeaderbtn dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Log In
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <button className="dropdown-item dropdownSignin">
-                      Sign In
-                    </button>
-                  </li>
-                  <li>
-                    <button className="dropdown-item dropdownSignUp">
-                      <p>Not a Member? Sign Up</p>
-                    </button>
-                  </li>
-                </ul>
-              </div> */}
 
 
             </ul>

@@ -1,24 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Header from './Components/Header'
-import Footer from './Components/Footer'
-import ProfileSectionOne from './Components/ProfileSectionOne'
-import ProfileMainSection from './Components/ProfileMainSection'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+
+import "./App.css";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import ProfileSectionOne from "./Components/ProfileSectionOne";
+
 
 function Profile() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-     <Header></Header>
-     <ProfileSectionOne></ProfileSectionOne>
-     <ProfileMainSection></ProfileMainSection>
-     <Footer></Footer>
+      <Header></Header>
+      <ProfileSectionOne></ProfileSectionOne>
+       <div className="ProfilPage flex ">
+              <div className="mainProfileLeftDiv">
+                <div className="Choices">
+                 <Link to="ProfileMyOrders" className="decorationNone"> <p>My Orders</p> </Link>
+                 <Link to="ProfileAccountInfo" className="decorationNone"> <p>Account Info</p></Link>
+                 <Link to="ProfileSavedAdresses" className="decorationNone"> <p>Saved Adresses</p></Link>
+                </div>
+              </div>
 
+
+      <div className="mainProfileRightDiv flex justContentSpaceBet W100 alignContentCenter">
+          <Outlet />
+        </div>
+    
+      </div>
+
+      <Footer></Footer>
     </>
-  )
+  );
 }
 
 export default Profile;

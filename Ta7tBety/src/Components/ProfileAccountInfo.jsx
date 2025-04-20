@@ -1,6 +1,9 @@
 import { useState } from "react";
+// import { Link } from "react-router-dom";
 
-function ProfileMainSection() {
+
+function ProfileAccountInfo() {
+  
   const [changeEmailPopUp, setchangeEmailPopUp] = useState(false);
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
   const [changePhonePopUp, setchangePhonePopUp] = useState(false);
@@ -22,26 +25,10 @@ function ProfileMainSection() {
     e.preventDefault();
   }
 
-  // function VerifyCodeToggleModal(e) {
-  //   setchangeVerifyCodePopUp(!changeVerifyCodePopUp);
-  //   e.preventDefault();
-  // }
-
-  // function NewPhoneNumToggleModal(e) {
-  //   setchangeNewPhoneNumPopUp(!changeNewPhoneNumPopUp);
-  //   e.preventDefault();
-  // }
-
   return (
     <>
-      <div className="ProfileInfo flex">
-        <div className="mainProfuleLeftDiv">
-          <div className="Choices">
-            <p>My Orders</p>
-            <p>Account Info</p>
-            <p>Saved Adresses</p>
-          </div>
-        </div>
+     <div className="ProfileInfo flex">
+      
         <div className="Info flex wrap">
           <div className="ProfilePhoto-button flex justContentSpaceBet alignItemsCenter">
             <div className="Photo">
@@ -60,10 +47,10 @@ function ProfileMainSection() {
           <div className="PersonalInfo">
             <div class="container text-center">
               <div class="row align-items-start mb-4">
-                <div class="col-2">
+                <div class="col-3 PersonalInfolabel">
                   <label htmlFor="">Email</label>
                 </div>
-                <div class="col-3">
+                <div class="col-3 ">
                   <input className="bgcBblueInput" type="text" />
                 </div>
                 <div class="col-3">
@@ -79,7 +66,7 @@ function ProfileMainSection() {
               </div>
 
               <div class="row align-items-start mb-4">
-                <div class="col-2">
+                <div class="col-3 PersonalInfolabel">
                   <label htmlFor="">Name</label>
                 </div>
                 <div class="col-3">
@@ -90,13 +77,13 @@ function ProfileMainSection() {
               </div>
 
               <div class="row align-items-start mb-4">
-                <div class="col-2">
+                <div class="col-3 PersonalInfolabel">
                   <label htmlFor="">Phone Number</label>
                 </div>
                 <div class="col-3">
                   <input className="bgcBblueInput" type="text" />
                 </div>
-                <div class="col-4">
+                <div class="col-4 textAlignRight">
                   <a href="" onClick={PhoneToggleModal}>
                     change phone number
                   </a>
@@ -396,4 +383,4 @@ function ProfileMainSection() {
   );
 }
 
-export default ProfileMainSection;
+export default ProfileAccountInfo;
