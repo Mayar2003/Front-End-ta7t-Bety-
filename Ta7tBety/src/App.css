@@ -7,32 +7,31 @@
   text-align: center;
 }
 /**********General**********/
-.decorationNone{
+.decorationNone {
   text-decoration: none;
 }
-.textAlignCenter{
+.textAlignCenter {
   text-align: center;
 }
-.textAlignLeft{
+.textAlignLeft {
   text-align: left;
-} 
-.textAlignRight{
+}
+.textAlignRight {
   text-align: right;
-} 
-.alignSelfCenter{
+}
+.alignSelfCenter {
   align-self: center;
 }
-.alignItemsCenter{
+.alignItemsCenter {
   align-items: center;
 }
-.alignContentCenter{
+.alignContentCenter {
   align-content: center;
-} 
+}
 
 .JustifyContentCenter {
   justify-content: center;
 }
-
 
 .justContentSpaceBet {
   justify-content: space-between;
@@ -67,8 +66,12 @@
   width: 20%;
 }
 
-.Wrap{
+.Wrap {
   flex-wrap: wrap;
+}
+
+.fa-star{
+  color: #ffd43b;
 }
 /********************/
 .Ta7tBety-Header {
@@ -110,7 +113,7 @@
   font-size: 1.5rem;
 }
 
-.header-icons i:hover{
+.header-icons i:hover {
   font-weight: 700;
   font-size: 1.6rem;
 }
@@ -182,9 +185,12 @@ span {
 
 /**********Location Section**********/
 
+
+
 .LocationSection,
 .HomeSectionTwo,
-.BestProvider {
+.BestProvider 
+{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -253,6 +259,7 @@ span {
   background-color: #cfd9e9;
   padding: 1rem 5rem 0 10rem;
   margin: 10rem 0rem 5rem 0rem;
+
   box-shadow: 0rem 3rem 1rem #cfd9e9, 0rem -3rem 1rem #cfd9e9;
   /* box-shadow: 0rem -1rem 1rem 7rem #CFD9E9; */
 }
@@ -306,6 +313,7 @@ span {
   width: 100%;
   height: 8rem;
   border-radius: 1.5rem;
+
 }
 .category .viewbtn {
   height: 2.5rem;
@@ -597,7 +605,8 @@ h4,
   background-color: #3a4d6f;
 }
 
-.fa-chevron-left, .fa-chevron-right {
+.fa-chevron-left,
+.fa-chevron-right {
   font-size: 1.5rem;
   padding: 0.5rem;
   color: #fff;
@@ -618,7 +627,7 @@ h4,
 
 .commentIcons {
   width: 90%;
-  justify-content:space-around;
+  justify-content: space-around;
   margin-bottom: 1rem;
 }
 
@@ -629,24 +638,22 @@ h4,
   border-radius: 2rem;
 }
 
-
 .commentIcons .fa-star {
   color: #ffd43b;
   margin-left: 0.2rem;
 }
 
-
 .commentIcons .fa-quote-right {
-font-size: 2rem;
-color: #3a4d6f;
+  font-size: 2rem;
+  color: #3a4d6f;
 }
 
-.custName{
+.custName {
   margin-top: 1rem;
   color: #15243f;
 }
 
-.custImage{
+.custImage {
   width: 5rem;
   height: 5rem;
   border-radius: 2.5rem;
@@ -655,12 +662,11 @@ color: #3a4d6f;
   left: 13rem;
 }
 
-
-.Comments{
-  margin: 3rem ;
+.Comments {
+  margin: 3rem;
 }
 
-.BestProvidersImages img{
+.BestProvidersImages img {
   width: 10rem;
   height: 10rem;
   border-radius: 5rem;
@@ -668,130 +674,123 @@ color: #3a4d6f;
   border: #3a4d6f solid 0.1rem;
   margin-top: 2rem;
 }
-.BestProvidersImages{
-
+.BestProvidersImages {
   justify-content: center;
 }
 
-.BestProvidersImages .BPrvdrimage{
+.BestProvidersImages .BPrvdrimage {
   width: 30%;
 }
 
-.AboutUsBestProviders{
+.AboutUsBestProviders {
   margin: 4rem;
 }
 
-
-
-
 /**************** Help Center ************/
 
-.contactUsheading{
+.contactUsheading {
   font-weight: 700;
   text-align: left;
   margin: 3rem 5rem 5rem;
-  color:#15243f;
-  font-size:2.5rem;
+  color: #15243f;
+  font-size: 2.5rem;
 }
-.ContactUsIcons{
+.ContactUsIcons {
   align-content: center;
   justify-content: space-between;
   margin: 3rem;
 }
 
-.ContactUsIcons i{
- width: 20%;
- font-size: 7rem;
+.ContactUsIcons i {
+  width: 20%;
+  font-size: 7rem;
 }
 
-
-
-
-.FAQ{
-  background-color:#cfd9e9;
+.FAQ {
+  background-color: #cfd9e9;
   padding: 2rem;
-  box-shadow: 0rem 0rem 2rem 2rem #cfd9e9 ;
+  box-shadow: 0rem 0rem 2rem 2rem #cfd9e9;
   margin: 10rem 0rem;
 }
 
-
-.FAQheading{
+.FAQheading {
   text-align: left;
-  margin: 0rem 5rem ;
+  margin: 0rem 5rem;
   font-weight: 700;
-  
 }
 
-.FAQ .accordion{
+.FAQ .accordion {
   width: 90%;
   margin: 1rem 5%;
 }
 
-
-.accordion-item{
+.accordion-item {
   margin: 3rem;
 }
 
 .accordion-button {
-  color: #3a4d6f ;
+  color: #3a4d6f;
   font-size: 1.5rem;
   font-weight: 600;
 }
-.accordion-item , .accordion-button{
+.accordion-item,
+.accordion-button {
   border-radius: 1rem !important;
 }
 
-
 /************** Profile Page ****************/
-
 
 .ProfilPage {
   border: 0.1rem solid #3a4d6f;
   margin: 3rem 1rem;
 }
-.mainProfileLeftDiv , .MyOrdersLeftDiv , .SavedAdressesLeftDiv{
-  border-right:#3a4d6f solid 0.1rem;
+.mainProfileLeftDiv,
+.MyOrdersLeftDiv,
+.SavedAdressesLeftDiv {
+  border-right: #3a4d6f solid 0.1rem;
   width: 15%;
   margin: 2rem 0rem;
   padding: 1rem 0rem;
-
 }
 
-.Choices , .MyOrdersChoices {
+.Choices,
+.MyOrdersChoices {
   width: 90%;
   margin-left: 2rem;
 }
-.Choices p, .MyOrdersChoices p {
+.Choices p,
+.MyOrdersChoices p {
   margin: 2rem 0rem;
   text-align: left;
-  padding: 0.5rem 1rem ;
+  padding: 0.5rem 1rem;
 }
 
-.Choices p:hover, .MyOrdersChoices p:hover {
- border-left:#3a4d6f 0.3rem solid ;
- font-weight: 500;
+.Choices p:hover,
+.MyOrdersChoices p:hover {
+  border-left: #3a4d6f 0.3rem solid;
+  font-weight: 500;
 }
 
-
-.ProfilePhoto-button{
+.ProfilePhoto-button {
   width: 100%;
   margin-bottom: 4rem;
   margin: 1rem 3rem;
 }
-.ProfilePhoto-button img{
+.ProfilePhoto-button img {
   width: 6rem;
   height: 6rem;
   margin-right: 2rem;
 }
 
-.ProfilePhoto-button a ,.PersonalInfo a{
+.ProfilePhoto-button a,
+.PersonalInfo a {
   text-decoration: none;
   color: #99a8c2;
   font-size: 1.3rem;
   font-variant: small-caps;
 }
 
-.ProfilePhoto-button button{
+.ProfilePhoto-button button {
   background-color: #15243f;
   color: aliceblue;
   font-size: 1.4rem;
@@ -800,157 +799,157 @@ color: #3a4d6f;
   border: none;
   border-radius: 2rem;
   padding: 0.4rem 0.7rem;
-  margin:1rem
+  margin: 1rem;
 }
 
 .PersonalInfo {
   width: 100%;
 }
 
-.PersonalInfo label{
+.PersonalInfo label {
   color: #15243f;
   font-weight: 500;
   font-size: 1.2rem;
-  text-align: left ;
+  text-align: left;
 }
 
-.PersonalInfo input{
+.PersonalInfo input {
   border: none;
   border-radius: 0.5rem;
-  border:#3a4d6f solid 0.1rem;
+  border: #3a4d6f solid 0.1rem;
   padding: 0.3rem;
-  color:#3a4d6f;
+  color: #3a4d6f;
   width: 15rem;
 }
 
-.PersonalInfo .bgcBblueInput{
-  background-color:#cfd9e9;
+.PersonalInfo .bgcBblueInput {
+  background-color: #cfd9e9;
 }
 
-
-.popUp{
+.popUp {
   width: 40%;
   position: absolute;
   top: 30%;
-  left:30%;
-  border:#99a8c2 solid 0.1rem;
+  left: 30%;
+  border: #99a8c2 solid 0.1rem;
   background-color: #fff;
 }
 
-
-.popUpHeader{
-  background-color:#cfd9e9;
+.popUpHeader {
+  background-color: #cfd9e9;
   padding: 0.5rem;
   align-items: center;
 }
 
-
-.popUp .fa-xmark{
+.popUp .fa-xmark {
   font-size: 1.5rem;
 }
-.popUp .fa-xmark:hover{
+.popUp .fa-xmark:hover {
   cursor: pointer;
 }
 
-.row{
+.row {
   color: #3a4d6f;
   font-size: 1.2rem;
   margin: 1rem;
   font-weight: 500;
 }
-.row input{
-  border:#3a4d6f 0.1rem solid ;
+.row input {
+  border: #3a4d6f 0.1rem solid;
   border-radius: 0.5rem;
-  color:#99a8c2   
+  color: #99a8c2;
 }
 
-.fa-lock{
-  position:absolute;
-  top:7.4rem;
-  right:5rem;
-  color:#99a8c2   
+.fa-lock {
+  position: absolute;
+  top: 7.4rem;
+  right: 5rem;
+  color: #99a8c2;
 }
 
-.popUpForm{
-  margin:4rem 0rem 8rem 0rem; 
+.popUpForm {
+  margin: 4rem 0rem 8rem 0rem;
   padding: 0rem;
 }
 
-.PopUpButtons button , .SendCodebtn , .Cancelbtn{
+.PopUpButtons button,
+.SendCodebtn,
+.Cancelbtn {
   border-radius: 0.2rem;
   border: #15243f 0.1rem solid;
   border-radius: 0.7rem;
   font-size: 1rem;
-  font-weight: 400; 
+  font-weight: 400;
   margin: 0.5rem;
-  padding:0.2rem 1rem;
+  padding: 0.2rem 1rem;
 }
 
-.SubmitBttn , .SendCodebtn{
-  background-color:#15243f;
-  color:aliceblue;
+.SubmitBttn,
+.SendCodebtn {
+  background-color: #15243f;
+  color: aliceblue;
 }
-.PopUpButtons{
+.PopUpButtons {
   margin-top: 5rem;
   position: absolute;
   bottom: 1rem;
   right: 1rem;
 }
 
-
-.lightOverlay{
-  background-color:rgb(207, 217, 233, 0.4 ) ;
-  width:100%;
+.lightOverlay {
+  background-color: rgb(207, 217, 233, 0.4);
+  width: 100%;
   height: 100%;
-  position:fixed;
-  bottom:0;
-  top:0;
-  right:0;
-  left:0;       
-
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
-.VRphoneNum .Buttons{
+.VRphoneNum .Buttons {
   justify-content: center;
 }
 
-.Cancelbtn , .SendCodebtn {
-  margin: 2rem 1rem ;
-
+.Cancelbtn,
+.SendCodebtn {
+  margin: 2rem 1rem;
 }
 
-.VRphoneNumMsg{
+.VRphoneNumMsg {
   color: #3a4d6f;
-  text-align:center;
+  text-align: center;
   width: 70%;
   margin: 2rem;
 }
 
-.VRnumMsg{
+.VRnumMsg {
   width: 70%;
-  margin: 5% 15%
+  margin: 5% 15%;
 }
 /************** SavedAddresses *************/
-.AddrsInfoName{
+.AddrsInfoName {
   font-size: 1rem;
   font-weight: 400;
   color: #3a4d6f;
 }
 
-.AddrsInfo{
+.AddrsInfo {
   font-size: 1rem;
   font-weight: 700;
   color: #3a4d6f;
 }
 
-.addAdressbtn ,.Editbtn,.Deletebtn{
+.addAdressbtn,
+.Editbtn,
+.Deletebtn {
   border: 0.1rem solid #cfd9e9;
   border-radius: 1.5rem;
   background-color: white;
-  padding:0.3rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   color: #3a4d6f;
 }
-.addAddressbtn .fa-plus{
+.addAddressbtn .fa-plus {
   border: #15243f solid 0.1rem;
   border-radius: 2rem;
   padding: 0.2rem 0.3rem;
@@ -960,74 +959,71 @@ color: #3a4d6f;
   background-color: #3a4d6f;
 }
 
-.Editbtn,.Deletebtn{
+.Editbtn,
+.Deletebtn {
   padding: 0.3rem 1rem;
 }
 
-.SavedAdressesBtnDiv{
+.SavedAdressesBtnDiv {
   row-gap: 3rem;
   margin-top: 3rem;
- 
 }
 
-.SavedAdressesMainDiv{
+.SavedAdressesMainDiv {
   border-bottom: #cfd9e9 solid 0.1rem;
   height: 85%;
   width: 90%;
 }
-.ProfileSavedAdresses{
+.ProfileSavedAdresses {
   justify-content: center;
 }
 
-
-
 /************** MyOrders *************/
-.MyOrdersLeftDiv{
+.MyOrdersLeftDiv {
   width: 20%;
 }
 
-
-.trackOrderBtn{
-  background-color:#cfd9e9;
+.trackOrderBtn {
+  background-color: #cfd9e9;
   border: none;
   border-radius: 1rem;
   color: #3a4d6f;
   font-weight: 500;
-  padding: 0.2rem 0.7rem ;
+  padding: 0.2rem 0.7rem;
 }
 
-.trackOrderBtnDiv{
+.trackOrderBtnDiv {
   align-self: center;
-
 }
 
-.Order{
-  margin: 0.7rem 5rem ;
+.Order {
+  margin: 0.7rem 5rem;
   border-bottom: #cfd9e9 solid 0.1rem;
   width: 80%;
 }
 
-.LastOrder{
+.LastOrder {
   border: none;
 }
-.OrderImg{
- width: 5rem;
- height:5rem;
- border-radius: 1.3rem;
- margin-right: 1rem;
+.OrderImg {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1.3rem;
+  margin-right: 1rem;
 }
 
 /*********************************Sign in & Sign Up **************************/
 
-.signinBody , .signupBody{
- background-image:url("../../Graduation project assestst//Graduation project//pikaso_edit.jpeg");
- position: relative;
- width: 100%;
- height: 55rem;
- background-size: cover;
+.signinBody,
+.signupBody {
+  background-image: url("../../Graduation project assestst//Graduation project//pikaso_edit.jpeg");
+  position: relative;
+  width: 100%;
+  height: 55rem;
+  background-size: cover;
 }
 
-.BlueOverlay{
+.BlueOverlay {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -1035,52 +1031,55 @@ color: #3a4d6f;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgb(21,36,63,0.8);
+  background-color: rgb(21, 36, 63, 0.8);
 }
 
-
-.signinBage , .signUpBage{
+.signinBage,
+.signUpBage {
   padding: 1rem;
   position: absolute;
   background-color: #fff;
   color: #15243f;
   width: 40%;
-  margin: 3% 30% ;
+  margin: 3% 30%;
   border-radius: 1rem;
 }
 
-.SignInH2 , .CreateAccH2{
-font-weight: 700;
+.SignInH2,
+.CreateAccH2 {
+  font-weight: 700;
 }
 
-.HiSignin , .FilSignUp{
+.HiSignin,
+.FilSignUp {
   color: #3a4d6f;
 }
 
-.FilSignUp{
+.FilSignUp {
   width: 70%;
-  margin-left: 15%;;
+  margin-left: 15%;
 }
 
 .signinIcons i {
   font-size: 3rem;
-  border:#3a4d6f 0.1rem solid ;
+  border: #3a4d6f 0.1rem solid;
   border-radius: 2.5rem;
   width: 5rem;
   height: 5rem;
   padding: 1rem;
 }
 
-.signupBody label , .signinBody label {
+.signupBody label,
+.signinBody label {
   background-color: #fff;
   padding: 0.5rem;
   position: absolute;
   color: #3a4d6f;
   font-size: 1.2rem;
-
 }
 
-.SigninEmail label , .SignUpName label{
+.SigninEmail label,
+.SignUpName label {
   background-color: #fff;
   padding: 0.5rem;
   position: absolute;
@@ -1090,25 +1089,25 @@ font-weight: 700;
   font-size: 1.2rem;
 }
 
-.SignUpName label{
-  top:7.5rem;
+.SignUpName label {
+  top: 7.5rem;
   left: 7rem;
 }
 
-.SignUpEmail label{
-  top:12.5rem;
-  left:7rem
+.SignUpEmail label {
+  top: 12.5rem;
+  left: 7rem;
 }
-.SignUpPassword label{
-  top:18rem;
-  left:7rem
+.SignUpPassword label {
+  top: 18rem;
+  left: 7rem;
 }
-.SignUpConfirmPassword label{
-  top:23rem;
+.SignUpConfirmPassword label {
+  top: 23rem;
   left: 7rem;
 }
 
-.SigninPassword label{
+.SigninPassword label {
   background-color: #fff;
   padding: 0.5rem;
   position: absolute;
@@ -1116,28 +1115,32 @@ font-weight: 700;
   left: 8rem;
   color: #3a4d6f;
   font-size: 1.2rem;
-
 }
 
-.SigninEmail , .SigninPassword , .SignUpName , .SignUpEmail , .SignUpPassword , .SignUpConfirmPassword{
- margin-top: 2rem;
+.SigninEmail,
+.SigninPassword,
+.SignUpName,
+.SignUpEmail,
+.SignUpPassword,
+.SignUpConfirmPassword {
+  margin-top: 2rem;
 }
 
-.SigninForm input , .SignUpForm input{
-  border:#99a8c2 solid 0.1rem ;
- border-radius: 2rem;
- padding: 0.8rem 1rem;
- width: 70%;
-
+.SigninForm input,
+.SignUpForm input {
+  border: #99a8c2 solid 0.1rem;
+  border-radius: 2rem;
+  padding: 0.8rem 1rem;
+  width: 70%;
 }
 
-.SigninPassword .fa-lock  {
-  top:13.5rem;
+.SigninPassword .fa-lock {
+  top: 13.5rem;
   right: 7.5rem;
   font-size: 1.4rem;
 }
 
-.forgetPass{
+.forgetPass {
   color: #99a8c2;
   text-decoration: underline;
   font-weight: 500;
@@ -1145,299 +1148,373 @@ font-weight: 700;
   margin: 2rem 1rem;
 }
 
-.SignInbtn , .SignUpbtn , .Verifybtn{
-  background-color:#3a4d6f;
+.SignInbtn,
+.SignUpbtn,
+.Verifybtn {
+  background-color: #3a4d6f;
   color: #fff;
   font-size: 1.5rem;
   font-weight: 500;
-  box-shadow: 0.1rem 0.1rem 0.5rem #99a8c2 ;
+  box-shadow: 0.1rem 0.1rem 0.5rem #99a8c2;
   border: none;
   border-radius: 2rem;
   padding: 0.5rem 7rem;
 }
 
-.SignUpbtn{
+.SignUpbtn {
   margin-top: 2rem;
 }
 
-
-.SignUpConfirmPassword .fa-lock{
-  top:25.5rem;
+.SignUpConfirmPassword .fa-lock {
+  top: 25.5rem;
   right: 7rem;
   font-size: 1.4rem;
 }
 
-.SignUpPassword .fa-lock  {
-  top:20rem;
+.SignUpPassword .fa-lock {
+  top: 20rem;
   right: 7rem;
   font-size: 1.4rem;
 }
 
-.LineThrough{
+.LineThrough {
   border-bottom: 0.1rem solid #99a8c2;
 }
 
-
-.orWith{
-  margin: 10% ;
+.orWith {
+  margin: 10%;
   width: 80%;
-  
 }
-.OrSigninWith{
+.OrSigninWith {
   color: #99a8c2;
   background-color: #fff;
   position: absolute;
-  top:26rem;
-  left:11.5rem;
+  top: 26rem;
+  left: 11.5rem;
   font-size: 1.2rem;
   padding: 1rem;
 }
 
-
-.OrSignupWith{
+.OrSignupWith {
   color: #99a8c2;
   background-color: #fff;
   position: absolute;
-  top:34.2rem;
-  left:11.5rem;
+  top: 34.2rem;
+  left: 11.5rem;
   font-size: 1.2rem;
   padding: 1rem;
 }
 
-
-.SignUpDiv{
+.SignUpDiv {
   margin-top: 2rem;
   color: #99a8c2;
 }
 
-
-.forgetPass a{
+.forgetPass a {
   color: #99a8c2;
 }
-
 
 /************ Verify Code ********************/
 
-.CodeFrom{
+.CodeFrom {
   width: 80%;
-  margin: 0rem 20% ;
-  
+  margin: 0rem 20%;
 }
-.VerifyForm input{
- width: 14%;
- padding: 0rem 0.8rem;
- margin: 1rem 0.5rem;
- font-size: 2rem;
- border: none;
- border-radius: 1rem;
- border: #99a8c2 solid 0.1rem ;
+.VerifyForm input {
+  width: 14%;
+  padding: 0rem 0.8rem;
+  margin: 1rem 0.5rem;
+  font-size: 2rem;
+  border: none;
+  border-radius: 1rem;
+  border: #99a8c2 solid 0.1rem;
 }
 
-.DidnotRec{
+.DidnotRec {
   color: #99a8c2;
 }
-.Resend{
-  color:#3a4d6f;
+.Resend {
+  color: #3a4d6f;
 }
 
-.ResendCode{
+.ResendCode {
   margin: 1rem 0rem;
 }
 
-.Verifybtn{
+.Verifybtn {
   margin: 1rem;
 }
 
-
 /************New Password *****************/
-.NewPassParagraph{
+.NewPassParagraph {
   width: 70%;
-  margin: 0rem 15% ;
+  margin: 0rem 15%;
 }
 
-.Password label{
-  top:7.5rem;
+.Password label {
+  top: 7.5rem;
   left: 7rem;
 }
 
-
-.ConfirmPassword label{
-  top:12.5rem;
+.ConfirmPassword label {
+  top: 12.5rem;
   left: 7rem;
 }
 
-.Password .fa-lock{
-  top:9.8rem;
+.Password .fa-lock {
+  top: 9.8rem;
   right: 7rem;
   font-size: 1.4rem;
 }
 
-.ConfirmPassword .fa-lock{
-  top:15rem;
+.ConfirmPassword .fa-lock {
+  top: 15rem;
   right: 7rem;
   font-size: 1.4rem;
-}  
+}
 
-.NewPassbtn{
+.NewPassbtn {
   padding: 0.5rem 3rem;
-  margin-top:3rem ;
+  margin-top: 3rem;
 }
 
-
-.LinkToNormalWord{
+.LinkToNormalWord {
   text-decoration: none;
 }
 
-.SignUpbtn a{
+.SignUpbtn a {
   text-decoration: none;
   color: #fff;
 }
 
-
-
 /*****************Pop Ups*************/
-.VerifyCodePopUpForm input{
+.VerifyCodePopUpForm input {
   width: 13%;
   padding: 0rem 0.1rem;
   margin: 0rem 0.3rem;
   font-size: 1.8rem;
   border: none;
   border-radius: 0.8rem;
-  border: #99a8c2 solid 0.1rem ;
+  border: #99a8c2 solid 0.1rem;
 }
 
-.VerifyCodePopUpButtons{
+.VerifyCodePopUpButtons {
   justify-content: center;
-
 }
 
-.sendNewCode{
-margin: 1rem;
+.sendNewCode {
+  margin: 1rem;
 }
 
-.sendNewCode a{
+.sendNewCode a {
   text-decoration: none;
 }
 
-.NewPhoneNumPopUpForm{
+.NewPhoneNumPopUpForm {
   margin: 3rem 1rem 1rem 1rem;
   width: 80%;
 }
 
-.NewPhoneNumPopUpForm input{
- border:#99a8c2 solid 0.1rem;
- border-radius: 0.5rem;
+.NewPhoneNumPopUpForm input {
+  border: #99a8c2 solid 0.1rem;
+  border-radius: 0.5rem;
 }
 
-.NewPhoneNumPopUpForm{
+.NewPhoneNumPopUpForm {
   font-weight: 500;
-  color:#15243f;
+  color: #15243f;
 }
 
 /****************Login btn*************/
 
-.header-icons .loginHeaderbtn{
-color:#15243f;
-font-size: 1.2rem;
-font-weight: 500;
-width: 5rem;
-padding: 0rem;
-margin: 0rem;
-}
-
- .btn-light{
-  background-color: #fff;
-  border:none;
-  color:#15243f;
-  font-size: 1.2rem;  
+.header-icons .loginHeaderbtn {
+  color: #15243f;
+  font-size: 1.2rem;
   font-weight: 500;
- }
+  width: 5rem;
+  padding: 0rem;
+  margin: 0rem;
+}
 
- .btn-light:hover{
+.btn-light {
   background-color: #fff;
- }
+  border: none;
+  color: #15243f;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
 
-.Dropdown.Toggle{
+.btn-light:hover {
   background-color: #fff;
 }
 
-.DropDownMenue{
-  background-color:#15243f;
-  border:white 0.3rem solid;
+.Dropdown.Toggle {
+  background-color: #fff;
+}
+
+.DropDownMenue {
+  background-color: #15243f;
+  border: white 0.3rem solid;
   border-radius: 1rem;
 }
 
-.SignOption{
+.SignOption {
   padding: 0.5rem 0rem;
   margin: 0.5rem;
   border-radius: 0.7rem;
   text-align: center;
-  color:#15243f;
+  color: #15243f;
   font-size: 1.3rem;
   font-weight: 500;
-  width:80%;
+  width: 80%;
   margin: 3% 10%;
   background-color: #fff;
 }
 
-.SignOption a{
+.SignOption a {
   text-decoration: none;
 }
-.SignOption:hover{
-  background-color:white;
+.SignOption:hover {
+  background-color: white;
 }
 
-.SignupOption , .SignupOption a{
-  color:#fff
+.SignupOption,
+.SignupOption a {
+  color: #fff;
 }
 
-.SignupOption:hover{
-  background-color:white;
-  
+.SignupOption:hover {
+  background-color: white;
 }
 
-.SignupOption span{
-  color:#fff;
+.SignupOption span {
+  color: #fff;
   text-decoration: underline;
 }
 
-
-.SignupOption:hover a , .SignupOption:hover span{
-  color:#15243f;
-
+.SignupOption:hover a,
+.SignupOption:hover span {
+  color: #15243f;
 }
 
-
-.header-icons .Headerfa-user{
+.header-icons .Headerfa-user {
   width: 2rem;
   height: 2rem;
   border: #15243f 0.19rem solid;
   border-radius: 2em;
   line-height: 1.6rem;
-
 }
 
-.header-icons .Headerfa-user:hover{
+.header-icons .Headerfa-user:hover {
   color: #15243f;
 }
 
-
 /*****************Profile Header Dropdown*************/
 
-.ProfileDropDowMenue .DropdownItem a{
+.ProfileDropDowMenue .DropdownItem a {
   text-decoration: none;
   color: white;
-
 }
-.ProfileDropDowMenue .DropdownItem a:hover{
+.ProfileDropDowMenue .DropdownItem a:hover {
   font-size: 1.1rem;
 }
 
-
-
-.no-hover:hover{
+.no-hover:hover {
   background-color: transparent !important;
   color: inherit !important;
   text-decoration: none !important;
 }
 
+
+/************** Services Categories page *************/
+.ServicesCategories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0rem ;
+}
+.Servicecategory , .WishListComponent{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 20%;
+  height: 15rem;
+  background-color: #fff;
+  margin: 2rem;
+  border-radius: 1.5rem;
+  border: 0.1rem solid #cfd9e9;
+}
+
+
+.Servicecategory img {
+    width: 100%;
+    height: 12rem;
+    border-radius: 1.5rem;
+}
+
+
+  .Servicecategory .viewbtn, .WishListComponent .viewbtn {
+  height: 2.5rem;
+  width: 2.5rem;
+  position: relative;
+  left: 10rem;
+  bottom: 3rem;
+  border-radius: 6rem;
+  border: none;
+  background-color: #15243f;
+  padding: 0.3rem;
+  border: #fff solid 0.2rem;
+}
+
+ .Servicecategory .Serv-catg-name {  
+  color: #15243f;
+  position: relative;
+  text-align: left;
+  position: relative;
+  left: 2rem;
+  top: 0.4rem;
+  font-size: 1rem;
+}
+
+
+.HomeSectionTwoCategories{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 5rem 0rem;
+}
+
+
+/************** WishList *************/
+.WishListComponent{
+  box-shadow: 0rem 0rem 1rem #cfd9e9; 
+  height:18rem ; 
+  border-radius: 1rem;
+}
+
+ .WishListComponent img{
+  width: 85%;
+  height: 11rem;
+  margin-bottom: auto;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 1rem;
+}
+
+.WishHeartIcon{
+  background-color: #cfd9e9;
+  opacity: 0.8;
+  border-radius: 1rem;  
+  width: 2rem;  
+  height: 2rem;
+  line-height: 2rem;
+  position: relative;
+  bottom: 14.5rem;
+  left: 10.5rem;  
+
+}
+
+.WishHeartIcon .fa-heart{
+}

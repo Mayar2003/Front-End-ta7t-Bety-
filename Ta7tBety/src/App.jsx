@@ -6,6 +6,7 @@ import Home from './Home';
 import AboutUs from './AboutUs';
 import HelpCenter from './HelpCenter';
 import Profile from './Profile';
+import Services from './Services';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import VerifyCode from './VerifyCode';
@@ -17,6 +18,7 @@ import ProfileSavedAdresses from './Components/ProfileSavedAdresses';
 import MyActiveOrders from "./Components/MyActiveOrders";
 import MyCompletedOrders from "./Components/MyCompletedOrders";
 import MyCanceldOrders from "./Components/MyCanceldOrders";
+import WishList from './WishList.jsx';
 
 function App() {
 
@@ -27,17 +29,19 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/AboutUS' element={<AboutUs />} />
         <Route path='/HelpCenter' element={<HelpCenter />} />
-
+        <Route path='/Services' element={<Services />} />
+        <Route path="/WishList" element={<WishList />} />
         <Route path="/Profile" element={<Profile />}>
           <Route index element={<ProfileAccountInfo />} />
           <Route path="ProfileAccountInfo" element={<ProfileAccountInfo />} />
-          {/* <Route path="ProfileMyOrders" element={<ProfileMyOrders />} /> */}
           <Route path="ProfileMyOrders" element={<ProfileMyOrders />}>
             <Route index element={<MyActiveOrders />} />
             <Route path="MyActiveOrders" element={<MyActiveOrders />} />
             <Route path="MyCompletedOrders" element={<MyCompletedOrders />} />
             <Route path="MyCanceldOrders" element={<MyCanceldOrders />} />
           </Route>
+          
+
           <Route path="ProfileSavedAdresses" element={<ProfileSavedAdresses />} />
         </Route>
 

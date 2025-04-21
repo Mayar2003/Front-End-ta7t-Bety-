@@ -18,7 +18,7 @@ function Header() {
                   <Link to="/AboutUS">About Us</Link>
                 </li>
                 <li>
-                  <Link to="">Services</Link>
+                  <Link to="/Services">Services</Link>
                 </li>
                 <li>
                   <Link to="/HelpCenter">Help Center</Link>
@@ -34,7 +34,8 @@ function Header() {
                 <i class="fa-solid fa-magnifying-glass"></i>
               </li>
               <li>
-                <i class="fa-regular fa-heart"></i>
+              <Link to="/WishList"><i class="fa-regular fa-heart"></i></Link>
+              
               </li>
       
               <li>
@@ -47,7 +48,7 @@ function Header() {
                     <Dropdown.Item className="DropdownItem no-hover" href="#/action-1"><Link to="/Profile/ProfileMyOrders"> <i class="fa-solid fa-file-lines"></i> My Orders</Link></Dropdown.Item>
                     <Dropdown.Item className="DropdownItem no-hover" href="#/action-1"><Link to="/Profile/ProfileAccountInfo"><i class="fa-regular fa-user"></i> Account Info</Link></Dropdown.Item>
                     <Dropdown.Item className="DropdownItem no-hover" href="#/action-1"><Link to="/Profile/ProfileSavedAdresses"><i class="fa-solid fa-map-location-dot"></i> Saved Addresses</Link></Dropdown.Item>
-                    <Dropdown.Item className="DropdownItem no-hover" href="#/action-1"><Link to="/Signin"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</Link></Dropdown.Item>
+                    <Dropdown.Item className="DropdownItem no-hover" href="#/action-1"><Link to="/"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</Link></Dropdown.Item>
 
             
                 
