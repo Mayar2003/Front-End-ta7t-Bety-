@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Contexts/AuthContext";
+import useUser from "../Hooks/useUser";
+import ApiManager from "../ApiManager/ApiManager";
 // import { Link } from "react-router-dom";
 
-
 function ProfileAccountInfo() {
-  
   const [changeEmailPopUp, setchangeEmailPopUp] = useState(false);
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
   const [changePhonePopUp, setchangePhonePopUp] = useState(false);
   const [changeVerifyCodePopUp, setchangeVerifyCodePopUp] = useState(false);
   const [changeNewPhoneNumPopUp, setchangeNewPhoneNumPopUp] = useState(false);
+  const [changePasswordForm, setChangePasswordForm] = useState({
+    currentPassword: "",
+    newPassword: "",
+    newPasswordConfirm: "",
+  });
 
+  const user = useUser();
+  const { setUser } = useContext(AuthContext);
+
+  console.log("User in ProfileAccountInfo:", user); // Log the user object to check if it's defined
   function EmailToggleModal(e) {
     setchangeEmailPopUp(!changeEmailPopUp);
     e.preventDefault();
@@ -27,68 +37,139 @@ function ProfileAccountInfo() {
 
   return (
     <>
-     <div className="ProfileInfo flex">
-      
+      <div className="ProfileInfo flex">
         <div className="Info flex wrap">
           <div className="ProfilePhoto-button flex justContentSpaceBet alignItemsCenter">
             <div className="Photo">
               <img
-                src="/Graduation project assestst/Graduation project/OIP.jpg"
+                src={
+                  user.photo ||
+                  "/Graduation project assestst/Graduation project/OIP.jpg"
+                }
                 alt=""
               />
-              <a href="">change photo</a>
+              <a
+                href=""
+                onClick={(e) => {
+                  // TODO: handle it better and handle other changes as well
+                  e.preventDefault();
+                  const fileInput = document.createElement("input");
+                  fileInput.type = "file";
+                  fileInput.accept = "image/*";
+                  fileInput.onchange = (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onload = () => {
+                        const base64String = reader.result;
+                        console.log("Base64 String:", base64String); // Log the base64 string
+                        // Save the base64 string in the photo variable
+                        const photo = base64String;
+
+                        ApiManager.updateMe({ photo })
+                          .then((res) => {
+                            const response = res.data;
+                            console.log("Update photo response:", response); // Log the response data
+                            setUser(response.data.user); // Update the user in context
+                            localStorage.setItem(
+                              "user",
+                              JSON.stringify(response.data.user)
+                            );
+                          })
+                          .catch((err) => {
+                            console.error("Error saving user data:", err); // Log any errors
+                          });
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                  };
+                  fileInput.click();
+                }}
+              >
+                change photo
+              </a>
             </div>
 
             <div className="button">
-              <button>update info</button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  ApiManager.getMe()
+                    .then((res) => {
+                      const response = res.data;
+                      console.log("User data:", response.data.user); // Log the user data
+                      setUser(response.data.user); // Update the user in context
+                      localStorage.setItem(
+                        "user",
+                        JSON.stringify(response.data.user)
+                      ); // Store user data in local storage
+                    })
+                    .catch((err) => {
+                      console.error("Error fetching user data:", err); // Log any errors
+                    });
+                }}
+              >
+                update info
+              </button>
             </div>
           </div>
 
           <div className="PersonalInfo">
-            <div class="container text-center">
-              <div class="row align-items-start mb-4">
-                <div class="col-3 PersonalInfolabel">
+            <div className="container text-center">
+              <div className="row align-items-start mb-4">
+                <div className="col-3 PersonalInfolabel">
                   <label htmlFor="">Email</label>
                 </div>
-                <div class="col-3 ">
-                  <input className="bgcBblueInput" type="text" />
+                <div className="col-3 ">
+                  <input
+                    className="bgcBblueInput"
+                    type="text"
+                    placeholder={user.email}
+                    disabled
+                  />
                 </div>
-                <div class="col-3">
+                <div className="col-3">
                   <a href="" onClick={EmailToggleModal}>
                     change email
                   </a>
                 </div>
-                <div class="col-3">
+                <div className="col-3">
                   <a href="" onClick={PasswordToggleModal}>
                     change password
                   </a>
                 </div>
               </div>
 
-              <div class="row align-items-start mb-4">
-                <div class="col-3 PersonalInfolabel">
+              <div className="row align-items-start mb-4">
+                <div className="col-3 PersonalInfolabel">
                   <label htmlFor="">Name</label>
                 </div>
-                <div class="col-3">
-                  <input type="text" />
+                <div className="col-3">
+                  <input type="text" placeholder={user.name} disabled />
                 </div>
-                <div class="col-3"></div>
-                <div class="col-3"></div>
+                <div className="col-3"></div>
+                <div className="col-3"></div>
               </div>
 
-              <div class="row align-items-start mb-4">
-                <div class="col-3 PersonalInfolabel">
+              <div className="row align-items-start mb-4">
+                <div className="col-3 PersonalInfolabel">
                   <label htmlFor="">Phone Number</label>
                 </div>
-                <div class="col-3">
-                  <input className="bgcBblueInput" type="text" />
+                <div className="col-3">
+                  <input
+                    className="bgcBblueInput"
+                    type="text"
+                    placeholder={user.phone}
+                    disabled
+                  />
                 </div>
-                <div class="col-4 textAlignRight">
+                <div className="col-4 textAlignRight">
                   <a href="" onClick={PhoneToggleModal}>
                     change phone number
                   </a>
                 </div>
-                <div class="col-3"></div>
+                <div className="col-3"></div>
               </div>
             </div>
           </div>
@@ -102,52 +183,52 @@ function ProfileAccountInfo() {
               <div className="popUpHeader flex justContentSpaceBet">
                 <h5 className="ChangeEmail">Change Email</h5>
                 <i
-                  class="fa-solid fa-xmark"
+                  className="fa-solid fa-xmark"
                   onClick={() => setchangeEmailPopUp(false)}
                 ></i>
               </div>
 
-              <div class="container text-center popUpForm">
-                <div class="row align-items-start">
-                  <div class="col-5">
+              <div className="container text-center popUpForm">
+                <div className="row align-items-start">
+                  <div className="col-5">
                     <label htmlFor="">Currnt Password</label>
                   </div>
-                  <div class="col-6">
+                  <div className="col-6">
                     <input
                       className="bgcBblueInput"
                       type="text"
                       placeholder="Current Password"
                     />
-                    <div class="col-1"></div>
-                    <i class="fa-solid fa-lock"></i>
+                    <div className="col-1"></div>
+                    <i className="fa-solid fa-lock"></i>
                   </div>
                 </div>
 
-                <div class="row align-items-start">
-                  <div class="col-5">
+                <div className="row align-items-start">
+                  <div className="col-5">
                     <label htmlFor="">New Email</label>
                   </div>
-                  <div class="col-6">
+                  <div className="col-6">
                     <input
                       className="bgcBblueInput"
                       type="text"
                       placeholder="New Email"
                     />
-                    <div class="col-1"></div>
+                    <div className="col-1"></div>
                   </div>
                 </div>
 
-                <div class="row align-items-start">
-                  <div class="col-5">
+                <div className="row align-items-start">
+                  <div className="col-5">
                     <label htmlFor="">Retype Email</label>
                   </div>
-                  <div class="col-6">
+                  <div className="col-6">
                     <input
                       className="bgcBblueInput"
                       type="text"
                       placeholder="Retype Email"
                     />
-                    <div class="col-1"></div>
+                    <div className="col-1"></div>
                   </div>
                 </div>
 
@@ -170,54 +251,72 @@ function ProfileAccountInfo() {
               <div className="popUpHeader flex justContentSpaceBet">
                 <h5 className="ChangeEmail">Change Password</h5>
                 <i
-                  class="fa-solid fa-xmark"
+                  className="fa-solid fa-xmark"
                   onClick={() => setchangePasswordPopUp(false)}
                 ></i>
               </div>
 
-              <div class="container text-center popUpForm">
-                <div class="row align-items-start">
-                  <div class="col-5">
+              <div className="container text-center popUpForm">
+                <div className="row align-items-start">
+                  <div className="col-5">
                     <label htmlFor="">Currnt Password</label>
                   </div>
-                  <div class="col-6">
+                  <div className="col-6">
                     <input
                       className="bgcBblueInput"
                       type="text"
                       placeholder="Current Password"
+                      onChange={(e) =>
+                        setChangePasswordForm({
+                          ...changePasswordForm,
+                          currentPassword: e.target.value,
+                        })
+                      }
                     />
-                    <div class="col-1"></div>
-                    <i class="fa-solid fa-lock"></i>
+                    <div className="col-1"></div>
+                    <i className="fa-solid fa-lock"></i>
                   </div>
                 </div>
 
-                <div class="row align-items-start">
-                  <div class="col-5">
+                <div className="row align-items-start">
+                  <div className="col-5">
                     <label htmlFor="">New Password</label>
                   </div>
-                  <div class="col-6">
+                  <div className="col-6">
                     <input
                       className="bgcBblueInput"
                       type="text"
                       placeholder="New Password"
+                      onChange={(e) =>
+                        setChangePasswordForm({
+                          ...changePasswordForm,
+                          newPassword: e.target.value,
+                        })
+                      }
                     />
-                    <div class="col-1"></div>
-                    <i class="fa-solid fa-lock"></i>
+                    <div className="col-1"></div>
+                    <i className="fa-solid fa-lock"></i>
                   </div>
                 </div>
 
-                <div class="row align-items-start">
-                  <div class="col-5">
+                <div className="row align-items-start">
+                  <div className="col-5">
                     <label htmlFor="">Retype New Password</label>
                   </div>
-                  <div class="col-6">
+                  <div className="col-6">
                     <input
                       className="bgcBblueInput"
                       type="text"
                       placeholder="Retype Email"
+                      onChange={(e) =>
+                        setChangePasswordForm({
+                          ...changePasswordForm,
+                          newPasswordConfirm: e.target.value,
+                        })
+                      }
                     />
-                    <div class="col-1"></div>
-                    <i class="fa-solid fa-lock"></i>
+                    <div className="col-1"></div>
+                    <i className="fa-solid fa-lock"></i>
                   </div>
                 </div>
 
@@ -225,7 +324,25 @@ function ProfileAccountInfo() {
                   <button onClick={() => setchangePasswordPopUp(false)}>
                     CANCEL
                   </button>
-                  <button className="SubmitBttn">SUBMIT</button>
+                  <button
+                    className="SubmitBttn"
+                    onClick={(e) => {
+                      // TODO: handle it better and handle other changes as well
+                      e.preventDefault();
+                      ApiManager.updatePassword(changePasswordForm).then(
+                        (res) => {
+                          const response = res.data;
+
+                          localStorage.setItem(
+                            "authToken",
+                            response.data.token
+                          );
+                        }
+                      );
+                    }}
+                  >
+                    SUBMIT
+                  </button>
                 </div>
               </div>
             </div>
@@ -240,12 +357,12 @@ function ProfileAccountInfo() {
               <div className="popUpHeader flex justContentSpaceBet">
                 <h5 className="ChangeEmail">Verify Phone Number</h5>
                 <i
-                  class="fa-solid fa-xmark"
+                  className="fa-solid fa-xmark"
                   onClick={() => setchangePhonePopUp(false)}
                 ></i>
               </div>
 
-              <div class="VRphoneNum">
+              <div className="VRphoneNum">
                 <h5 className="VRnumMsg">
                   Before you change your phone number, verify your current
                   number (+201******439)
@@ -286,7 +403,7 @@ function ProfileAccountInfo() {
               <div className="popUpHeader flex justContentSpaceBet">
                 <h5 className="ChangeEmail">Verify Phone Number</h5>
                 <i
-                  class="fa-solid fa-xmark"
+                  className="fa-solid fa-xmark"
                   onClick={() => setchangeVerifyCodePopUp(false)}
                 ></i>
               </div>
@@ -309,7 +426,7 @@ function ProfileAccountInfo() {
                 <h6>1:30</h6>
               </div>
 
-              <div class="VRphoneNumCode">
+              <div className="VRphoneNumCode">
                 <div className="VerifyCodePopUpButtons flex">
                   <div>
                     <button
@@ -345,7 +462,7 @@ function ProfileAccountInfo() {
               <div className="popUpHeader flex justContentSpaceBet">
                 <h5 className="ChangeEmail">Verify Phone Number</h5>
                 <i
-                  class="fa-solid fa-xmark"
+                  className="fa-solid fa-xmark"
                   onClick={() => setchangeNewPhoneNumPopUp(false)}
                 ></i>
               </div>
@@ -359,7 +476,7 @@ function ProfileAccountInfo() {
                 </form>
               </div>
 
-              <div class="VRphoneNumCode">
+              <div className="VRphoneNumCode">
                 <div className="VerifyCodePopUpButtons flex">
                   <div>
                     <button

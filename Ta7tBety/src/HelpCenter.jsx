@@ -1,27 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Header from './Components/Header'
-import Footer from './Components/Footer'
-import HelpCenterSectionOne from './Components/HelpCenterSectionOne'
-import HelpCenterContactUs from './Components/HelpCenterContactUs'
-import HelpCenterFAQ from './Components/HelpCenterFAQ'
-
-
+import { useState } from "react";
+import "./App.css";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import HelpCenterSectionOne from "./Components/HelpCenterSectionOne";
+import HelpCenterContactUs from "./Components/HelpCenterContactUs";
+import HelpCenterFAQ from "./Components/HelpCenterFAQ";
 
 function AboutUs() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-     <Header></Header>
-     <HelpCenterSectionOne></HelpCenterSectionOne>
-     <HelpCenterContactUs></HelpCenterContactUs>
-     <HelpCenterFAQ></HelpCenterFAQ>
-     <Footer></Footer>
+      <Header></Header>
+      <HelpCenterSectionOne></HelpCenterSectionOne>
+      <HelpCenterContactUs></HelpCenterContactUs>
+      <HelpCenterFAQ></HelpCenterFAQ>
+      <Footer></Footer>
     </>
-  )
+  );
 }
 
-export default AboutUs
+export default AboutUs;

@@ -4,11 +4,11 @@ function HelpCenterFAQ() {
       <div className="FAQ">
         <h2 className="FAQheading">FAQ</h2>
 
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
+        <div className="accordion accordion-flush" id="accordionFlushExample">
+          <div className="accordion-item ">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed "
+                className="accordion-button collapsed "
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseOne"
@@ -20,10 +20,10 @@ function HelpCenterFAQ() {
             </h2>
             <div
               id="flush-collapseOne"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <p>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Rerum eos cumque molestias repellat, corrupti, ullam laborum,
@@ -34,10 +34,10 @@ function HelpCenterFAQ() {
             </div>
           </div>
 
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseTwo"
@@ -49,10 +49,10 @@ function HelpCenterFAQ() {
             </h2>
             <div
               id="flush-collapseTwo"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <p>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Rerum eos cumque molestias repellat, corrupti, ullam laborum,
@@ -63,10 +63,10 @@ function HelpCenterFAQ() {
             </div>
           </div>
 
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseThree"
@@ -78,10 +78,10 @@ function HelpCenterFAQ() {
             </h2>
             <div
               id="flush-collapseThree"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <p>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Rerum eos cumque molestias repellat, corrupti, ullam laborum,
@@ -92,10 +92,10 @@ function HelpCenterFAQ() {
             </div>
           </div>
 
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseFour"
@@ -107,10 +107,10 @@ function HelpCenterFAQ() {
             </h2>
             <div
               id="flush-collapseFour"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <p>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Rerum eos cumque molestias repellat, corrupti, ullam laborum,

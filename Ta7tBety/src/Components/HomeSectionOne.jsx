@@ -45,22 +45,18 @@ function HomeSectionOne() {
           <img className="LocImg" src={Location} alt="" />
         </div>
 
-
         <div className="LocInputSection">
           <h3 className="Loc-h3 inter"> Set your Location here !</h3>
-<div className="location-input-icons">
-
-<i class="fa-solid fa-location-dot"></i>
-<i class="fa-solid fa-location-crosshairs"></i>
-          <input
-            type="text"
-            className="LocInput"
-            placeholder="search for area, street name, landmark..."
-        
-          >
-          </input>
-          <button className="LocBtn">Let's go</button>
-        </div>
+          <div className="location-input-icons">
+            <i className="fa-solid fa-location-dot"></i>
+            <i className="fa-solid fa-location-crosshairs"></i>
+            <input
+              type="text"
+              className="LocInput"
+              placeholder="search for area, street name, landmark..."
+            ></input>
+            <button className="LocBtn">Let's go</button>
+          </div>
         </div>
       </div>
     </>

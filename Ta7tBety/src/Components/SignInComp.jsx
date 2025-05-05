@@ -42,20 +42,24 @@ function SignInComp({
                     type="password"
                     name="password"
                     value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, password: e.target.value })
+                    }
                     required
                   />
-                  <i class="fa-solid fa-lock"></i>
+                  <i className="fa-solid fa-lock"></i>
                 </div>
                 <div className="forgetPass">
                   <Link to="/VerifyCode">Forgot Password?</Link>
                 </div>
 
                 <button type="submit" disabled={loading} className="SignInbtn">
-                  {loading ? "Logging in..." : "Sign In"} 
+                  {loading ? "Logging in..." : "Sign In"}
                 </button>
-                {token && <p>Token: {token}</p>}
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                {/* {token && <p>Token: {token}</p>} */}
+                {error && (
+                  <p style={{ color: "red" }}>{error.response.data.message}</p>
+                )}
               </form>
             </div>
 
@@ -65,9 +69,9 @@ function SignInComp({
             </div>
 
             <div className="signinIcons flex justContentSpaceArround">
-              <i class="fa-brands fa-google"></i>
-              <i class="fa-brands fa-facebook-f"></i>
-              <i class="fa-brands fa-apple"></i>
+              <i className="fa-brands fa-google"></i>
+              <i className="fa-brands fa-facebook-f"></i>
+              <i className="fa-brands fa-apple"></i>
             </div>
 
             <h5 className="SignUpDiv">
