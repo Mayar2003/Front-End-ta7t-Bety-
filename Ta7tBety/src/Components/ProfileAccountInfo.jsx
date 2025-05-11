@@ -236,7 +236,11 @@ function ProfileAccountInfo() {
                   <button onClick={() => setchangeEmailPopUp(false)}>
                     CANCEL
                   </button>
-                  <button className="SubmitBttn">SUBMIT</button>
+                  <button className="SubmitBttn"
+                     onClick={() => {
+                      setchangeEmailPopUp(false);
+                      setchangeVerifyCodePopUp(true);
+                    }}>Send Code</button>
                 </div>
               </div>
             </div>
@@ -383,10 +387,10 @@ function ProfileAccountInfo() {
                       className="SendCodebtn"
                       onClick={() => {
                         setchangePhonePopUp(false);
-                        setchangeVerifyCodePopUp(true);
+                        // setchangeVerifyCodePopUp(true);
                       }}
                     >
-                      Send Code
+                      Verify
                     </button>
                   </div>
                 </div>
@@ -401,7 +405,7 @@ function ProfileAccountInfo() {
           <div className="lightOverlay">
             <div className="popUp">
               <div className="popUpHeader flex justContentSpaceBet">
-                <h5 className="ChangeEmail">Verify Phone Number</h5>
+                <h5 className="ChangeEmail">Verify Email</h5>
                 <i
                   className="fa-solid fa-xmark"
                   onClick={() => setchangeVerifyCodePopUp(false)}
@@ -442,7 +446,7 @@ function ProfileAccountInfo() {
                       className="SendCodebtn"
                       onClick={() => {
                         setchangeVerifyCodePopUp(false);
-                        setchangeNewPhoneNumPopUp(true);
+                        // setchangeNewPhoneNumPopUp(true);
                       }}
                     >
                       VERIFY
