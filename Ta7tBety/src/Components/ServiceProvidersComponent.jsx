@@ -36,7 +36,7 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                  <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/FoodProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
                   </Link>
@@ -66,10 +66,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/RepairsProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>
@@ -95,10 +96,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/MarketProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>
@@ -124,10 +126,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/HealthCareProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>
@@ -153,10 +156,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/HouseWorkProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>
@@ -182,10 +186,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/RepairsProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>

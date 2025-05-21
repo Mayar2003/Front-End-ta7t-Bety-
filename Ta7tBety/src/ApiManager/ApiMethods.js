@@ -13,6 +13,7 @@ const getHeaders = () => {
 class ApiMethods {
   static async apiRequest(url, method, data) {
     const baseUrl = import.meta.env.VITE_BASE_URL || "";
+    console.log("base URL :" + baseUrl);
     const fullUrl = `${baseUrl}${url}`;
 
     try {
