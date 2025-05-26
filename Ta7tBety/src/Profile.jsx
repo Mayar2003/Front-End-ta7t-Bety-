@@ -14,7 +14,6 @@ function Profile() {
     <>
       <Header></Header>
       <ProfileSectionOne></ProfileSectionOne>
-<<<<<<< HEAD
       <div className="ProfilPage flex ">
         <div className="mainProfileLeftDiv">
           <div className="Choices">
@@ -28,20 +27,10 @@ function Profile() {
             </Link>
             <Link to="ProfileSavedAdresses" className="decorationNone">
               {" "}
-              <p>Saved Adresses</p>
+              <p>Saved Adress</p>
             </Link>
           </div>
         </div>
-=======
-       <div className="ProfilPage flex ">
-              <div className="mainProfileLeftDiv">
-                <div className="Choices">
-                 <Link to="ProfileMyOrders" className="decorationNone"> <p>My Orders</p> </Link>
-                 <Link to="ProfileAccountInfo" className="decorationNone"> <p>Account Info</p></Link>
-                 <Link to="ProfileSavedAdresses" className="decorationNone"> <p>Saved Adress</p></Link>
-                </div>
-              </div>
->>>>>>> 3d22011 (updated Project)
 
         <div className="mainProfileRightDiv flex justContentSpaceBet W100 alignContentCenter">
           <Outlet />

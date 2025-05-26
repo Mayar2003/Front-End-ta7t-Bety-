@@ -1,6 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ApiManager from "../ApiManager/ApiManager";
 
-function ServiceProvidersComponent() {
+function ServiceProvidersComponent({ providers }) {
+  const navigate = useNavigate();
+
+  function handleProviderSelection(providerId) {
+    console.log("Selected provider ID:", providerId);
+    ApiManager.getProviderById(providerId)
+      .then((res) => {
+        const response = res.data;
+
+        console.log("Provider data:", response); // TODO: fix it in backend to be response.data.provider also fix the returned data
+        navigate("/RepairsProvider", {
+          state: { provider: response.data },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <>
       <div id="carouselExampleDark" className="carousel carousel-dark slide">
@@ -30,16 +49,21 @@ function ServiceProvidersComponent() {
         <div className="carousel-inner">
           <div className="carousel-item active" data-bs-interval="10000">
             <div className="RepairsProvidersSlideOne flex Wrap justContentSpaceBet">
+              {providers.map((provider) => (
+                <Item
+                  key={provider.id}
+                  provider={provider}
+                  onProviderSelection={handleProviderSelection}
+                />
+              ))}
               <div className="RepairComponent">
                 <img
                   src="../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
                   alt=""
                 />
                 <div className="ProviderInfo">
-                  <Link to="/RepairsProvider" className="decorationNone">
-                    {" "}
-                    <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>
+                  {" "}
+                  <h5 className="Providername">Arapian Carpentry</h5>
                   <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
@@ -66,10 +90,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/RepairsProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>
@@ -95,10 +120,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/RepairsProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>
@@ -124,10 +150,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/RepairsProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>
@@ -153,10 +180,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/RepairsProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>
@@ -182,10 +210,11 @@ function ServiceProvidersComponent() {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/RepairsProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>                  <p>
+                  </Link>{" "}
+                  <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
                   </p>
@@ -218,4 +247,38 @@ function ServiceProvidersComponent() {
     </>
   );
 }
+
+function Item({ provider, onProviderSelection }) {
+  return (
+    <div className="RepairComponent">
+      <img src={provider.photo} alt="" />
+      <div
+        className="ProviderInfo"
+        style={{ cursor: "pointer" }}
+        onClick={() => onProviderSelection(provider.userId)} // ? how is this handled in backend
+      >
+        {" "}
+        <h5 className="Providername">{provider.name}</h5>
+        <p>
+          {" "}
+          <i class="fa-solid fa-street-view"></i> 2 Km
+        </p>
+        <div className="Rating flex justContentSpaceBet">
+          <p className="WishListRating">
+            {provider.avdRating}(+100) <i className="fa-solid fa-star"></i>
+          </p>
+          <div className="RepairHeartIcon">
+            <label class="heart-toggle">
+              <input type="checkbox" />
+              <i class="fa-heart fa-regular"></i>
+            </label>
+
+            {/* <i class="fa-regular fa-heart"></i>      */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default ServiceProvidersComponent;

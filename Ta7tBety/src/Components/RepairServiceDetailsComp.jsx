@@ -1,32 +1,56 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BookAppointmentCalendar from "./BookAppointmentCalendar";
+import ApiManager from "../ApiManager/ApiManager";
+import useUser from "../Hooks/useUser";
 
 function RepairServiceDetailsComp() {
+  const location = useLocation();
+  const { provider, post, providerAvgRating, postAvgRating } =
+    location.state || { provider: null, post: null };
+  const user = useUser();
+
   const [BookingPopUp, setchangeBookingPopUp] = useState(false);
+  const [rating, setRating] = useState(0); // selected stars
+  const [hover, setHover] = useState(0); // hovered stars
 
   function BookingToggleModal(e) {
     setchangeBookingPopUp(!BookingPopUp);
     e.preventDefault();
   }
 
-  const [rating, setRating] = useState(0); // selected stars
-  const [hover, setHover] = useState(0); // hovered stars
+  function addRating(rating) {
+    setRating(rating);
+
+    ApiManager.createReview({
+      user: user._id,
+      provider: provider._id,
+      post: post._id,
+      rating,
+      review: "Great service!",
+    })
+      .then((res) => {
+        const response = res.data;
+        console.log("Rating updated successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error updating rating:", error);
+      });
+  }
 
   return (
     <>
       <div className="ProviderPage flex ">
         <div className="ProviderReview ">
           <div className="ProviderInfoDiv simpleBoxShadow">
-            <img
-              src="../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
-              alt=""
-            />
+            <img src={provider?.providerID?.photo} alt="" />
 
             <div className="Rating flex justContentSpaceEvenly">
-              <h3 className="Providername">Arabian Country</h3>
+              <h3 className="Providername">
+                {provider?.providerID.name || "Unknown Provider"}
+              </h3>
               <p className="ServiceRating">
-                3.9 <i className="fa-solid fa-star"></i>
+                {providerAvgRating} <i className="fa-solid fa-star"></i>
               </p>
             </div>
 
@@ -56,7 +80,7 @@ function RepairServiceDetailsComp() {
                         ? "fas text-yellow-400"
                         : "far text-gray-400"
                     }`}
-                    onClick={() => setRating(star)}
+                    onClick={() => addRating(star)}
                     onMouseEnter={() => setHover(star)}
                     onMouseLeave={() => setHover(0)}
                     style={{
@@ -257,10 +281,10 @@ function RepairServiceDetailsComp() {
           <div className="ServiceDescriptionDetails ">
             <div className="ProviderServiceinfo  alignItemsBaseline flex justContentSpaceBet W80">
               <h5 className="textAlignLeft  RepairServices defaultBlue ">
-                Service
+                {post?.title || "Unknown Service"}
               </h5>
               <h5>
-                2.8 <i className="fa-solid fa-star"></i>
+                {postAvgRating} <i className="fa-solid fa-star"></i>
               </h5>
             </div>
 
@@ -271,20 +295,7 @@ function RepairServiceDetailsComp() {
                 className=" Seemoretoggle toggle"
               />
 
-              <p className="ServiceDetailsDescription text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                velit ut in animi nulla. Vel tenetur eius dolorum nostrum
-                voluptate, possimus aliquam vero nemo exercitationem in amet
-                suscipit quos cupiditate doloribus quas soluta. Iusto, magni
-                veritatis quas itaque illum quod deserunt praesentium adipisci
-                nihil consectetur perspiciatis eius aliquid odio repellendus
-                expedita eveniet eaque incidunt. Beatae labore iure, eligendi
-                sint alias iste maiores, modi excepturi corrupti, doloremque
-                animi quod aperiam velit! Amet eligendi expedita ea animi,
-                consequuntur tempore asperiores dolorum illo, dolores enim ad
-                laborum, dolore voluptates quas consequatur a. Dolorum commodi
-                velit molestias cum beatae quia deserunt dicta, iste blanditiis.
-              </p>
+              <p className="ServiceDetailsDescription text">{post.content}</p>
 
               <label
                 htmlFor="Seemoretoggle toggle"
@@ -292,7 +303,7 @@ function RepairServiceDetailsComp() {
               >
                 Read More
               </label>
-              <h5 className="price defaultBlue mrgntb-1">200 - 3000 EGP</h5>
+              <h5 className="price defaultBlue mrgntb-1">{post.price} EGP</h5>
             </div>
           </div>
 
@@ -407,7 +418,7 @@ function RepairServiceDetailsComp() {
  */}
 
                   <BookAppointmentCalendar></BookAppointmentCalendar>
-
+                  {/* // TODO: Implement booking functionality */}
                   <button className=" BookthisAppbttn ">
                     <i className="fa-regular fa-calendar-days"></i> Book This
                     appointment
