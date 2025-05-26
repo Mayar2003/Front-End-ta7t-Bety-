@@ -9,18 +9,7 @@ function ProfileSavedAdresses() {
       <div className="ProfileSavedAdresses justContentSpaceBet JustifyContentCenter flex W100 ">
         <div className="SavedAdressesMainDiv flex justContentSpaceBet W100 ">
           <div className="AddressInfoDiv alignSelfCenter">
-            <div class="container overflow-hidden text-center">
-              {/* <div class="row ">
-                <div class="col-5 textAlignCenter">
-                  <div class=" AddrsInfoName"><p>Address Name</p></div>
-                </div>
-                <div className="col-7">
-                  <div className="AddrsInfo">
-                    <p>Home Location</p>
-                  </div>
-                </div>
-              </div> */}
-            </div>
+            <div class="container overflow-hidden text-center"></div>
 
             <div className="container overflow-hidden text-center">
               <div className="row ">

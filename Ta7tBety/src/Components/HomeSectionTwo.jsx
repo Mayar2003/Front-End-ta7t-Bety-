@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function HomeSectionTwo() {
   return (
     <>
@@ -9,9 +11,11 @@ function HomeSectionTwo() {
               <h2 className="inter">Our Unique & Exceptional Services</h2>
             </div>
             <div className="view-bttn">
-              <button className="view-all-services inter">
-                View All Services
-              </button>
+              <Link to="/Services">
+                <button className="view-all-services inter">
+                  View All Services
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -22,8 +26,11 @@ function HomeSectionTwo() {
                 alt=""
               />
               <h6 className="catg-name">Repairs</h6>
+
               <button className="viewbtn">
-                <i className="fa-solid fa-chevron-right"></i>
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>
               </button>
             </div>
 
@@ -35,7 +42,9 @@ function HomeSectionTwo() {
               <h6 className="catg-name">Food</h6>
               {/* <div className="invrtRadius"><p></p></div> */}
               <button className="viewbtn">
-                <i className="fa-solid fa-chevron-right"></i>
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>{" "}
               </button>
             </div>
 
@@ -46,7 +55,9 @@ function HomeSectionTwo() {
               />
               <h6 className="catg-name">Market</h6>
               <button className="viewbtn">
-                <i className="fa-solid fa-chevron-right"></i>
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>{" "}
               </button>
             </div>
 
@@ -57,7 +68,9 @@ function HomeSectionTwo() {
               />
               <h6 className="catg-name">House Work</h6>
               <button className="viewbtn">
-                <i className="fa-solid fa-chevron-right"></i>
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>{" "}
               </button>
             </div>
 
@@ -68,7 +81,9 @@ function HomeSectionTwo() {
               />
               <h6 className="catg-name">Health & Care</h6>
               <button className="viewbtn">
-                <i className="fa-solid fa-chevron-right"></i>
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>{" "}
               </button>
             </div>
           </div>

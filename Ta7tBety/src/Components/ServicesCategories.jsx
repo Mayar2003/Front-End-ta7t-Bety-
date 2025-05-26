@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ApiManager from "../ApiManager/ApiManager";
@@ -65,6 +66,7 @@ function ServicesCategories() {
               >
                 <i className="fa-solid fa-chevron-right"></i>
               </button>
+              {/* <Link to="/FoodProvider"><button className="viewbtn"><i className="fa-solid fa-chevron-right"></i></button></Link> */}
             </div>
 
             <div className="Servicecategory">
@@ -79,6 +81,7 @@ function ServicesCategories() {
               >
                 <i className="fa-solid fa-chevron-right"></i>
               </button>
+              {/* <Link to="/MarketProvider"><button className="viewbtn"><i className="fa-solid fa-chevron-right"></i></button></Link> */}
             </div>
 
             <div className="Servicecategory">
@@ -89,10 +92,11 @@ function ServicesCategories() {
               <h6 className="Serv-catg-name">House Work</h6>
               <button
                 className="viewbtn"
-                onClick={() => handleRepairsClick("all", "HW")}
+                onClick={(e) => handleRepairsClick(e, "all", "HW")}
               >
                 <i className="fa-solid fa-chevron-right"></i>
               </button>
+              {/* <Link to="/HouseWorkProvider"><button className="viewbtn"><i className="fa-solid fa-chevron-right"></i></button></Link> */}
             </div>
 
             <div className="Servicecategory">
@@ -107,6 +111,7 @@ function ServicesCategories() {
               >
                 <i className="fa-solid fa-chevron-right"></i>
               </button>
+              {/* <Link to="/HealthCareProvider"><button className="viewbtn"><i className="fa-solid fa-chevron-right"></i></button></Link> */}
             </div>
           </div>
         </div>

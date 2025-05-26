@@ -53,8 +53,18 @@
   justify-content: space-evenly;
 }
 
+.justContentFlexStart {
+  justify-content: flex-start;
+}
+.justContentFlexEnd {
+  justify-content: flex-end;
+}
 .alignItemsCenter {
   align-items: center;
+}
+
+.alignItemsBaseline {
+  align-items: baseline;
 }
 
 .W100 {
@@ -77,6 +87,12 @@
 }
 .W50 {
   width: 50%;
+}
+.W40 {
+  width: 40%;
+}
+.W30 {
+  width: 30%;
 }
 .W20 {
   width: 20%;
@@ -105,7 +121,11 @@
 }
 
 .mrgn-1{
-  margin: 1rem;
+  margin:1rem;
+}
+
+.padding-1{
+  padding: 1rem;
 }
 
 .mrgntb-1{
@@ -126,6 +146,10 @@
 .simpleBoxShadow {
   box-shadow: 0rem 0rem 1rem #cfd9e9; 
 } 
+
+.borderRadius-1rem {
+  border-radius: 1rem;
+}
 
 .defaultBlue{
   color: #15243f;
@@ -151,13 +175,30 @@
 .marginauto{
   margin: auto;
 }
+
+.Paddingauto{
+  padding: auto;
+}
+
+.no-hover{
+  pointer-events: none;
+} 
+
+.cursor{
+  cursor: pointer;
+}
+
+.bordernone{
+  border: none;
+}
+
+
 /********************/
 .Ta7tBety-Header {
   display: flex;
-  justify-content: space-between;
-  margin: 0 1rem;
+  justify-content: space-around;
+  /* margin: 0 1rem; */
   align-items: baseline;
-  padding: 0 3rem;
 }
 
 .HeaderBorderBottom {
@@ -187,7 +228,7 @@
 }
 
 .header-icons li {
-  margin-left: 1.5rem;
+  margin-left: 0.5rem;
   font-size: 1.5rem;
 }
 
@@ -195,6 +236,12 @@
   font-weight: 700;
   font-size: 1.6rem;
 }
+
+
+.HeaderCart{
+  font-size:1.5rem;
+}
+
 
 a,
 li,
@@ -208,6 +255,22 @@ span {
   font-weight: 600;
   font-size: 2em;
   font-style: normal;
+}
+
+.HeaderSearchInput{
+  border-radius: 0.7rem;
+  border: none;
+  border: #cfd9e9 solid 0.1rem;
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+.HeaderSearch{
+  margin-right: 0rem;
+}
+.HeaderSearch .fa-magnifying-glass {
+  position: relative;
+  right: 1.8rem;
+  font-size: 1.5rem;
 }
 
 /**********Home Page**********/
@@ -1075,10 +1138,15 @@ h4,
 }
 
 .Order {
-  margin: 0.7rem 5rem;
-  border-bottom: #cfd9e9 solid 0.1rem;
-  width: 80%;
+  margin: auto ;
+  padding: 0.5rem;
+
+  border: #cfd9e9 solid 0.1rem;
+  border-radius: 0.5rem;
+  width: 95%;
 }
+
+
 
 .LastOrder {
   border: none;
@@ -1511,12 +1579,12 @@ h4,
   justify-content: space-around;
   margin: 0rem ;
 }
-.Servicecategory , .WishListComponent ,.RepairComponent ,.RepairProviderService{
+.Servicecategory , .WishListComponent ,.RepairComponent ,.RepairProviderService ,.SearchProviderComponent{
   display: flex;
   flex-direction: column;
   position: relative;
   width: 20%;
-  height: 15rem;
+  height: fit-content;
   background-color: #fff;
   margin: 2rem;
   border-radius: 1.5rem;
@@ -1565,7 +1633,7 @@ h4,
 
 
 /************** WishList *************/
-.WishListComponent ,.RepairComponent ,.RepairProviderService{
+.WishListComponent ,.RepairComponent ,.RepairProviderService ,.SearchProviderComponent{
   box-shadow: 0rem 0rem 1rem #cfd9e9; 
   height:18rem ; 
   border-radius: 1rem;
@@ -1573,7 +1641,8 @@ h4,
 
 .WishListComponent img,
 .RepairComponent img,
-.RepairProviderService img {
+.RepairProviderService img,
+.SearchProviderComponent img {
   width: 85%;
   height: 11rem;
   margin-bottom: auto;
@@ -1654,6 +1723,9 @@ h4,
   font-weight: 700;
 }
 
+/* .ReviewProviderName{
+  width: 80;
+} */
 /************** RepairProviderServices *************/
 
 .ProviderPage{
@@ -1678,7 +1750,7 @@ h4,
 }
 .RepairProviderService{
   width: 40%;
-  height:30rem ;
+  height:fit-content ;
 }
 
 .RepairProviderService img{
@@ -1698,7 +1770,7 @@ h4,
 
 .ProviderInfoDiv ,.ProviderRating ,.ProviderRating-Review{
   width: 90%;
-  height:25rem;
+  height:fit-content;
   border-radius:1rem;
 }
 
@@ -2101,3 +2173,168 @@ border-radius: 2rem;
  color:#99a8c2;
 }
   
+
+
+/**********Food Provider Component Styles***********/
+.addToCartbtn{
+  background-color: #fff;
+  border: solid #cfd9e9 0.1rem;
+  border-radius: 1rem;
+  box-shadow: 0rem 0.1rem 0.3rem  #cfd9e9; 
+  margin-left: auto;
+  padding: 0.1rem 0.5rem ;
+}
+
+.addToCart{
+text-align: right;
+}
+
+.OrderCounterbtn{
+  background-color: #fff;
+  border: solid #cfd9e9 0.1rem;
+  border-radius: 1rem;
+  height: 2rem;
+
+}
+
+.OrderCounterbtn a , .OrderCounterbtn p{
+font-weight: 500;
+  margin: 0.2rem;
+}
+
+
+.AddItemPopUp{
+ position: absolute;
+  top: 5%;
+}
+
+.ServiceDetaials{
+  border-bottom: solid #cfd9e9 0.1rem;
+}
+
+.Optional{
+  background-color: #cfd9e9;
+  border-radius: 1rem;
+  padding: 0.1rem 0.5rem;
+  margin-bottom: 0%;
+}
+.OptionalChoose{
+ text-align: left;
+}
+
+.AddToCartBttn .fa-cart-plus{
+  margin-right: 1rem;
+}
+.AddToCartBttn{
+  margin-bottom: 2rem;
+
+}
+.CartDropDowMenue{
+  background-color:#15243f;
+  border-radius: 1rem;
+  width: 30rem;
+}
+.CartHeader{
+  padding-right:2rem;
+  border-bottom: white solid 0.1rem;
+}
+.YourCart{
+  padding:0.2rem 0.8rem;
+}
+
+.CartDropDowMenue .ProviderName , .CartDropDowMenue .CartFooter{
+  padding:0.2rem 0.8rem;
+
+}
+
+.YourOrders .Order{
+  border: 0.1rem solid white;
+  border-radius: 1rem;
+}
+
+.OrderCounterbtn a{
+ border: none;
+}
+   
+.CartOrders .Order img{
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+
+}
+.PlaceOrderbtn{
+     background-color: #fff;
+    padding: 0rem 1rem;
+    border-radius: 1rem;
+    border: none;
+    height: 2rem;
+    align-self: center;
+
+}
+
+.PlaceOrderbtn .fa-chevron-right{
+    font-size: 1rem;
+    color:#3a4d6f;
+}
+
+.YourCart .fa-xmark{
+  font-size: 1rem;
+}
+
+
+/************** Food Provider Page *************/
+.FoodCategories{
+  padding: 3rem 2rem;
+
+}
+
+.ShopByCategory{
+  margin: 2rem;
+  font-weight: 700;
+}
+
+.FoodCategoriesPhotos{
+ justify-content: center;
+}
+
+.Category{
+  width: 25%;
+  margin-bottom: 2rem;
+}
+
+.Category img{
+  width: 70%;
+  height: 7rem;
+  margin-bottom: 1rem;
+}
+
+.MarketProduct img{
+    height: 20rem;
+    width: 50%; 
+border-radius: 1rem;
+}
+
+/************ Health and Care Provider Page *************/
+.ServiceDoctorPhoto{
+  width: 40%;
+  height: 20rem;
+  border-radius: 2rem;
+}
+
+
+/************ User Orders *************/
+.UserOrdersComp .Order{
+  background-color: #3a4d6f;
+  margin: 2rem;
+  border-radius: 2rem;
+}
+
+.UserOrdersComp .Order img{
+  width: 15rem;
+  height: fit-content;
+  border-radius: 2rem;
+}
+
+.UserOrdersComp .Order{
+
+}

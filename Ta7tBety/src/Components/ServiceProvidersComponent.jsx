@@ -62,8 +62,10 @@ function ServiceProvidersComponent({ providers }) {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                  {" "}
-                  <h5 className="Providername">Arapian Carpentry</h5>
+                  <Link to="/FoodProvider" className="decorationNone">
+                    {" "}
+                    <h5 className="Providername">Arapian Carpentry</h5>
+                  </Link>
                   <p>
                     {" "}
                     <i class="fa-solid fa-street-view"></i> 2 Km
@@ -91,6 +93,36 @@ function ServiceProvidersComponent({ providers }) {
                 />
                 <div className="ProviderInfo">
                   <Link to="/RepairsProvider" className="decorationNone">
+                    {" "}
+                    <h5 className="Providername">Arapian Carpentry</h5>
+                  </Link>{" "}
+                  <p>
+                    {" "}
+                    <i class="fa-solid fa-street-view"></i> 2 Km
+                  </p>
+                  <div className="Rating flex justContentSpaceBet">
+                    <p className="WishListRating">
+                      4.9(+100) <i className="fa-solid fa-star"></i>
+                    </p>
+                    <div className="RepairHeartIcon">
+                      <label class="heart-toggle">
+                        <input type="checkbox" />
+                        <i class="fa-heart fa-regular"></i>
+                      </label>
+
+                      {/* <i class="fa-regular fa-heart"></i>      */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="RepairComponent">
+                <img
+                  src="../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
+                  alt=""
+                />
+                <div className="ProviderInfo">
+                  <Link to="/MarketProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
                   </Link>{" "}
@@ -150,37 +182,7 @@ function ServiceProvidersComponent({ providers }) {
                   alt=""
                 />
                 <div className="ProviderInfo">
-                  <Link to="/RepairsProvider" className="decorationNone">
-                    {" "}
-                    <h5 className="Providername">Arapian Carpentry</h5>
-                  </Link>{" "}
-                  <p>
-                    {" "}
-                    <i class="fa-solid fa-street-view"></i> 2 Km
-                  </p>
-                  <div className="Rating flex justContentSpaceBet">
-                    <p className="WishListRating">
-                      4.9(+100) <i className="fa-solid fa-star"></i>
-                    </p>
-                    <div className="RepairHeartIcon">
-                      <label class="heart-toggle">
-                        <input type="checkbox" />
-                        <i class="fa-heart fa-regular"></i>
-                      </label>
-
-                      {/* <i class="fa-regular fa-heart"></i>      */}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="RepairComponent">
-                <img
-                  src="../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
-                  alt=""
-                />
-                <div className="ProviderInfo">
-                  <Link to="/RepairsProvider" className="decorationNone">
+                  <Link to="/HouseWorkProvider" className="decorationNone">
                     {" "}
                     <h5 className="Providername">Arapian Carpentry</h5>
                   </Link>{" "}

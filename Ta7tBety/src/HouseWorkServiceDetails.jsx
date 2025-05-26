@@ -1,5 +1,6 @@
 import "./App.css";
 import Header from "./Components/Header";
+import HouseWorkSectionOne from "./Components/HouseWorkSectionOne";
 import HouseWorkServiceDetailsComp from "./Components/HouseWorkServiceDetailsComp";
 import Footer from "./Components/Footer";
 
@@ -9,6 +10,7 @@ function HouseWorkServiceDetails() {
         <>
 
             <Header></Header>
+            <HouseWorkSectionOne />                                                                 
             <HouseWorkServiceDetailsComp />
             <Footer></Footer>
         </>

@@ -15,8 +15,8 @@ function MarketrProvider() {
   return (
     <>
       <Header></Header>
-      <MarketSectionOne />
-      <MarketProvidrComp />
+      <MarketSectionOne/>
+      <MarketProvidrComp/>
       <Footer></Footer>
     </>
   );

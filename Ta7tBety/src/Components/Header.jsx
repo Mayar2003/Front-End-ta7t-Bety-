@@ -1,8 +1,39 @@
 import React from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 
 function Header() {
+  const [count, setCount] = useState(1);
+  const [Ordervisible, setOrderVisible] = useState(true);
+
+  const [showInput, setShowInput] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && searchTerm.trim() !== "") {
+      navigate(`/search/${encodeURIComponent(searchTerm.trim())}`);
+      setSearchTerm("");
+      setShowInput(false);
+    }
+  };
+
+  const handleOrderClose = () => {
+    setOrderVisible(false);
+  };
+
+  const [Cartvisible, setCartVisible] = useState(true);
+
+  const handleCartClose = () => {
+    setCartVisible(false);
+  };
+
+  const increment = () => setCount((prev) => prev + 1);
+  const decrement = () => setCount((prev) => prev - 1);
+
   return (
     <>
       <div className="container-fluid HeaderBorderBottom">
@@ -30,7 +61,24 @@ function Header() {
           <div className="header-icons">
             <ul>
               <li>
-                <i className="fa-solid fa-magnifying-glass"></i>
+                <div className="HeaderSearch ">
+                  {showInput ? (
+                    <input
+                      className="HeaderSearchInput W70"
+                      type="text"
+                      autoFocus
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      onBlur={() => setShowInput(false)}
+                      onKeyDown={handleKeyPress}
+                    />
+                  ) : (
+                    <i
+                      className="fa-solid fa-magnifying-glass "
+                      onClick={() => setShowInput(true)}
+                    ></i>
+                  )}
+                </div>
               </li>
               <li>
                 <Link to="/WishList">
@@ -100,6 +148,64 @@ function Header() {
                       </Link>
                     </Dropdown.Item>
                   </Dropdown.Menu>
+                </Dropdown>
+              </li>
+
+              <li>
+                <Dropdown>
+                  <Dropdown.Toggle className="btn-light">
+                    <i className="fa-solid fa-cart-shopping HeaderCart no-hover "></i>
+                  </Dropdown.Toggle>
+
+                  {Cartvisible && (
+                    <Dropdown.Menu className=" CartDropDowMenue ">
+                      <div className="CartHeader flex justContentSpaceBet alignItemsBaseline ">
+                        <p className="YourCart White ">Your Cart</p>
+                        <a onClick={handleCartClose}>
+                          <i className="fa-solid fa-xmark no-hover White cursor"></i>
+                        </a>
+                      </div>
+
+                      <div className="CartOrders">
+                        <p className="ProviderName White">Buona Pizza</p>
+
+                        {Ordervisible && (
+                          <div className="Order flex justContentSpaceBet alignItemsCenter">
+                            <img src="../../G.Project assets2.png (2)/converted-files.png/d104b2c3e-b169-4226-930a-7794de0dde12.jpg" />
+                            <div className="CartPrice">
+                              <h5 className="OrderName White">Pizza</h5>
+                              <p className="White"> {count * 200} EGP</p>
+                            </div>
+                            <button className="OrderCounterbtn flex">
+                              <a onClick={decrement}>-</a>
+                              <p className="orderNumber"> {count} </p>
+                              <a onClick={increment}>+</a>
+                            </button>
+                            <div className="CancelOrder">
+                              <a onClick={handleOrderClose}>
+                                <i className="fa-solid fa-xmark no-hover White "></i>
+                              </a>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="CartFooter flex justContentSpaceBet mrgnt-1 mrgnb-1">
+                          <div className="TotalBill  ">
+                            <p className="White">Total Bill</p>
+                            <h5 className="White">{count * 200} EGP</h5>
+                          </div>
+
+                          <Link to="/UserOrders">
+                            <button className="PlaceOrderbtn bordernone defaultBlue no-hover cursor ">
+                              {" "}
+                              Place Order{" "}
+                              <i class="fa-solid fa-chevron-right defaultBlue"></i>
+                            </button>
+                          </Link>
+                        </div>
+                      </div>
+                    </Dropdown.Menu>
+                  )}
                 </Dropdown>
               </li>
             </ul>

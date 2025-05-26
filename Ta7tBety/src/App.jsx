@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import SearchToggle from "./SearchToggle";
+// import SearchProviderComp from "./SearchProviderComp";
 import "./App.css";
 import Header from "./Components/Header";
 import Home from "./Home";
@@ -26,8 +28,13 @@ import MarketProvider from './MarketProvider.jsx';
 import HealthCareProvider from './HealthCareProvider.jsx';
 import HouseWorkProvider from './HouseWorkProvider.jsx';
 import RepairServiceDetails from './RepairServiceDetails.jsx';
+import MarketServiceDetails from './MarketServiceDetails.jsx';
+import HealthCareServiceDetails from './HealthCareServiceDetails.jsx';
+import HouseWorkServiceDetails from './HouseWorkServiceDetails.jsx';
 import { AuthContext } from "./Contexts/AuthContext.js";
 import { ResponseStateContext } from "./Contexts/ResponseStateContext.js";
+import SearchProvider from "./SearchProvider.jsx";
+import UserOrders from "./UserOrders.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -58,6 +65,12 @@ function App() {
         <Route path="/HealthCareProvider" element={<HealthCareProvider />} />
         <Route path="/HouseWorkProvider" element={<HouseWorkProvider />} />
         <Route path="/RepairServiceDetails" element={<RepairServiceDetails />} />
+        <Route path="/MarketServiceDetails" element={<MarketServiceDetails />} />
+        <Route path="/HealthCareServiceDetails" element={<HealthCareServiceDetails />} />
+        <Route path="/HouseWorkServiceDetails" element={<HouseWorkServiceDetails />} />
+        <Route path="/search/:providerName" element={<SearchProvider />} />
+        <Route path="/UserOrders" element={<UserOrders />} />
+
 
         <Route path="/Profile" element={<Profile />}>
         
