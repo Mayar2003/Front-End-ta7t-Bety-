@@ -254,8 +254,18 @@ class ApiManager {
     return ApiMethods.get(url);
   }
 
-  static createReview(data) {
-    const url = EndPoints.CREATE_REVIEW;
+  static getPostReviews(postID) {
+    const url = EndPoints.GET_POST_REVIEWS(postID);
+    return ApiMethods.get(url);
+  }
+
+  static createProviderReview(providerID, data) {
+    const url = EndPoints.CREATE_PROVIDER_REVIEW(providerID);
+    return ApiMethods.post(url, data);
+  }
+
+  static createPostReview(postID, data) {
+    const url = EndPoints.CREATE_POST_REVIEW(postID);
     return ApiMethods.post(url, data);
   }
 

@@ -1,19 +1,20 @@
 import { useContext, useState } from "react";
 // import { AuthContext } from "../Contexts/AuthContext";
-
 import { Link } from "react-router-dom";
-function FoodProviderComp() {
-  const [rating, setRating] = useState(0); // selected stars
-  const [hover, setHover] = useState(0); // hovered stars
+import ApiManager from "../ApiManager/ApiManager";
+import Review from "./Review";
+import ProviderDetailsAndReviews from "./ProviderDetailsAndReviews";
 
+function FoodProviderComp({ provider }) {
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
+  const [choosedPost, setChoosedPost] = useState({});
 
   const [count, setCount] = useState(1);
 
   const increment = () => setCount((prev) => prev + 1);
-  const decrement = () => setCount((prev) => prev - 1);
+  const decrement = () => setCount((prev) => (prev <= 0 ? 0 : prev - 1));
 
-  function PasswordToggleModal(e) {
+  function passwordToggleModal(e) {
     setchangePasswordPopUp(!changePasswordPopUp);
     e.preventDefault();
   }
@@ -21,154 +22,18 @@ function FoodProviderComp() {
   return (
     <>
       <div className="ProviderPage flex ">
-        <div className="ProviderReview ">
-          <div className="ProviderInfoDiv simpleBoxShadow">
-            <img
-              src="../../G.Project assets2.png (2)/converted-files.png/logo_2638703879160288577.webp"
-              alt=""
-            />
-
-            <div className="Rating flex justContentSpaceEvenly">
-              <h3 className="Providername">Buona Pizza</h3>
-              <p className="ServiceRating">
-                3.9 <i className="fa-solid fa-star"></i>
-              </p>
-            </div>
-
-            <h5 className="ProviderAddress">
-              <i class="fa-solid fa-map-location"></i> Street 306 - Saqr Quraish
-              District
-            </h5>
-
-            <div>
-              <button className="ContactUsbttn">
-                <i class="fa-solid fa-comments"></i> Contact Us
-              </button>
-            </div>
-          </div>
-
-          <div className="ProviderRating simpleBoxShadow">
-            <h5 className="RateProviderH textAlignLeft defaultBlue">
-              Rate This Provider
-            </h5>
-            <div className=" StarsDiv flex justContentSpaceBet W60">
-              <div>
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <i
-                    key={star}
-                    className={`fa-star ${
-                      star <= (hover || rating)
-                        ? "fas text-yellow-400"
-                        : "far text-gray-400"
-                    }`}
-                    onClick={() => setRating(star)}
-                    onMouseEnter={() => setHover(star)}
-                    onMouseLeave={() => setHover(0)}
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "28px",
-                      marginRight: "6px",
-                    }}
-                  ></i>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="ProviderRating-Review simpleBoxShadow">
-            <h5 className="RateProviderH textAlignLeft defaultBlue">
-              Rating & Reviews
-            </h5>
-
-            <div className="Review ">
-              <div className="userInfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                        "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-              </div>
-              <div className="Stars&Date flex justContentSpaceArround">
-                <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                </div>
-                <div className="date LightBlue">23/2/2025</div>
-              </div>
-
-              <p className="Comment LightBlue textAlignLeft">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-                quis tempora, reprehenderit dolor voluptatem voluptates.
-              </p>
-            </div>
-
-            <div className="Review ">
-              <div className="userImfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                        "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-              </div>
-
-              <div className="Stars&Date flex justContentSpaceArround">
-                <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                </div>
-                <div className="date LightBlue">23/2/2025</div>
-              </div>
-
-              <p className="Comment LightBlue textAlignLeft">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-                quis tempora, reprehenderit dolor voluptatem voluptates.
-              </p>
-            </div>
-
-            <div className="Review ">
-              <div className="userImfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                        "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-              </div>
-
-              <div className="Stars&Date flex justContentSpaceArround">
-                <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                </div>
-                <div className="date LightBlue">23/2/2025</div>
-              </div>
-
-              <p className="Comment LightBlue textAlignLeft">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-                quis tempora, reprehenderit dolor voluptatem voluptates.
-              </p>
-            </div>
-
-            <h6 className="moreReviews">
-              <a href="" className="decorationNone moreReviews">
-                See All Reviews
-              </a>
-            </h6>
-          </div>
-        </div>
+        <ProviderDetailsAndReviews provider={provider} />
 
         <div className="ProviderServices flex simpleBoxShadow Wrap justifyContentSpaceBet">
+          {provider.posts.map((post) => (
+            <ServiceItem
+              post={post}
+              key={post._id}
+              passwordToggleModal={passwordToggleModal}
+              setChoosedPost={setChoosedPost}
+            />
+          ))}
+
           <div className="RepairProviderService">
             <img
               src="../../G.Project assets2.png (2)/converted-files.png/d94b2c3e-b169-4226-930a-7794de0dde12.jpg"
@@ -201,7 +66,7 @@ function FoodProviderComp() {
               <div className="addToCart">
                 <button className="addToCartbtn LightBlue ">
                   {" "}
-                  <a href="" onClick={PasswordToggleModal}>
+                  <a href="" onClick={passwordToggleModal}>
                     <i className="fa-solid fa-plus"></i>
                   </a>
                 </button>
@@ -365,14 +230,14 @@ function FoodProviderComp() {
 
               <div className="OrderDetails mrgn-1">
                 <div className="TotalPrice-counterbtn flex justContentSpaceArround">
-                  <h5 className="OrderName">Pizza</h5>
+                  <h5 className="OrderName">{choosedPost.title}</h5>
                   <button className="OrderCounterbtn flex">
                     <a onClick={decrement}>-</a>
                     <p className="orderNumber"> {count} </p>
                     <a onClick={increment}>+</a>
                   </button>
                   <p>Price:</p>
-                  <p> {count * 200} EGP</p>
+                  <p> {count * choosedPost.price} EGP</p>
                 </div>
               </div>
               <div className="OrderDescription">
@@ -385,12 +250,7 @@ function FoodProviderComp() {
                     />
 
                     <p className="ServiceDetailsDescription text">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Soluta velit ut in animi nulla. Vel tenetur eius dolorum
-                      nostrum voluptate, possimus aliquam vero nemo
-                      exercitationem in amet suscipit quos cupiditate doloribus
-                      quas soluta. Iusto, magni veritatis quas itaque illum quod
-                      deserunt praesentium adipisci
+                      {choosedPost.content || "No description available."}
                     </p>
 
                     <label
@@ -429,4 +289,59 @@ function FoodProviderComp() {
     </>
   );
 }
+
+function ServiceItem({ post, passwordToggleModal, setChoosedPost }) {
+  function handleChoosePost(e) {
+    e.preventDefault();
+    setChoosedPost(post);
+    passwordToggleModal(e);
+  }
+
+  // TODO: Calculate it in backend
+  const postAvgRating =
+    post.reviews && post.reviews.length > 0
+      ? (
+          post.reviews.reduce((sum, review) => sum + review.rating, 0) /
+          post.reviews.length
+        ).toFixed(1)
+      : "0.0";
+
+  const postFirstImage = post.images[0].startsWith("http")
+    ? post.images[0]
+    : "https://placehold.co/1200x500?text=No+Image";
+  return (
+    <div className="RepairProviderService">
+      <img src={postFirstImage} alt="" />
+
+      <div className="morePhotos">
+        {" "}
+        <h4></h4>
+      </div>
+
+      <div className="ProviderInfo">
+        <div className="Rating flex justContentSpaceBet">
+          <h5 className="Providername">{post.title}</h5>
+          <p className="ServiceRating">
+            {postAvgRating} <i className="fa-solid fa-star"></i>
+          </p>
+        </div>
+
+        <p>{post.content} </p>
+        <div className="Price">
+          {" "}
+          <p>{post.price} EGP</p>
+        </div>
+        <div className="addToCart">
+          <button className="addToCartbtn LightBlue ">
+            {" "}
+            <a href="" onClick={handleChoosePost}>
+              <i className="fa-solid fa-plus"></i>
+            </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default FoodProviderComp;

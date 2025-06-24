@@ -1,19 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ApiManager from "../ApiManager/ApiManager";
+import ProviderDetailsAndReviews from "./ProviderDetailsAndReviews";
 
 function RepairsProviderComp({ provider }) {
   const navigate = useNavigate();
-  const [rating, setRating] = useState(0); // selected stars
-  const [hover, setHover] = useState(0); // hovered stars
 
-  const providerAvgRating =
-    provider.reviews && provider.reviews.length > 0
-      ? (
-          provider.reviews.reduce((sum, review) => sum + review.rating, 0) /
-          provider.reviews.length
-        ).toFixed(1)
-      : "0.0";
+  const providerAvgRating = provider.avgRating
+    ? provider.avgRating.toFixed(1)
+    : "0.0";
 
   function handlePostSelection(service, postAvgRating) {
     ApiManager.getPostById(service._id)
@@ -37,149 +32,7 @@ function RepairsProviderComp({ provider }) {
   return (
     <>
       <div className="ProviderPage flex ">
-        <div className="ProviderReview ">
-          <div className="ProviderInfoDiv simpleBoxShadow">
-            <img src={provider.providerID.photo} alt="" />
-
-            <div className="Rating flex justContentSpaceEvenly">
-              <h3 className="Providername">{provider.providerID.name}</h3>
-              <p className="ServiceRating">
-                {providerAvgRating} <i className="fa-solid fa-star"></i>
-              </p>
-            </div>
-
-            <h5 className="ProviderAddress">
-              <i class="fa-solid fa-map-location"></i>{" "}
-              {/* //? <provider.locations[0]> should there be a location */}
-            </h5>
-
-            <div>
-              <button className="ContactUsbttn">
-                <i class="fa-solid fa-comments"></i> Contact Us
-              </button>
-            </div>
-          </div>
-
-          <div className="ProviderRating simpleBoxShadow">
-            <h5 className="RateProviderH textAlignLeft defaultBlue">
-              Rate This Provider
-            </h5>
-            <div className=" StarsDiv flex justContentSpaceBet W60">
-              <div>
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <i
-                    key={star}
-                    className={`fa-star ${
-                      star <= (hover || rating)
-                        ? "fas text-yellow-400"
-                        : "far text-gray-400"
-                    }`}
-                    onClick={() => setRating(star)}
-                    onMouseEnter={() => setHover(star)}
-                    onMouseLeave={() => setHover(0)}
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "28px",
-                      marginRight: "6px",
-                    }}
-                  ></i>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="ProviderRating-Review simpleBoxShadow">
-            <h5 className="RateProviderH textAlignLeft defaultBlue">
-              Rating & Reviews
-            </h5>
-
-            <div className="Review ">
-              <div className="userInfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-              </div>
-              <div className="Stars&Date flex justContentSpaceArround">
-                <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                </div>
-                <div className="date LightBlue">23/2/2025</div>
-              </div>
-
-              <p className="Comment LightBlue textAlignLeft">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-                quis tempora, reprehenderit dolor voluptatem voluptates.
-              </p>
-            </div>
-
-            <div className="Review ">
-              <div className="userImfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-              </div>
-
-              <div className="Stars&Date flex justContentSpaceArround">
-                <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                </div>
-                <div className="date LightBlue">23/2/2025</div>
-              </div>
-
-              <p className="Comment LightBlue textAlignLeft">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-                quis tempora, reprehenderit dolor voluptatem voluptates.
-              </p>
-            </div>
-
-            <div className="Review ">
-              <div className="userImfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-              </div>
-
-              <div className="Stars&Date flex justContentSpaceArround">
-                <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                </div>
-                <div className="date LightBlue">23/2/2025</div>
-              </div>
-
-              <p className="Comment LightBlue textAlignLeft">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-                quis tempora, reprehenderit dolor voluptatem voluptates.
-              </p>
-            </div>
-
-            <h6 className="moreReviews">
-              <a href="" className="decorationNone moreReviews">
-                See All Reviews
-              </a>
-            </h6>
-          </div>
-        </div>
+        <ProviderDetailsAndReviews provider={provider} />
 
         <div className="ProviderServices flex simpleBoxShadow Wrap justifyContentSpaceBet">
           <h5 className="textAlignLeft W100 RepairServices ">Services</h5>
@@ -387,12 +240,13 @@ function ServiceItem({ post, handleOnClick }) {
         ).toFixed(1)
       : "0.0";
 
+  const postFirstImage = post.images[0].startsWith("http")
+    ? post.images[0]
+    : "https://placehold.co/1200x500?text=No+Image";
+
   return (
     <div className="RepairProviderService">
-      <img
-        src="../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
-        alt=""
-      />
+      <img src={postFirstImage} alt="" />
 
       <div
         className="morePhotos"
@@ -431,4 +285,5 @@ function ServiceItem({ post, handleOnClick }) {
     </div>
   );
 }
+
 export default RepairsProviderComp;

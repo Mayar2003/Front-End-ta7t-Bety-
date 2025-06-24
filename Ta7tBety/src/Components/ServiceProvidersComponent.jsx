@@ -1,5 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import ApiManager from "../ApiManager/ApiManager";
+import useUser from "../Hooks/useUser";
+import { useContext } from "react";
+import { AuthContext } from "../Contexts/AuthContext";
 
 function ServiceProvidersComponent({ providers }) {
   const navigate = useNavigate();
@@ -10,8 +13,30 @@ function ServiceProvidersComponent({ providers }) {
       .then((res) => {
         const response = res.data;
 
+        const providerGenre = response.data.providerType.split("-")[0];
+
+        let providerPath = "";
+
+        switch (providerGenre) {
+          case "R":
+            providerPath = "/RepairsProvider";
+            break;
+          case "M":
+            providerPath = "/MarketProvider";
+            break;
+          case "F":
+            providerPath = "/FoodProvider";
+            break;
+          case "HW":
+            providerPath = "/HouseWorkProvider";
+            break;
+          case "HC":
+            providerPath = "/HealthCareProvider";
+            break;
+        }
+
         console.log("Provider data:", response); // TODO: fix it in backend to be response.data.provider also fix the returned data
-        navigate("/RepairsProvider", {
+        navigate(providerPath, {
           state: { provider: response.data },
         });
       })
@@ -51,7 +76,7 @@ function ServiceProvidersComponent({ providers }) {
             <div className="RepairsProvidersSlideOne flex Wrap justContentSpaceBet">
               {providers.map((provider) => (
                 <Item
-                  key={provider.id}
+                  key={provider._id}
                   provider={provider}
                   onProviderSelection={handleProviderSelection}
                 />
@@ -251,6 +276,30 @@ function ServiceProvidersComponent({ providers }) {
 }
 
 function Item({ provider, onProviderSelection }) {
+  const user = useUser();
+  const { setUser } = useContext(AuthContext);
+
+  const averageRating = provider.avgRating?.toFixed(1) || "0.0";
+  const reviewsCount =
+    provider.reviewsCount > 100 ? "100+" : provider.reviewsCount;
+
+  function addToFavorites(e) {
+    e.stopPropagation(); // Prevent triggering the onClick event of ProviderInfo
+    ApiManager.updateMe({
+      favoriteProviders: [...user.favoriteProviders, provider.providerId],
+    }).then((res) => {
+      if (user.favoriteProviders !== null) {
+        setUser({
+          ...user,
+          favoriteProviders: [...user.favoriteProviders, provider.providerId],
+        });
+      } else {
+        setUser({ ...user, favoriteProviders: [provider.userId] });
+      }
+      console.log("Added to favorites:", res.data);
+    });
+  }
+
   return (
     <div className="RepairComponent">
       <img src={provider.photo} alt="" />
@@ -267,9 +316,9 @@ function Item({ provider, onProviderSelection }) {
         </p>
         <div className="Rating flex justContentSpaceBet">
           <p className="WishListRating">
-            {provider.avdRating}(+100) <i className="fa-solid fa-star"></i>
+            {averageRating}({reviewsCount}) <i className="fa-solid fa-star"></i>
           </p>
-          <div className="RepairHeartIcon">
+          <div className="RepairHeartIcon" onClick={addToFavorites}>
             <label class="heart-toggle">
               <input type="checkbox" />
               <i class="fa-heart fa-regular"></i>

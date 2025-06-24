@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import BookAppointmentCalendar from "./BookAppointmentCalendar";
 import ApiManager from "../ApiManager/ApiManager";
 import useUser from "../Hooks/useUser";
+import Review from "./Review";
 
 function RepairServiceDetailsComp() {
   const location = useLocation();
@@ -13,28 +14,58 @@ function RepairServiceDetailsComp() {
   const [BookingPopUp, setchangeBookingPopUp] = useState(false);
   const [rating, setRating] = useState(0); // selected stars
   const [hover, setHover] = useState(0); // hovered stars
+  const [reviews, setReviews] = useState(post?.reviews || []);
 
   function BookingToggleModal(e) {
     setchangeBookingPopUp(!BookingPopUp);
     e.preventDefault();
   }
 
-  function addRating(rating) {
-    setRating(rating);
+  // function addRating(rating) {
+  //   setRating(rating);
 
-    ApiManager.createReview({
-      user: user._id,
-      provider: provider._id,
-      post: post._id,
-      rating,
-      review: "Great service!",
-    })
+  //   ApiManager.createReview({
+  //     user: user._id,
+  //     provider: provider._id,
+  //     post: post._id,
+  //     rating,
+  //     review: "Great service!",
+  //   })
+  //     .then((res) => {
+  //       const response = res.data;
+  //       console.log("Rating updated successfully:", response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error updating rating:", error);
+  //     });
+  // }
+
+  function handlePostRating(rating) {
+    setRating(rating);
+    const reviewData = {
+      review: "User's comment here",
+      rating: rating,
+    };
+
+    ApiManager.createPostReview(post._id, reviewData)
       .then((res) => {
-        const response = res.data;
-        console.log("Rating updated successfully:", response.data);
+        console.log("Review submitted successfully:", res.data);
+
+        // TODO: dates aren't returned from the API
+        ApiManager.getPostReviews(post._id)
+          .then((res) => {
+            console.log("Fetched post reviews:", res.data);
+            const Response = res.data;
+            const reviews = Response.data.reviews;
+            setReviews(reviews);
+            console.log("Post reviews:", reviews);
+          })
+          .catch((error) => {
+            console.error("Error fetching post reviews:", error);
+          });
       })
       .catch((error) => {
-        console.error("Error updating rating:", error);
+        console.error("Error submitting review:", error);
       });
   }
 
@@ -50,7 +81,7 @@ function RepairServiceDetailsComp() {
                 {provider?.providerID.name || "Unknown Provider"}
               </h3>
               <p className="ServiceRating">
-                {providerAvgRating} <i className="fa-solid fa-star"></i>
+                {provider.avgRating} <i className="fa-solid fa-star"></i>
               </p>
             </div>
 
@@ -80,7 +111,7 @@ function RepairServiceDetailsComp() {
                         ? "fas text-yellow-400"
                         : "far text-gray-400"
                     }`}
-                    onClick={() => addRating(star)}
+                    onClick={() => handlePostRating(star)}
                     onMouseEnter={() => setHover(star)}
                     onMouseLeave={() => setHover(0)}
                     style={{
@@ -98,6 +129,12 @@ function RepairServiceDetailsComp() {
             <h5 className="RateProviderH textAlignLeft defaultBlue">
               Rating & Reviews
             </h5>
+
+            {reviews
+              .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+              .map((review) => (
+                <Review review={review} key={review._id} />
+              ))}
 
             <div className="Review ">
               <div className="userInfo flex">
@@ -218,7 +255,21 @@ function RepairServiceDetailsComp() {
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div className="imgaSlide flex">
-                    <img
+                    {post?.images?.map((image, index) => {
+                      if (index >= 3) return null; // Limit to first 3 images
+                      image =
+                        image.startsWith("http") ||
+                        "https://placehold.co/300x500?text=No+Image";
+                      return (
+                        <img
+                          key={index}
+                          src={image}
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      );
+                    })}
+                    {/* <img
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-13.png"
                       class="d-block w-100"
                       alt="..."
@@ -232,13 +283,27 @@ function RepairServiceDetailsComp() {
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-19.png"
                       class="d-block w-100"
                       alt="..."
-                    />
+                    /> */}
                   </div>
                 </div>
 
                 <div class="carousel-item">
                   <div className="imgaSlide flex">
-                    <img
+                    {post?.images?.map((image, index) => {
+                      if (index >= 3 && index < 6) return null; // Limit to second 3 images
+                      image =
+                        image.startsWith("http") ||
+                        "https://placehold.co/300x500?text=No+Image";
+                      return (
+                        <img
+                          key={index}
+                          src={image}
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      );
+                    })}
+                    {/* <img
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-27.png"
                       class="d-block w-100"
                       alt="..."
@@ -252,12 +317,26 @@ function RepairServiceDetailsComp() {
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-27.png"
                       class="d-block w-100"
                       alt="..."
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div class="carousel-item">
                   <div className="imgaSlide flex">
-                    <img
+                    {post?.images?.map((image, index) => {
+                      if (index >= 6 && index < 9) return null; // Limit to third 3 images
+                      image =
+                        image.startsWith("http") ||
+                        "https://placehold.co/300x500?text=No+Image";
+                      return (
+                        <img
+                          key={index}
+                          src={image}
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      );
+                    })}
+                    {/* <img
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-27.png"
                       class="d-block w-100"
                       alt="..."
@@ -271,7 +350,7 @@ function RepairServiceDetailsComp() {
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-19.png"
                       class="d-block w-100"
                       alt="..."
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -432,5 +511,7 @@ function RepairServiceDetailsComp() {
     </>
   );
 }
+
+// TODO: Make it a separate component
 
 export default RepairServiceDetailsComp;
