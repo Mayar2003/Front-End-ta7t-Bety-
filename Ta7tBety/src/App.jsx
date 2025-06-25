@@ -35,6 +35,9 @@ import { AuthContext } from "./Contexts/AuthContext.js";
 import { ResponseStateContext } from "./Contexts/ResponseStateContext.js";
 import SearchProvider from "./SearchProvider.jsx";
 import UserOrders from "./UserOrders.jsx";
+import DisplayMap from "./Maps/display_maps.jsx";
+import LocationPicker from "./Maps/location_picker.jsx";
+import LocationPickerModal from "./Maps/location_picker.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -53,7 +56,7 @@ function App() {
     <Router>
    
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<LocationPickerModal />} />
         <Route path='/AboutUS' element={<AboutUs />} />
         <Route path='/HelpCenter' element={<HelpCenter />} />
         <Route path='/Services' element={<Services />} />
