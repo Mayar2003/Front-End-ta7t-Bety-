@@ -9,7 +9,7 @@ function RepairServiceDetailsComp() {
   const location = useLocation();
   const { provider, post, providerAvgRating, postAvgRating } =
     location.state || { provider: null, post: null };
-  const user = useUser();
+  const { user } = useUser();
 
   const [BookingPopUp, setchangeBookingPopUp] = useState(false);
   const [rating, setRating] = useState(0); // selected stars

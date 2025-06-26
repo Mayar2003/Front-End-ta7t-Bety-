@@ -2,7 +2,7 @@ import { useState } from "react";
 import useUser from "../Hooks/useUser";
 
 function ProfileSavedAdresses() {
-  const user = useUser();
+  const { user } = useUser();
 
   return (
     <>

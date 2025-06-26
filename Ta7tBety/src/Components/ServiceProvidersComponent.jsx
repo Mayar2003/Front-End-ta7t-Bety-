@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 
 function ServiceProvidersComponent({ providers }) {
+  const { user, updateUser } = useUser();
+
   const navigate = useNavigate();
 
   function handleProviderSelection(providerId) {
@@ -74,13 +76,26 @@ function ServiceProvidersComponent({ providers }) {
         <div className="carousel-inner">
           <div className="carousel-item active" data-bs-interval="10000">
             <div className="RepairsProvidersSlideOne flex Wrap justContentSpaceBet">
-              {providers.map((provider) => (
-                <Item
-                  key={provider._id}
-                  provider={provider}
-                  onProviderSelection={handleProviderSelection}
-                />
-              ))}
+              {providers.map((provider) => {
+                if (user.favoriteProviders?.includes(provider.providerId)) {
+                  return (
+                    <Item
+                      key={provider._id}
+                      provider={provider}
+                      onProviderSelection={handleProviderSelection}
+                      isFavorite={true}
+                    />
+                  );
+                } else {
+                  return (
+                    <Item
+                      key={provider._id}
+                      provider={provider}
+                      onProviderSelection={handleProviderSelection}
+                    />
+                  );
+                }
+              })}
               <div className="RepairComponent">
                 <img
                   src="../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
@@ -275,29 +290,47 @@ function ServiceProvidersComponent({ providers }) {
   );
 }
 
-function Item({ provider, onProviderSelection }) {
-  const user = useUser();
-  const { setUser } = useContext(AuthContext);
-
+function Item({ provider, onProviderSelection, isFavorite = false }) {
+  const { user, updateUser } = useUser();
   const averageRating = provider.avgRating?.toFixed(1) || "0.0";
   const reviewsCount =
     provider.reviewsCount > 100 ? "100+" : provider.reviewsCount;
 
   function addToFavorites(e) {
     e.stopPropagation(); // Prevent triggering the onClick event of ProviderInfo
+
+    // Ensure favoriteProviders is always an array
+    const currentFavorites = user.favoriteProviders || [];
+
+    // Check if provider is already in favorites to avoid duplicates
+    if (currentFavorites.includes(provider.providerId)) {
+      console.log("Provider already in favorites");
+      return;
+    }
+
+    const updatedFavorites = [...currentFavorites, provider.providerId];
+
     ApiManager.updateMe({
-      favoriteProviders: [...user.favoriteProviders, provider.providerId],
-    }).then((res) => {
-      if (user.favoriteProviders !== null) {
-        setUser({
+      favoriteProviders: updatedFavorites,
+    })
+      .then((res) => {
+        const newUser = {
           ...user,
-          favoriteProviders: [...user.favoriteProviders, provider.providerId],
-        });
-      } else {
-        setUser({ ...user, favoriteProviders: [provider.userId] });
-      }
-      console.log("Added to favorites:", res.data);
-    });
+          favoriteProviders: updatedFavorites,
+        };
+        console.log("old user data:", user);
+        console.log("New user data:", newUser);
+
+        updateUser(newUser);
+
+        // Use localStorage for persistent storage
+        localStorage.setItem("user", JSON.stringify(newUser));
+
+        console.log("Added to favorites:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error adding to favorites:", err);
+      });
   }
 
   return (
@@ -320,8 +353,10 @@ function Item({ provider, onProviderSelection }) {
           </p>
           <div className="RepairHeartIcon" onClick={addToFavorites}>
             <label class="heart-toggle">
-              <input type="checkbox" />
-              <i class="fa-heart fa-regular"></i>
+              <input type="checkbox" checked={isFavorite} readOnly />
+              <i
+                class={`fa-heart ${isFavorite ? "fa-solid" : "fa-regular"}`}
+              ></i>
             </label>
 
             {/* <i class="fa-regular fa-heart"></i>      */}

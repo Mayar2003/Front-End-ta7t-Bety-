@@ -1,7 +1,7 @@
 import useUser from "../Hooks/useUser";
 
 function WishListComponent() {
-  const user = useUser();
+  const { user } = useUser();
 
   console.log("User's favorite providers:", user.favoriteProviders);
   return (

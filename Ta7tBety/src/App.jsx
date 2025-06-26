@@ -20,17 +20,17 @@ import ProfileSavedAdresses from "./Components/ProfileSavedAdresses";
 import MyActiveOrders from "./Components/MyActiveOrders";
 import MyCompletedOrders from "./Components/MyCompletedOrders";
 import MyCanceldOrders from "./Components/MyCanceldOrders";
-import WishList from './WishList.jsx';
-import Providers from './Providers.jsx';
-import RepairsProvider from './RepairsProvider.jsx';
-import FoodProvider from './FoodProvider.jsx';
-import MarketProvider from './MarketProvider.jsx';
-import HealthCareProvider from './HealthCareProvider.jsx';
-import HouseWorkProvider from './HouseWorkProvider.jsx';
-import RepairServiceDetails from './RepairServiceDetails.jsx';
-import MarketServiceDetails from './MarketServiceDetails.jsx';
-import HealthCareServiceDetails from './HealthCareServiceDetails.jsx';
-import HouseWorkServiceDetails from './HouseWorkServiceDetails.jsx';
+import WishList from "./WishList.jsx";
+import Providers from "./Providers.jsx";
+import RepairsProvider from "./RepairsProvider.jsx";
+import FoodProvider from "./FoodProvider.jsx";
+import MarketProvider from "./MarketProvider.jsx";
+import HealthCareProvider from "./HealthCareProvider.jsx";
+import HouseWorkProvider from "./HouseWorkProvider.jsx";
+import RepairServiceDetails from "./RepairServiceDetails.jsx";
+import MarketServiceDetails from "./MarketServiceDetails.jsx";
+import HealthCareServiceDetails from "./HealthCareServiceDetails.jsx";
+import HouseWorkServiceDetails from "./HouseWorkServiceDetails.jsx";
 import { AuthContext } from "./Contexts/AuthContext.js";
 import { ResponseStateContext } from "./Contexts/ResponseStateContext.js";
 import SearchProvider from "./SearchProvider.jsx";
@@ -48,44 +48,60 @@ function App() {
   });
 
   return (
-
- <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       <ResponseStateContext.Provider
         value={{ responseState, setResponseState }}
       >
-    <Router>
-   
-      <Routes>
-        <Route path='/' element={<LocationPickerModal />} />
-        <Route path='/AboutUS' element={<AboutUs />} />
-        <Route path='/HelpCenter' element={<HelpCenter />} />
-        <Route path='/Services' element={<Services />} />
-        <Route path="/WishList" element={<WishList />} />
-        <Route path="/Providers" element={<Providers />} />
-        <Route path="/RepairsProvider" element={<RepairsProvider />} />
-        <Route path="/FoodProvider" element={<FoodProvider />} />
-        <Route path="/MarketProvider" element={<MarketProvider />} />
-        <Route path="/HealthCareProvider" element={<HealthCareProvider />} />
-        <Route path="/HouseWorkProvider" element={<HouseWorkProvider />} />
-        <Route path="/RepairServiceDetails" element={<RepairServiceDetails />} />
-        <Route path="/MarketServiceDetails" element={<MarketServiceDetails />} />
-        <Route path="/HealthCareServiceDetails" element={<HealthCareServiceDetails />} />
-        <Route path="/HouseWorkServiceDetails" element={<HouseWorkServiceDetails />} />
-        <Route path="/search/:providerName" element={<SearchProvider />} />
-        <Route path="/UserOrders" element={<UserOrders />} />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/AboutUS" element={<AboutUs />} />
+            <Route path="/HelpCenter" element={<HelpCenter />} />
+            <Route path="/Services" element={<Services />} />
+            <Route path="/WishList" element={<WishList />} />
+            <Route path="/Providers" element={<Providers />} />
+            <Route path="/RepairsProvider" element={<RepairsProvider />} />
+            <Route path="/FoodProvider" element={<FoodProvider />} />
+            <Route path="/MarketProvider" element={<MarketProvider />} />
+            <Route
+              path="/HealthCareProvider"
+              element={<HealthCareProvider />}
+            />
+            <Route path="/HouseWorkProvider" element={<HouseWorkProvider />} />
+            <Route
+              path="/RepairServiceDetails"
+              element={<RepairServiceDetails />}
+            />
+            <Route
+              path="/MarketServiceDetails"
+              element={<MarketServiceDetails />}
+            />
+            <Route
+              path="/HealthCareServiceDetails"
+              element={<HealthCareServiceDetails />}
+            />
+            <Route
+              path="/HouseWorkServiceDetails"
+              element={<HouseWorkServiceDetails />}
+            />
+            <Route path="/search/:providerName" element={<SearchProvider />} />
+            <Route path="/UserOrders" element={<UserOrders />} />
 
-
-        <Route path="/Profile" element={<Profile />}>
-        
-          <Route index element={<ProfileAccountInfo />} />
-          <Route path="ProfileAccountInfo" element={<ProfileAccountInfo />} />
-          <Route path="ProfileMyOrders" element={<ProfileMyOrders />}>
-            <Route index element={<MyActiveOrders />} />
-            <Route path="MyActiveOrders" element={<MyActiveOrders />} />
-            <Route path="MyCompletedOrders" element={<MyCompletedOrders />} />
-            <Route path="MyCanceldOrders" element={<MyCanceldOrders />} />
-          </Route>
-          
+            <Route path="/Profile" element={<Profile />}>
+              <Route index element={<ProfileAccountInfo />} />
+              <Route
+                path="ProfileAccountInfo"
+                element={<ProfileAccountInfo />}
+              />
+              <Route path="ProfileMyOrders" element={<ProfileMyOrders />}>
+                <Route index element={<MyActiveOrders />} />
+                <Route path="MyActiveOrders" element={<MyActiveOrders />} />
+                <Route
+                  path="MyCompletedOrders"
+                  element={<MyCompletedOrders />}
+                />
+                <Route path="MyCanceldOrders" element={<MyCanceldOrders />} />
+              </Route>
 
               <Route
                 path="ProfileSavedAdresses"

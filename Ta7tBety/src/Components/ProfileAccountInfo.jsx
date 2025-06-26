@@ -16,8 +16,7 @@ function ProfileAccountInfo() {
     newPasswordConfirm: "",
   });
 
-  const user = useUser();
-  const { setUser } = useContext(AuthContext);
+  const { user, updateUser } = useUser();
 
   console.log("User in ProfileAccountInfo:", user); // Log the user object to check if it's defined
   function EmailToggleModal(e) {
@@ -70,7 +69,7 @@ function ProfileAccountInfo() {
                           .then((res) => {
                             const response = res.data;
                             console.log("Update photo response:", response); // Log the response data
-                            setUser(response.data.user); // Update the user in context
+                            updateUser(response.data.user); // Update the user in context
                             localStorage.setItem(
                               "user",
                               JSON.stringify(response.data.user)
@@ -99,7 +98,7 @@ function ProfileAccountInfo() {
                     .then((res) => {
                       const response = res.data;
                       console.log("User data:", response.data.user); // Log the user data
-                      setUser(response.data.user); // Update the user in context
+                      updateUser(response.data.user); // Update the user in context
                       localStorage.setItem(
                         "user",
                         JSON.stringify(response.data.user)
@@ -236,11 +235,15 @@ function ProfileAccountInfo() {
                   <button onClick={() => setchangeEmailPopUp(false)}>
                     CANCEL
                   </button>
-                  <button className="SubmitBttn"
-                     onClick={() => {
+                  <button
+                    className="SubmitBttn"
+                    onClick={() => {
                       setchangeEmailPopUp(false);
                       setchangeVerifyCodePopUp(true);
-                    }}>Send Code</button>
+                    }}
+                  >
+                    Send Code
+                  </button>
                 </div>
               </div>
             </div>

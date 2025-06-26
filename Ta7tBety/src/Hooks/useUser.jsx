@@ -5,9 +5,9 @@ export default function useUser() {
   let { user, setUser } = useContext(AuthContext);
   user = user || JSON.parse(localStorage.getItem("user"));
 
-  setUser = (newUser) => {
-    user = newUser;
+  const updateUser = (newUser) => {
+    setUser(newUser);
     localStorage.setItem("user", JSON.stringify(newUser));
   };
-  return user;
+  return { user, updateUser };
 }

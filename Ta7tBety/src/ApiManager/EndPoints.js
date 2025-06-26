@@ -45,6 +45,7 @@ const EndPoints = {
   DELETE_POST: (id) => `/posts/${id}`,
 
   // Orders
+  GET_ALL_ORDERS: "/orders",
   GET_USER_ORDERS: (userId) => `/orders/user-orders/${userId}`,
   GET_ORDER_BY_ID: (id) => `/orders/${id}`,
   GET_MY_ORDERS: "/orders/my-orders",

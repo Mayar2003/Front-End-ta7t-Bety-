@@ -90,6 +90,11 @@ class ApiManager {
   }
 
   // Orders
+  static getAllOrders() {
+    const url = EndPoints.GET_ALL_ORDERS;
+    return ApiMethods.get(url);
+  }
+
   static getMyOrders() {
     const url = EndPoints.GET_MY_ORDERS;
     return ApiMethods.get(url);
