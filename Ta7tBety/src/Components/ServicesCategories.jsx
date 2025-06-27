@@ -9,9 +9,18 @@ function ServicesCategories() {
     lat: 0,
   });
   const [distance, setDistance] = useState(1000000000);
+  const navigate = useNavigate();
 
-  function handleRepairsClick(e, type, genre) {
-    e.preventDefault();
+  function hadnleCategorySelection(type, genre) {
+    if (!user) {
+      // If user is not logged in, redirect to login page
+      navigate("/SignIn", {
+        state: { from: "/Services" },
+        search: `?type=${type}&genre=${genre}`,
+      });
+      alert("Please log in to view providers.");
+      return;
+    }
     ApiManager.getNearbyProviders(
       position.lng,
       position.lat,

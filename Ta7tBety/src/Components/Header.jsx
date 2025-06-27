@@ -4,8 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
+import useUser from "../Hooks/useUser";
+import useCart from "../Hooks/useCart";
 
 function Header() {
+  const { user, updateUser } = useUser();
+  const { cart, updateCart } = useCart();
   const [count, setCount] = useState(1);
   const [Ordervisible, setOrderVisible] = useState(true);
 
@@ -21,7 +25,10 @@ function Header() {
     }
   };
 
-  const handleOrderClose = () => {
+  const handleOrderClose = (e, id) => {
+    e.preventDefault();
+    const updatedCart = cart.filter((item) => item._id !== id);
+    updateCart(updatedCart);
     setOrderVisible(false);
   };
 
@@ -32,7 +39,14 @@ function Header() {
   };
 
   const increment = () => setCount((prev) => prev + 1);
-  const decrement = () => setCount((prev) => prev - 1);
+  const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
+
+  const handleLogout = () => {
+    updateUser(null); // Clear user context
+    localStorage.removeItem("authToken"); // Clear token from local storage
+    navigate("/"); // Redirect to home page
+    window.location.reload();
+  };
 
   return (
     <>
@@ -165,35 +179,34 @@ function Header() {
                         </a>
                       </div>
 
-                      <div className="CartOrders">
-                        <p className="ProviderName White">Buona Pizza</p>
-
-                        {Ordervisible && (
-                          <div className="Order flex justContentSpaceBet alignItemsCenter">
-                            <img src="../../G.Project assets2.png (2)/converted-files.png/d104b2c3e-b169-4226-930a-7794de0dde12.jpg" />
-                            <div className="CartPrice">
-                              <h5 className="OrderName White">Pizza</h5>
-                              <p className="White"> {count * 200} EGP</p>
-                            </div>
-                            <button className="OrderCounterbtn flex">
-                              <a onClick={decrement}>-</a>
-                              <p className="orderNumber"> {count} </p>
-                              <a onClick={increment}>+</a>
-                            </button>
-                            <div className="CancelOrder">
-                              <a onClick={handleOrderClose}>
-                                <i className="fa-solid fa-xmark no-hover White "></i>
-                              </a>
-                            </div>
+                        {cart && cart.length > 0 ? (
+                          cart.map((item) => (
+                            <CartItem
+                              key={item._id}
+                              item={item}
+                              cart={cart}
+                              updateCart={updateCart}
+                              handleOrderClose={handleOrderClose}
+                            />
+                          ))
+                        ) : (
+                          <div className="EmptyCart">
+                            <p className="White">Your cart is empty</p>
                           </div>
                         )}
 
-                        <div className="CartFooter flex justContentSpaceBet mrgnt-1 mrgnb-1">
-                          <div className="TotalBill  ">
-                            <p className="White">Total Bill</p>
-                            <h5 className="White">{count * 200} EGP</h5>
+                        <div className="CartFooter flex justContentSpaceBet alignItemsCenter">
+                          <div className="TotalBill">
+                            <p className="White">Total bill</p>
+                            <h5 className="White">
+                              {cart.reduce(
+                                (total, item) =>
+                                  total + item.price * item.quantity,
+                                0
+                              )}{" "}
+                              EGP
+                            </h5>
                           </div>
-
                           <Link to="/UserOrders">
                             <button className="PlaceOrderbtn bordernone defaultBlue no-hover cursor ">
                               {" "}
@@ -201,7 +214,6 @@ function Header() {
                               <i class="fa-solid fa-chevron-right defaultBlue"></i>
                             </button>
                           </Link>
-                        </div>
                       </div>
                     </Dropdown.Menu>
                   )}
@@ -212,6 +224,55 @@ function Header() {
         </div>
       </div>
     </>
+  );
+}
+
+function CartItem({ item, cart, updateCart, handleOrderClose }) {
+  function increment() {
+    const updatedCart = cart.map((cartItem) =>
+      cartItem._id === item._id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    );
+    updateCart(updatedCart);
+  }
+
+  function decrement() {
+    const updatedCart = cart.map((cartItem) =>
+      cartItem._id === item._id
+        ? {
+            ...cartItem,
+            quantity: Math.max(cartItem.quantity - 1, 1),
+          }
+        : cartItem
+    );
+    updateCart(updatedCart);
+  }
+
+  return (
+    <div className="Order flex justContentSpaceBet alignItemsCenter">
+      <img
+        style={{ width: 70, height: 70, borderRadius: "10%" }}
+        src={item.images[0]}
+        alt={item.title}
+      />
+      <div className="CartPrice">
+        <h5 className="OrderName White">{item.title}</h5>
+        <p className="White">{item.price * item.quantity} EGP</p>
+      </div>
+      <div className="OrderCounterSection">
+        <button className="OrderCounterbtn flex alignItemsCenter">
+          <a onClick={decrement}>-</a>
+          <p className="orderNumber">{item.quantity}</p>
+          <a onClick={increment}>+</a>
+        </button>
+      </div>
+      <div className="CancelOrder">
+        <a onClick={(e) => handleOrderClose(e, item._id)}>
+          <i className="fa-solid fa-xmark White cursor"></i>
+        </a>
+      </div>
+    </div>
   );
 }
 

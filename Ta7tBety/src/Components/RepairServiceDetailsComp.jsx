@@ -11,6 +11,14 @@ function RepairServiceDetailsComp() {
     e.preventDefault();
   }
 
+ 
+
+  function handleBooking(e) {
+    e.preventDefault();
+
+    console.log("provider", provider);
+  }
+
   const [rating, setRating] = useState(0); // selected stars
   const [hover, setHover] = useState(0); // hovered stars
 
@@ -38,7 +46,35 @@ function RepairServiceDetailsComp() {
     setchangePasswordPopUp(!changePasswordPopUp);
     e.preventDefault();
   }
+   function handlePostRating(rating) {
+    setRating(rating);
+    const reviewData = {
+      review: "User's comment here",
+      rating: rating,
+    };
 
+    ApiManager.createPostReview(post._id, reviewData)
+      .then((res) => {
+        console.log("Review submitted successfully:", res.data);
+
+        // TODO: dates aren't returned from the API
+        ApiManager.getPostReviews(post._id)
+          .then((res) => {
+            console.log("Fetched post reviews:", res.data);
+            const Response = res.data;
+            const reviews = Response.data.reviews;
+            setReviews(reviews);
+            console.log("Post reviews:", reviews);
+          })
+          .catch((error) => {
+            console.error("Error fetching post reviews:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error submitting review:", error);
+      });
+
+  
   return (
     <>
       <div className="ProviderPage flex ">
@@ -448,8 +484,8 @@ function RepairServiceDetailsComp() {
  */}
 
                   <BookAppointmentCalendar></BookAppointmentCalendar>
-
-                  <button className=" BookthisAppbttn ">
+                  {/* // TODO: Implement booking functionality */}
+                  <button className=" BookthisAppbttn " onClick={handleBooking}>
                     <i className="fa-regular fa-calendar-days"></i> Book This
                     appointment
                   </button>
@@ -461,6 +497,7 @@ function RepairServiceDetailsComp() {
       </div>
     </>
   );
+}
 }
 
 export default RepairServiceDetailsComp;

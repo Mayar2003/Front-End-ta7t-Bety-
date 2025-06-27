@@ -36,10 +36,15 @@ import { AuthContext } from "./Contexts/AuthContext.js";
 import { ResponseStateContext } from "./Contexts/ResponseStateContext.js";
 import SearchProvider from "./SearchProvider.jsx";
 import UserOrders from "./UserOrders.jsx";
+import DisplayMap from "./Maps/display_maps.jsx";
+import LocationPicker from "./Maps/location_picker.jsx";
+import LocationPickerModal from "./Maps/location_picker.jsx";
 import ContactUs from "./ContactUs.jsx";
+import { CartContext } from "./Contexts/CartContext.js";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState([]);
   const [responseState, setResponseState] = useState({
     response: null,
     error: null,
@@ -74,54 +79,80 @@ function App() {
       <ResponseStateContext.Provider
         value={{ responseState, setResponseState }}
       >
-    <Router>
-   
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/AboutUS' element={<AboutUs />} />
-        <Route path='/HelpCenter' element={<HelpCenter />} />
-        <Route path='/Services' element={<Services />} />
-        <Route path="/WishList" element={<WishList />} />
-        <Route path="/Providers" element={<Providers />} />
-        <Route path="/RepairsProvider" element={<RepairsProvider />} />
-        <Route path="/FoodProvider" element={<FoodProvider />} />
-        <Route path="/MarketProvider" element={<MarketProvider />} />
-        <Route path="/HealthCareProvider" element={<HealthCareProvider />} />
-        <Route path="/HouseWorkProvider" element={<HouseWorkProvider />} />
-        <Route path="/RepairServiceDetails" element={<RepairServiceDetails />} />
-        <Route path="/MarketServiceDetails" element={<MarketServiceDetails />} />
-        <Route path="/HealthCareServiceDetails" element={<HealthCareServiceDetails />} />
-        <Route path="/HouseWorkServiceDetails" element={<HouseWorkServiceDetails />} />
-        <Route path="/search/:providerName" element={<SearchProvider />} />
-        <Route path="/UserOrders" element={<UserOrders />} />
-        <Route path="/ContactUs" element={<ContactUs  />} />
-
-
-        <Route path="/Profile" element={<Profile />}>
-        
-          <Route index element={<ProfileAccountInfo />} />
-          <Route path="ProfileAccountInfo" element={<ProfileAccountInfo />} />
-          <Route path="ProfileMyOrders" element={<ProfileMyOrders />}>
-            <Route index element={<MyActiveOrders />} />
-            <Route path="MyActiveOrders" element={<MyActiveOrders />} />
-            <Route path="MyCompletedOrders" element={<MyCompletedOrders />} />
-            <Route path="MyCanceldOrders" element={<MyCanceldOrders />} />
-            <Route path="MyPendingOrders" element={<MyPendingOrders />} />
-          </Route>
-          
-
+        <CartContext.Provider value={{ cart, setCart }}>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/AboutUS" element={<AboutUs />} />
+              <Route path="/HelpCenter" element={<HelpCenter />} />
+              <Route path="/Services" element={<Services />} />
+              <Route path="/WishList" element={<WishList />} />
+              <Route path="/Providers" element={<Providers />} />
+              <Route path="/RepairsProvider" element={<RepairsProvider />} />
+              <Route path="/FoodProvider" element={<FoodProvider />} />
+              <Route path="/MarketProvider" element={<MarketProvider />} />
               <Route
-                path="ProfileSavedAdresses"
-                element={<ProfileSavedAdresses />}
+                path="/HealthCareProvider"
+                element={<HealthCareProvider />}
               />
-            </Route>
+              <Route
+                path="/HouseWorkProvider"
+                element={<HouseWorkProvider />}
+              />
+              <Route
+                path="/RepairServiceDetails"
+                element={<RepairServiceDetails />}
+              />
+              <Route
+                path="/MarketServiceDetails"
+                element={<MarketServiceDetails />}
+              />
+              <Route
+                path="/HealthCareServiceDetails"
+                element={<HealthCareServiceDetails />}
+              />
+              <Route
+                path="/HouseWorkServiceDetails"
+                element={<HouseWorkServiceDetails />}
+              />
+              <Route
+                path="/search/:providerName"
+                element={<SearchProvider />}
+              />
+              <Route path="/UserOrders" element={<UserOrders />} />
+                      <Route path="/ContactUs" element={<ContactUs  />} />
 
-            <Route path="/Signin" element={<SignIn user={user} />} />
-            <Route path="/Signup" element={<SignUp />} />
-            <Route path="/VerifyCode" element={<VerifyCode user={user} />} />
-            <Route path="/NewPassword" element={<NewPassword />} />
 
-            {/* <Route
+              <Route path="/Profile" element={<Profile />}>
+                <Route index element={<ProfileAccountInfo />} />
+                <Route
+                  path="ProfileAccountInfo"
+                  element={<ProfileAccountInfo />}
+                />
+                <Route path="ProfileMyOrders" element={<ProfileMyOrders />}>
+                  <Route index element={<MyActiveOrders />} />
+                  <Route path="MyActiveOrders" element={<MyActiveOrders />} />
+                  <Route
+                    path="MyCompletedOrders"
+                    element={<MyCompletedOrders />}
+                  />
+                  <Route path="MyCanceldOrders" element={<MyCanceldOrders />} />
+                              <Route path="MyPendingOrders" element={<MyPendingOrders />} />
+
+                </Route>
+
+                <Route
+                  path="ProfileSavedAdresses"
+                  element={<ProfileSavedAdresses />}
+                />
+              </Route>
+
+              <Route path="/Signin" element={<SignIn user={user} />} />
+              <Route path="/Signup" element={<SignUp />} />
+              <Route path="/VerifyCode" element={<VerifyCode user={user} />} />
+              <Route path="/NewPassword" element={<NewPassword />} />
+
+              {/* <Route
           path="/profile"
           element={
             <PrivateRoute>
@@ -129,8 +160,9 @@ function App() {
             </PrivateRoute>
             }
             /> */}
-          </Routes>
-        </Router>
+            </Routes>
+          </Router>
+        </CartContext.Provider>
       </ResponseStateContext.Provider>
 
        <div>

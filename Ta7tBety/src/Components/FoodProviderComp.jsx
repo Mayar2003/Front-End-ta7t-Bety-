@@ -2,36 +2,51 @@ import { useContext, useState } from "react";
 // import { AuthContext } from "../Contexts/AuthContext";
 
 import { Link } from "react-router-dom";
-function FoodProviderComp() {
+import ApiManager from "../ApiManager/ApiManager";
+import Review from "./Review";
+import ProviderDetailsAndReviews from "./ProviderDetailsAndReviews";
+import useCart from "../Hooks/useCart";
+
+function FoodProviderComp({ provider }) {
+  const { cart, updateCart } = useCart();
+  const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
   const [rating, setRating] = useState(0); // selected stars
   const [hover, setHover] = useState(0); // hovered stars
 
   const [review, setReview] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
 
   const [count, setCount] = useState(1);
 
   const increment = () => setCount((prev) => prev + 1);
-  const decrement = () => setCount((prev) => prev - 1);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Review submitted:", review); // Replace with your API call
-    setSubmitted(true);
-  };
-
-  if (submitted) {
-    return (
-      <div className="submission-message">
-        <p>Thank you for your review!</p>
-      </div>
-    );
-  }
+  const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
 
   function PasswordToggleModal(e) {
     setchangePasswordPopUp(!changePasswordPopUp);
     e.preventDefault();
+  }
+
+  function handleAddToCart(e) {
+    e.preventDefault();
+    console.log("Adding to cart:", choosedPost);
+    let updatedCart = [];
+    if (cart.some((item) => item._id === choosedPost._id)) {
+      updatedCart = cart.map((item) =>
+        item._id === choosedPost._id
+          ? { ...item, quantity: item.quantity + count }
+          : item
+      );
+    } else {
+      updatedCart = [...cart, { ...choosedPost, quantity: count }];
+    }
+
+    updateCart(updatedCart);
+  }
+
+  function handleCloseAddToCart() {
+    setchangePasswordPopUp(false);
+    setChoosedPost({});
+    setCount(1);
   }
 
   return (
@@ -400,7 +415,7 @@ function FoodProviderComp() {
                 <h5 className="ChangeEmail">Add item </h5>
                 <i
                   className="fa-solid fa-xmark"
-                  onClick={() => setchangePasswordPopUp(false)}
+                  onClick={handleCloseAddToCart}
                 ></i>
               </div>
 
@@ -459,7 +474,10 @@ function FoodProviderComp() {
                 </div>
               </div> */}
 
-              <button className="AddToCartBttn BookAppointmentbttn">
+              <button
+                className="AddToCartBttn BookAppointmentbttn"
+                onClick={handleAddToCart}
+              >
                 <i class="fa-solid fa-cart-plus"></i>
                 Add To Cart
               </button>
@@ -470,4 +488,58 @@ function FoodProviderComp() {
     </>
   );
 }
+
+function ServiceItem({ post, passwordToggleModal, setChoosedPost }) {
+  function handleChoosePost(e) {
+    e.preventDefault();
+    setChoosedPost(post);
+    passwordToggleModal(e);
+  }
+
+  const postAvgRating =
+    post.reviews && post.reviews.length > 0
+      ? (
+          post.reviews.reduce((sum, review) => sum + review.rating, 0) /
+          post.reviews.length
+        ).toFixed(1)
+      : "0.0";
+
+  const postFirstImage = post.images[0].startsWith("http")
+    ? post.images[0]
+    : "https://placehold.co/1200x500?text=No+Image";
+  return (
+    <div className="RepairProviderService">
+      <img src={postFirstImage} alt="" />
+
+      <div className="morePhotos">
+        {" "}
+        <h4></h4>
+      </div>
+
+      <div className="ProviderInfo">
+        <div className="Rating flex justContentSpaceBet">
+          <h5 className="Providername">{post.title}</h5>
+          <p className="ServiceRating">
+            {postAvgRating} <i className="fa-solid fa-star"></i>
+          </p>
+        </div>
+
+        <p>{post.content} </p>
+        <div className="Price">
+          {" "}
+          <p>{post.price} EGP</p>
+        </div>
+        <div className="addToCart">
+          <button className="addToCartbtn LightBlue ">
+            {" "}
+            <a href="" onClick={handleChoosePost}>
+              <i className="fa-solid fa-plus"></i>
+            </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default FoodProviderComp;

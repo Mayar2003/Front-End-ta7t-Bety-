@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
+// TODO: no pop for add to cart
 function MarketServiceDetailsComp() {
   
   const [count, setCount] = useState(1);
@@ -8,7 +9,7 @@ function MarketServiceDetailsComp() {
 
 
   const increment = () => setCount((prev) => prev + 1);
-  const decrement = () => setCount((prev) => prev - 1);
+  const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
 
   
   function PasswordToggleModal(e) {
