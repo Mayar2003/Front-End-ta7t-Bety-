@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ProviderDetailsAndReviews from "./ProviderDetailsAndReviews";
 
-// TODO: Market categories are not handled in backend
 function MarketProviderComp({ provider }) {
   return (
     <>

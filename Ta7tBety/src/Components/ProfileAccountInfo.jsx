@@ -4,6 +4,8 @@ import useUser from "../Hooks/useUser";
 import ApiManager from "../ApiManager/ApiManager";
 // import { Link } from "react-router-dom";
 
+// TODO: changing phone number functionality
+// TODO: saved addresses page and my orders page
 function ProfileAccountInfo() {
   const [changeEmailPopUp, setchangeEmailPopUp] = useState(false);
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
@@ -34,6 +36,63 @@ function ProfileAccountInfo() {
     e.preventDefault();
   }
 
+  function handleChangePhoto(e) {
+    e.preventDefault();
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.onchange = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64String = reader.result;
+
+          const photo = base64String;
+
+          ApiManager.updateMe({ photo })
+            .then((res) => {
+              const response = res.data;
+              console.log("Update photo response:", response); // Log the response data
+              updateUser(response.data.user); // Update the user in context
+            })
+            .catch((err) => {
+              console.error("Error saving user data:", err); // Log any errors
+            });
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    fileInput.click();
+  }
+
+  function handleUpdateInfo(e) {
+    e.preventDefault();
+
+    ApiManager.getMe()
+      .then((res) => {
+        const response = res.data;
+        console.log("User data:", response.data.user); // Log the user data
+        updateUser(response.data.user); // Update the user in context
+      })
+      .catch((err) => {
+        console.error("Error fetching user data:", err); // Log any errors
+      });
+  }
+
+  function handleChangePasswordSubmit(e) {
+    e.preventDefault();
+    ApiManager.updatePassword(changePasswordForm)
+      .then((res) => {
+        const response = res.data;
+
+        localStorage.setItem("authToken", response.data.token);
+      })
+      .catch((err) => {
+        console.error("Error updating password:", err); // Log any errors
+      });
+  }
+
   return (
     <>
       <div className="ProfileInfo flex">
@@ -47,70 +106,13 @@ function ProfileAccountInfo() {
                 }
                 alt=""
               />
-              <a
-                href=""
-                onClick={(e) => {
-                  // TODO: handle it better and handle other changes as well
-                  e.preventDefault();
-                  const fileInput = document.createElement("input");
-                  fileInput.type = "file";
-                  fileInput.accept = "image/*";
-                  fileInput.onchange = (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                      const reader = new FileReader();
-                      reader.onload = () => {
-                        const base64String = reader.result;
-                        console.log("Base64 String:", base64String); // Log the base64 string
-                        // Save the base64 string in the photo variable
-                        const photo = base64String;
-
-                        ApiManager.updateMe({ photo })
-                          .then((res) => {
-                            const response = res.data;
-                            console.log("Update photo response:", response); // Log the response data
-                            updateUser(response.data.user); // Update the user in context
-                            localStorage.setItem(
-                              "user",
-                              JSON.stringify(response.data.user)
-                            );
-                          })
-                          .catch((err) => {
-                            console.error("Error saving user data:", err); // Log any errors
-                          });
-                      };
-                      reader.readAsDataURL(file);
-                    }
-                  };
-                  fileInput.click();
-                }}
-              >
+              <a href="" onClick={handleChangePhoto}>
                 change photo
               </a>
             </div>
 
             <div className="button">
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-
-                  ApiManager.getMe()
-                    .then((res) => {
-                      const response = res.data;
-                      console.log("User data:", response.data.user); // Log the user data
-                      updateUser(response.data.user); // Update the user in context
-                      localStorage.setItem(
-                        "user",
-                        JSON.stringify(response.data.user)
-                      ); // Store user data in local storage
-                    })
-                    .catch((err) => {
-                      console.error("Error fetching user data:", err); // Log any errors
-                    });
-                }}
-              >
-                update info
-              </button>
+              <button onClick={handleUpdateInfo}>update info</button>
             </div>
           </div>
 
@@ -190,7 +192,7 @@ function ProfileAccountInfo() {
               <div className="container text-center popUpForm">
                 <div className="row align-items-start">
                   <div className="col-5">
-                    <label htmlFor="">Currnt Password</label>
+                    <label htmlFor="">Current Password</label>
                   </div>
                   <div className="col-6">
                     <input
@@ -235,6 +237,7 @@ function ProfileAccountInfo() {
                   <button onClick={() => setchangeEmailPopUp(false)}>
                     CANCEL
                   </button>
+                  {/* //TODO: add change email functionality */}
                   <button
                     className="SubmitBttn"
                     onClick={() => {
@@ -266,7 +269,7 @@ function ProfileAccountInfo() {
               <div className="container text-center popUpForm">
                 <div className="row align-items-start">
                   <div className="col-5">
-                    <label htmlFor="">Currnt Password</label>
+                    <label htmlFor="">Current Password</label>
                   </div>
                   <div className="col-6">
                     <input
@@ -333,20 +336,7 @@ function ProfileAccountInfo() {
                   </button>
                   <button
                     className="SubmitBttn"
-                    onClick={(e) => {
-                      // TODO: handle it better and handle other changes as well
-                      e.preventDefault();
-                      ApiManager.updatePassword(changePasswordForm).then(
-                        (res) => {
-                          const response = res.data;
-
-                          localStorage.setItem(
-                            "authToken",
-                            response.data.token
-                          );
-                        }
-                      );
-                    }}
+                    onClick={handleChangePasswordSubmit}
                   >
                     SUBMIT
                   </button>

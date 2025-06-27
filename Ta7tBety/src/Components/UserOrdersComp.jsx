@@ -8,7 +8,7 @@ function UserOrdersComp() {
   };
 
   const increment = () => setCount((prev) => prev + 1);
-  const decrement = () => setCount((prev) => prev - 1);
+  const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
 
   return (
     <div className="UserOrdersComp">

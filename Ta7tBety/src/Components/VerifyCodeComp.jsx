@@ -82,7 +82,6 @@ function VerifyCodeComp({
                   href=""
                   onClick={(e) => {
                     e.preventDefault();
-                    // TODO: Add resend code functionality here
                     console.log("Resend code clicked");
                   }}
                 >

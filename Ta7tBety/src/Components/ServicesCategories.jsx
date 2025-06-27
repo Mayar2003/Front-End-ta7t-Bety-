@@ -24,7 +24,6 @@ function ServicesCategories() {
       alert("Please log in to view providers.");
       return;
     }
-    // TODO: Handle loading state
     ApiManager.getNearbyProviders(
       position.lng,
       position.lat,

@@ -332,4 +332,6 @@ function HouseWorkServiceDetailsComp() {
   );
 }
 
+// TODO: add appointment booking functionality
+
 export default HouseWorkServiceDetailsComp;

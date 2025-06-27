@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import useUser from "../Hooks/useUser";
+import ApiManager from "../ApiManager/ApiManager";
 
 function WishListComponent() {
-  const { user } = useUser();
+  const { user, updateUser } = useUser();
+
+  console.log("User in WishListComponent:", user.favoriteProviders);
 
   console.log("User's favorite providers:", user.favoriteProviders);
   return (
@@ -10,7 +14,7 @@ function WishListComponent() {
         <div className="container">
           <div className="ServicesCategories">
             {user.favoriteProviders.map((provider) => (
-              <Item key={provider.id} provider={provider} />
+              <Item key={provider._id} provider={provider} />
             ))}
             <div className="WishListComponent">
               <img
@@ -106,15 +110,15 @@ function WishListComponent() {
 
 function Item({ provider }) {
   console.log("Provider in WishListComponent:", provider);
-  const reviewsCount =
-    provider.reviewsCount > 100 ? "100+" : provider.reviewsCount || 0;
+  // const reviewsCount =
+  //   provider.reviewsCount > 100 ? "100+" : provider.reviewsCount || 0;
 
   return (
     <div className="WishListComponent">
-      <img src={provider.providerID.photo} alt="" />
-      <h6 className="WishList-catg-name">{provider.providerID.name}</h6>
+      <img src={provider.providerID?.photo || ""} alt="" />
+      <h6 className="WishList-catg-name">{provider.providerID?.name}</h6>
       <p className="WishListRating">
-        {provider.avgRating}({reviewsCount}){" "}
+        {provider.avgRating}({`<reviewsCount>`}){" "}
         <i className="fa-solid fa-star"></i>
       </p>
       <div className="WishHeartIcon">

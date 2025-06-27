@@ -4,19 +4,44 @@ import { Link } from "react-router-dom";
 import ApiManager from "../ApiManager/ApiManager";
 import Review from "./Review";
 import ProviderDetailsAndReviews from "./ProviderDetailsAndReviews";
+import useCart from "../Hooks/useCart";
 
 function FoodProviderComp({ provider }) {
+  const { cart, updateCart } = useCart();
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
   const [choosedPost, setChoosedPost] = useState({});
 
   const [count, setCount] = useState(1);
 
   const increment = () => setCount((prev) => prev + 1);
-  const decrement = () => setCount((prev) => (prev <= 0 ? 0 : prev - 1));
+  const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
 
   function passwordToggleModal(e) {
     setchangePasswordPopUp(!changePasswordPopUp);
     e.preventDefault();
+  }
+
+  function handleAddToCart(e) {
+    e.preventDefault();
+    console.log("Adding to cart:", choosedPost);
+    let updatedCart = [];
+    if (cart.some((item) => item._id === choosedPost._id)) {
+      updatedCart = cart.map((item) =>
+        item._id === choosedPost._id
+          ? { ...item, quantity: item.quantity + count }
+          : item
+      );
+    } else {
+      updatedCart = [...cart, { ...choosedPost, quantity: count }];
+    }
+
+    updateCart(updatedCart);
+  }
+
+  function handleCloseAddToCart() {
+    setchangePasswordPopUp(false);
+    setChoosedPost({});
+    setCount(1);
   }
 
   return (
@@ -224,7 +249,7 @@ function FoodProviderComp({ provider }) {
                 <h5 className="ChangeEmail">Add item Choices</h5>
                 <i
                   className="fa-solid fa-xmark"
-                  onClick={() => setchangePasswordPopUp(false)}
+                  onClick={handleCloseAddToCart}
                 ></i>
               </div>
 
@@ -278,7 +303,10 @@ function FoodProviderComp({ provider }) {
                 </div>
               </div>
 
-              <button className="AddToCartBttn BookAppointmentbttn">
+              <button
+                className="AddToCartBttn BookAppointmentbttn"
+                onClick={handleAddToCart}
+              >
                 <i class="fa-solid fa-cart-plus"></i>
                 Add To Cart
               </button>
@@ -297,7 +325,6 @@ function ServiceItem({ post, passwordToggleModal, setChoosedPost }) {
     passwordToggleModal(e);
   }
 
-  // TODO: Calculate it in backend
   const postAvgRating =
     post.reviews && post.reviews.length > 0
       ? (

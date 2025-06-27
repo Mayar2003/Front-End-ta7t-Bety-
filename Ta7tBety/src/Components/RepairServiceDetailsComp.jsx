@@ -21,6 +21,12 @@ function RepairServiceDetailsComp() {
     e.preventDefault();
   }
 
+  function handleBooking(e) {
+    e.preventDefault();
+
+    console.log("provider", provider);
+  }
+
   // function addRating(rating) {
   //   setRating(rating);
 
@@ -498,7 +504,7 @@ function RepairServiceDetailsComp() {
 
                   <BookAppointmentCalendar></BookAppointmentCalendar>
                   {/* // TODO: Implement booking functionality */}
-                  <button className=" BookthisAppbttn ">
+                  <button className=" BookthisAppbttn " onClick={handleBooking}>
                     <i className="fa-regular fa-calendar-days"></i> Book This
                     appointment
                   </button>
@@ -511,7 +517,5 @@ function RepairServiceDetailsComp() {
     </>
   );
 }
-
-// TODO: Make it a separate component
 
 export default RepairServiceDetailsComp;

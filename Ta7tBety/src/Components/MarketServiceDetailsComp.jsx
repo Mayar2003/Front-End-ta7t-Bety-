@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
+// TODO: no pop for add to cart
 function MarketServiceDetailsComp() {
   const [rating, setRating] = useState(0); // selected stars
   const [hover, setHover] = useState(0); // hovered stars
@@ -8,7 +9,7 @@ function MarketServiceDetailsComp() {
   const [count, setCount] = useState(1);
 
   const increment = () => setCount((prev) => prev + 1);
-  const decrement = () => setCount((prev) => prev - 1);
+  const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
 
   return (
     <>
