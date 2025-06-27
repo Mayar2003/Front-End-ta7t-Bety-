@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { FaMale, FaFemale, FaTransgender } from "react-icons/fa";
 
 function SignUpComp({ formData, setFormData, handleSubmit, loading, error }) {
+  const [selectedGender, setSelectedGender] = useState(null);
+
+  const genderOptions = [
+    { value: "male", label: "Male", icon: <FaMale /> },
+    { value: "female", label: "Female", icon: <FaFemale /> },
+    // { value: 'non-binary', label: 'Non-binary', icon: <FaTransgender /> }
+  ];
   return (
     <>
       <div className="signupBody ">
@@ -40,6 +49,21 @@ function SignUpComp({ formData, setFormData, handleSubmit, loading, error }) {
                     required
                   />
                 </div>
+
+                <div className="SignUpPhone">
+                  <label className="PhoneLabelonframe" htmlFor="">
+                    Phone Number
+                  </label>
+                  <input
+                    name="phone"
+                    placeholder="Phone Number"
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+
                 <div className="SignUpPassword">
                   <label className="PasswordLabelonframe" htmlFor="">
                     Password
@@ -73,6 +97,27 @@ function SignUpComp({ formData, setFormData, handleSubmit, loading, error }) {
                   />
                   <i className="fa-solid fa-lock"></i>
                 </div>
+
+                <div className="gender-picker">
+                  <h4>Select Gender</h4>
+                  <div className="gender-options">
+                    {genderOptions.map((gender) => (
+                      <button
+                        key={gender.value}
+                        type="button"
+                        className={`gender-option ${
+                          selectedGender === gender.value ? "selected" : ""
+                        }`}
+                        onClick={() => setSelectedGender(gender.value)}
+                      >
+                        <span className="gender-icon">{gender.icon}</span>
+                        {gender.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+
                 <button className="SignUpbtn" type="submit" disabled={loading}>
                   {loading ? "Signing up..." : "Sign Up"}{" "}
                   {/* <Link to="/VerifyCode">Sign Up</Link> */}
@@ -83,16 +128,16 @@ function SignUpComp({ formData, setFormData, handleSubmit, loading, error }) {
               </form>
             </div>
 
-            <div className="orWith">
+            {/* <div className="orWith">
               <h6 className="OrSignupWith">Or Sign Up With</h6>
               <p className="LineThrough"></p>
-            </div>
+            </div> */}
 
-            <div className="signinIcons flex justContentSpaceArround">
+            {/* <div className="signinIcons flex justContentSpaceArround">
               <i className="fa-brands fa-google"></i>
               <i className="fa-brands fa-facebook-f"></i>
               <i className="fa-brands fa-apple"></i>
-            </div>
+              </div> */}
 
             <h5 className="SignUpDiv">
               Already have an account?{" "}

@@ -90,11 +90,6 @@ class ApiManager {
   }
 
   // Orders
-  static getAllOrders() {
-    const url = EndPoints.GET_ALL_ORDERS;
-    return ApiMethods.get(url);
-  }
-
   static getMyOrders() {
     const url = EndPoints.GET_MY_ORDERS;
     return ApiMethods.get(url);
@@ -259,18 +254,8 @@ class ApiManager {
     return ApiMethods.get(url);
   }
 
-  static getPostReviews(postID) {
-    const url = EndPoints.GET_POST_REVIEWS(postID);
-    return ApiMethods.get(url);
-  }
-
-  static createProviderReview(providerID, data) {
-    const url = EndPoints.CREATE_PROVIDER_REVIEW(providerID);
-    return ApiMethods.post(url, data);
-  }
-
-  static createPostReview(postID, data) {
-    const url = EndPoints.CREATE_POST_REVIEW(postID);
+  static createReview(data) {
+    const url = EndPoints.CREATE_REVIEW;
     return ApiMethods.post(url, data);
   }
 

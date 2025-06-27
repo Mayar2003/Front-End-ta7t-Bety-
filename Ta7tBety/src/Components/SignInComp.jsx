@@ -63,16 +63,16 @@ function SignInComp({
               </form>
             </div>
 
-            <div className="orWith">
+            {/* <div className="orWith">
               <h6 className="OrSigninWith">Or Sign in With</h6>
               <p className="LineThrough"></p>
-            </div>
+            </div> */}
 
-            <div className="signinIcons flex justContentSpaceArround">
+            {/* <div className="signinIcons flex justContentSpaceArround">
               <i className="fa-brands fa-google"></i>
               <i className="fa-brands fa-facebook-f"></i>
               <i className="fa-brands fa-apple"></i>
-            </div>
+            </div> */}
 
             <h5 className="SignUpDiv">
               Don't have an account?{" "}

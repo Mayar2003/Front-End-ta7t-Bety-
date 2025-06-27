@@ -45,7 +45,6 @@ const EndPoints = {
   DELETE_POST: (id) => `/posts/${id}`,
 
   // Orders
-  GET_ALL_ORDERS: "/orders",
   GET_USER_ORDERS: (userId) => `/orders/user-orders/${userId}`,
   GET_ORDER_BY_ID: (id) => `/orders/${id}`,
   GET_MY_ORDERS: "/orders/my-orders",
@@ -61,11 +60,8 @@ const EndPoints = {
   GET_ALL_REVIEWS: "/reviews",
   GET_REVIEW_BY_ID: (id) => `/reviews/${id}`,
   GET_PROVIDER_REVIEWS: (providerID) =>
-    `/reviews/provider-reviews/${providerID}`,
-  GET_POST_REVIEWS: (postID) => `/reviews/post-reviews/${postID}`,
-  CREATE_PROVIDER_REVIEW: (providerID) =>
-    `/reviews/provider-reviews/${providerID}`,
-  CREATE_POST_REVIEW: (postID) => `/reviews/post-reviews/${postID}`,
+    `/reviews/providerReviews/${providerID}`,
+  CREATE_REVIEW: "/reviews",
   UPDATE_REVIEW: (id) => `/reviews/${id}`,
   DELETE_REVIEW: (id) => `/reviews/${id}`,
 

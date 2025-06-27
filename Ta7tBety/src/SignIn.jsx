@@ -6,11 +6,10 @@ import ApiManager from "./ApiManager/ApiManager";
 import { ResponseStateContext } from "./Contexts/ResponseStateContext";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./Contexts/AuthContext";
-import useUser from "./Hooks/useUser";
 
 function SignIn() {
   const navigate = useNavigate();
-  const { user, updateUser } = useUser();
+  const { setUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const { responseState, setResponseState } = useContext(ResponseStateContext);
 
@@ -30,7 +29,7 @@ function SignIn() {
           loading: false,
         });
 
-        updateUser(response.data.user); // Ensure user is set correctly
+        setUser(response.data.user); // Ensure user is set correctly
         console.log("User set in AuthContext:", response.data.user); // Log user for debugging
 
         localStorage.setItem("authToken", response.data.token);

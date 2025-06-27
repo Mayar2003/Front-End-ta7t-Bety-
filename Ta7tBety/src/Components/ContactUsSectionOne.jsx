@@ -12,7 +12,7 @@ function ContactUsSectionOne() {
         <div className="sectionOneHeadings">
           <h2>About Us</h2>
           <h4>
-            <span className="lobster-regular TBAboutUS">Taht Bety</span>{" "}
+            <span className="lobster-regular TBAboutUS">Ta7t Bety</span>{" "}
             <i className="fa-solid fa-chevron-right"></i> Services
             <i className="fa-solid fa-chevron-right"></i> Contact Us
           </h4>

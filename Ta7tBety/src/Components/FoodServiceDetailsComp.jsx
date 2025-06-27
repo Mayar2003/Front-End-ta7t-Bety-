@@ -1,4 +1,5 @@
 function FoodServiceDetailsComp() {
+    
     return (
         <>
             <div className="ProviderReview ">
@@ -53,6 +54,21 @@ function FoodServiceDetailsComp() {
                             ))}
                         </div>
                         </div>
+
+                          <div className="LeaveReview  padding-1">
+              <div className="simple-review-form">
+                <form onSubmit={handleSubmit}>
+                  <textarea className="W100"
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    placeholder="Write your review here..."
+                    rows={5}
+                    required
+                  />
+                  <button type="submit">Submit Review</button>
+                </form>
+              </div>
+            </div>
                     </div>
 
                     <div className="ProviderRating-Review simpleBoxShadow">

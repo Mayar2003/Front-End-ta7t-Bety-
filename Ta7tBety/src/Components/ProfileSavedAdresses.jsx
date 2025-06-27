@@ -2,7 +2,7 @@ import { useState } from "react";
 import useUser from "../Hooks/useUser";
 
 function ProfileSavedAdresses() {
-  const { user } = useUser();
+  const user = useUser();
 
   return (
     <>
@@ -35,7 +35,8 @@ function ProfileSavedAdresses() {
                 </div>
                 <div className="col-7">
                   <div className="AddrsInfo">
-                    <p>+201201111344</p>
+                    <input type="tel" defaultValue="+201201111344" />
+                    {/* <p>+201201111344</p> */}
                   </div>
                 </div>
               </div>
@@ -44,9 +45,7 @@ function ProfileSavedAdresses() {
 
           <div className="SavedAdressesBtnDiv flex JustifyContentCenter Wrap">
             <div className="addAddressbtn W100">
-              <button className="addAdressbtn">
-                <i className="fa-solid fa-plus"></i> ADD ADDRESS
-              </button>
+              <button className="addAdressbtn">CHANGE ADDRESS</button>
             </div>
 
             <div className="Edit-DeleteBtns W100 ">

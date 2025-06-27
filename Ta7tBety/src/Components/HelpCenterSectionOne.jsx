@@ -13,7 +13,7 @@ function HelpCenterSectionOne() {
         <div className="sectionOneHeadings">
           <h2>Help Center</h2>
           <h4>
-            <span className="lobster-regular TBAboutUS">Ta7t Bety</span>{" "}
+            <span className="lobster-regular TBAboutUS">Taht Bety</span>{" "}
             <i className="fa-solid fa-chevron-right"></i>Help Center
           </h4>
         </div>

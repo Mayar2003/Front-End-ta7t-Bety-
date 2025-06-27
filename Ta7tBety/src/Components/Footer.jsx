@@ -4,7 +4,7 @@ function Footer() {
       <div className="container-fluid Footer">
         <div className="container FooterContent">
           <div className="hotline">
-            <h3 className="lobster-regular">Ta7t Bety</h3>
+            <h3 className="lobster-regular">Taht Bety</h3>
             <p>
               {" "}
               <i className="fa-solid fa-phone"></i> Hotline :
@@ -13,7 +13,7 @@ function Footer() {
           </div>
 
           <div className="FollowUsOn">
-            <h5>FollowUs on</h5>
+            <h5>Follow Us on</h5>
             <div className="FooterIcons">
               <i className="fa-brands fa-facebook"></i>
               <i className="fa-brands fa-instagram"></i>
@@ -23,7 +23,7 @@ function Footer() {
           <div className="CopyRights">
             <p>
               Copyright <i className="fa-regular fa-copyright"></i> 2024{" "}
-              <span className="lobster-regular TBfooter">Ta7t Bety</span> , All
+              <span className="lobster-regular TBfooter">Taht Bety</span> , All
               Rights Reserved.
             </p>
           </div>

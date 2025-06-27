@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 
 function UserOrdersComp() {
   const [count, setCount] = useState(1);
+    const [Ordervisible, setOrderVisible] = useState(true);
+  
 
   const handleOrderClose = () => {
     setOrderVisible(false);
@@ -12,6 +14,7 @@ function UserOrdersComp() {
 
   return (
     <div className="UserOrdersComp">
+          {Ordervisible && (
       <div className="Order flex justContentSpaceBet alignItemsCenter">
         <img src="../../G.Project assets2.png (2)/converted-files.png/d104b2c3e-b169-4226-930a-7794de0dde12.jpg" />
         <div className="CartPrice">
@@ -32,6 +35,7 @@ function UserOrdersComp() {
           </a>
         </div>
       </div>
+       )}
     </div>
   );
 }

@@ -29,7 +29,7 @@ function MyActiveOrders() {
             </div>
           </div>
           <div className="trackOrderBtnDiv alignselfCenter">
-            <button className="trackOrderBtn">Track Order</button>
+            <button className="trackOrderBtn">Cancel</button>
           </div>
         </div>
 
@@ -47,7 +47,7 @@ function MyActiveOrders() {
             </div>
           </div>
           <div className="trackOrderBtnDiv alignselfCenter">
-            <button className="trackOrderBtn">Track Order</button>
+            <button className="trackOrderBtn">Cancel</button>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ function MyActiveOrders() {
             </div>
           </div>
           <div className="trackOrderBtnDiv alignselfCenter">
-            <button className="trackOrderBtn">Track Order</button>
+            <button className="trackOrderBtn">Cancel</button>
           </div>
         </div>
 
@@ -83,7 +83,7 @@ function MyActiveOrders() {
             </div>
           </div>
           <div className="trackOrderBtnDiv alignselfCenter">
-            <button className="trackOrderBtn">Track Order</button>
+            <button className="trackOrderBtn">Cancel</button>
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@ function Item({ order }) {
         </div>
       </div>
       <div className="trackOrderBtnDiv alignselfCenter">
-        <button className="trackOrderBtn">Track Order</button>
+        <button className="trackOrderBtn">Cancel</button>
       </div>
     </div>
   );

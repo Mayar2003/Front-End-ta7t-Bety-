@@ -9,10 +9,10 @@ function WishListSectionOne() {
           />
         </div>
         <div className="sectionOneHeadings">
-          <h2>Wish List</h2>
+          <h2>Favorite Providers</h2>
           <h4>
-            <span className="lobster-regular TBAboutUS">Ta7t Bety</span>
-            <i className="fa-solid fa-chevron-right"></i>Wish List
+            <span className="lobster-regular TBAboutUS">Taht Bety</span>
+            <i className="fa-solid fa-chevron-right"></i>Favorite Providers
           </h4>
         </div>
       </div>

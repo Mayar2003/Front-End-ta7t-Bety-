@@ -27,9 +27,9 @@ function MyCanceledOrders() {
               <p>Family Market</p>
             </div>
           </div>
-          <div className="trackOrderBtnDiv alignselfCenter">
+          {/* <div className="trackOrderBtnDiv alignselfCenter">
             <button className="trackOrderBtn">Re-Order</button>
-          </div>
+          </div> */}
         </div>
         <div className="Order flex justContentSpaceBet W100">
           <div className="Photo-Info flex justContentSpaceBet">
@@ -44,9 +44,9 @@ function MyCanceledOrders() {
               <p>Family Market</p>
             </div>
           </div>
-          <div className="trackOrderBtnDiv alignselfCenter">
+          {/* <div className="trackOrderBtnDiv alignselfCenter">
             <button className="trackOrderBtn">Re-Order</button>
-          </div>
+          </div> */}
         </div>
         <div className="Order flex justContentSpaceBet W100">
           <div className="Photo-Info flex justContentSpaceBet">
@@ -61,9 +61,9 @@ function MyCanceledOrders() {
               <p>Family Market</p>
             </div>
           </div>
-          <div className="trackOrderBtnDiv alignselfCenter">
+          {/* <div className="trackOrderBtnDiv alignselfCenter">
             <button className="trackOrderBtn">Re-Order</button>
-          </div>
+          </div> */}
         </div>
         <div className="Order LastOrder flex Wrap justContentSpaceBet W80">
           <div className="Photo-Info flex justContentSpaceBet">
@@ -78,9 +78,9 @@ function MyCanceledOrders() {
               <p>Family Market</p>
             </div>
           </div>
-          <div className="trackOrderBtnDiv alignselfCenter">
+          {/* <div className="trackOrderBtnDiv alignselfCenter">
             <button className="trackOrderBtn">Re-Order</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
@@ -102,9 +102,9 @@ function Item({ order }) {
           <p>{order.providerID.name}</p>
         </div>
       </div>
-      <div className="trackOrderBtnDiv alignselfCenter">
+      {/* <div className="trackOrderBtnDiv alignselfCenter">
         <button className="trackOrderBtn">Re-Order</button>
-      </div>
+      </div> */}
     </div>
   );
 }

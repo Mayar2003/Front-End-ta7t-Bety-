@@ -27,9 +27,9 @@ function MyCompletedOrders() {
               <p>Family Market</p>
             </div>
           </div>
-          <div className="trackOrderBtnDiv alignselfCenter">
+          {/* <div className="trackOrderBtnDiv alignselfCenter">
             <button className="trackOrderBtn">Leave Review</button>
-          </div>
+          </div> */}
         </div>
 
         <div className="Order flex justContentSpaceBet W100">
@@ -45,9 +45,9 @@ function MyCompletedOrders() {
               <p>Family Market</p>
             </div>
           </div>
-          <div className="trackOrderBtnDiv alignselfCenter">
+          {/* <div className="trackOrderBtnDiv alignselfCenter">
             <button className="trackOrderBtn">Leave Review</button>
-          </div>
+          </div> */}
         </div>
 
         <div className="Order flex justContentSpaceBet W100">
@@ -63,9 +63,9 @@ function MyCompletedOrders() {
               <p>Family Market</p>
             </div>
           </div>
-          <div className="trackOrderBtnDiv alignselfCenter">
+          {/* <div className="trackOrderBtnDiv alignselfCenter">
             <button className="trackOrderBtn">Leave Review</button>
-          </div>
+          </div> */}
         </div>
 
         <div className="Order LastOrder flex Wrap justContentSpaceBet W80">
@@ -81,9 +81,9 @@ function MyCompletedOrders() {
               <p>Family Market</p>
             </div>
           </div>
-          <div className="trackOrderBtnDiv alignselfCenter">
+          {/* <div className="trackOrderBtnDiv alignselfCenter">
             <button className="trackOrderBtn">Leave Review</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
@@ -105,9 +105,9 @@ function Item({ order }) {
           <p>{order.providerID.name}</p>
         </div>
       </div>
-      <div className="trackOrderBtnDiv alignselfCenter">
-        <button className="trackOrderBtn">Leave Review</button>
-      </div>
+        {/* <div className="trackOrderBtnDiv alignselfCenter">
+          <button className="trackOrderBtn">Leave Review</button>
+        </div> */}
     </div>
   );
 }

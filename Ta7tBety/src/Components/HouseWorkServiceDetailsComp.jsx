@@ -12,6 +12,31 @@ function HouseWorkServiceDetailsComp() {
   const [rating, setRating] = useState(0); // selected stars
   const [hover, setHover] = useState(0); // hovered stars
 
+   const [review, setReview] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
+
+
+
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Review submitted:", review); // Replace with your API call
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="submission-message">
+        <p>Thank you for your review!</p>
+      </div>
+    );
+  }
+
+  function PasswordToggleModal(e) {
+    setchangePasswordPopUp(!changePasswordPopUp);
+    e.preventDefault();
+  }
   return (
     <>
       <div className="ProviderPage flex ">
@@ -67,6 +92,22 @@ function HouseWorkServiceDetailsComp() {
                 ))}
               </div>
             </div>
+
+                <div className="LeaveReview  padding-1">
+              <div className="simple-review-form">
+                <form onSubmit={handleSubmit}>
+                  <textarea className="W100"
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    placeholder="Write your review here..."
+                    rows={5}
+                    required
+                  />
+                  <button type="submit">Submit Review</button>
+                </form>
+              </div>
+            </div>
+            
           </div>
 
           <div className="ProviderRating-Review simpleBoxShadow">

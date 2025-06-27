@@ -1,17 +1,29 @@
 import servicesProviders from "../assets/servicesProviders.png";
 import Location from "../assets/Location.png";
+import {useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function HomeSectionOne() {
+
+    const [showLearnMoreText, setShowLearnMoreText] = useState(false);
+
+    const toggleLearnMoreText = () => {
+    setShowLearnMoreText(!showLearnMoreText);
+  };
   return (
     <>
       <div className="container-fluid ExtraLightBG">
         <div className="container HomeSectionOne">
           <div className="LeftSection">
-            <h3 className="inter heading-LeftSecOne">
-              consectetur adipiscing elit, sed do eiusmod tempor incididun{" "}
-            </h3>
+           <h3 className="inter heading-LeftSecOne" style={{ fontSize: showLearnMoreText ? '1.5rem' : '3rem' , fontWeight: showLearnMoreText ? '500' : '700' }}>
+        {showLearnMoreText 
+          ? "Taht Bety is a mobile app and website that connect users with trusted local service providers like plumbers, electricians, restaurants, and delivery services quickly, safely, and right to their doorstep." 
+          : "Taht Bety All the services you need, under one roof."}
+      </h3>
 
-            <button className="inter learnmoreBtn">Learn More</button>
+            <button className="inter learnmoreBtn" onClick={toggleLearnMoreText}>
+                     {showLearnMoreText ? "Show Less" : "Learn More"}
+
+              </button>
           </div>
 
           <div className="RightSection">

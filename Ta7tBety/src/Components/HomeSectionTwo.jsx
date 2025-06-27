@@ -1,50 +1,6 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import ApiManager from "../ApiManager/ApiManager";
-import useUser from "../Hooks/useUser";
 
 function HomeSectionTwo() {
-  const { user } = useUser();
-  const [providers, setProviders] = useState([]);
-  const [position, setPosition] = useState({
-    lng: 0,
-    lat: 0,
-  });
-  const [distance, setDistance] = useState(1000000000);
-  const navigate = useNavigate();
-
-  function handleCategorySelection(type, genre) {
-    if (!user) {
-      // If user is not logged in, redirect to login page
-      navigate("/SignIn", {
-        state: { from: "/Services" },
-        search: `?type=${type}&genre=${genre}`,
-      });
-      alert("Please log in to view providers.");
-      return;
-    }
-    // TODO: Handle loading state
-    ApiManager.getNearbyProviders(
-      position.lng,
-      position.lat,
-      distance,
-      type,
-      genre
-    )
-      .then((res) => {
-        const Response = res.data;
-        console.log("Ressssss", Response);
-        setProviders(Response.data.providers);
-        navigate("/Providers", {
-          state: { type, genre, providers: Response.data.providers },
-          search: `?type=${type}&genre=${genre}`,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
   return (
     <>
       <section className="HomeSectionTwo">
@@ -71,11 +27,10 @@ function HomeSectionTwo() {
               />
               <h6 className="catg-name">Repairs</h6>
 
-              <button
-                className="viewbtn"
-                onClick={() => handleCategorySelection("all", "R")}
-              >
-                <i className="fa-solid fa-chevron-right"></i>
+              <button className="viewbtn">
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>
               </button>
             </div>
 
@@ -85,11 +40,11 @@ function HomeSectionTwo() {
                 alt=""
               />
               <h6 className="catg-name">Food</h6>
-              <button
-                className="viewbtn"
-                onClick={() => handleCategorySelection("all", "F")}
-              >
-                <i className="fa-solid fa-chevron-right"></i>
+              {/* <div className="invrtRadius"><p></p></div> */}
+              <button className="viewbtn">
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>{" "}
               </button>
             </div>
 
@@ -99,11 +54,10 @@ function HomeSectionTwo() {
                 alt=""
               />
               <h6 className="catg-name">Market</h6>
-              <button
-                className="viewbtn"
-                onClick={() => handleCategorySelection("all", "M")}
-              >
-                <i className="fa-solid fa-chevron-right"></i>
+              <button className="viewbtn">
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>{" "}
               </button>
             </div>
 
@@ -113,32 +67,30 @@ function HomeSectionTwo() {
                 alt=""
               />
               <h6 className="catg-name">House Work</h6>
-              <button
-                className="viewbtn"
-                onClick={() => handleCategorySelection("all", "HW")}
-              >
-                <i className="fa-solid fa-chevron-right"></i>
+              <button className="viewbtn">
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>{" "}
               </button>
             </div>
 
-            <div className="category">
+            {/* <div className="category">
               <img
                 src="../../Graduation project assestst/Graduation project/imresizer-1727387091980.jpg"
                 alt=""
               />
               <h6 className="catg-name">Health & Care</h6>
-              <button
-                className="viewbtn"
-                onClick={() => handleCategorySelection("all", "HC")}
-              >
-                <i className="fa-solid fa-chevron-right"></i>
+              <button className="viewbtn">
+                <Link to="/Providers">
+                  <i className="fa-solid fa-chevron-right"></i>
+                </Link>{" "}
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
 
-      <section className="BestProvider">
+      {/* <section className="BestProvider">
         <div className="container">
           <div>
             <h3 className="bestProvider">Best Provider For Last Month</h3>
@@ -190,11 +142,11 @@ function HomeSectionTwo() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <div className="ChatbotIcon">
+      {/* <div className="ChatbotIcon">
         <i className="fa-regular fa-comment"></i>
-      </div>
+      </div> */}
     </>
   );
 }

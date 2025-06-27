@@ -1,42 +1,220 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import ApiManager from "../ApiManager/ApiManager";
-import ProviderDetailsAndReviews from "./ProviderDetailsAndReviews";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-function RepairsProviderComp({ provider }) {
-  const navigate = useNavigate();
+function RepairsProviderComp() {
+  const [rating, setRating] = useState(0); // selected stars
+  const [hover, setHover] = useState(0); // hovered stars
 
-  const providerAvgRating = provider.avgRating
-    ? provider.avgRating.toFixed(1)
-    : "0.0";
+   const [review, setReview] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
 
-  function handlePostSelection(service, postAvgRating) {
-    ApiManager.getPostById(service._id)
-      .then((res) => {
-        const response = res.data;
-        console.log("Post details:", response.data);
-        navigate("/RepairServiceDetails", {
-          state: {
-            provider,
-            post: response.data.doc,
-            providerAvgRating,
-            postAvgRating,
-          },
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching post details:", error);
-      });
+
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Review submitted:", review); // Replace with your API call
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="submission-message">
+        <p>Thank you for your review!</p>
+      </div>
+    );
   }
+
+  function PasswordToggleModal(e) {
+    setchangePasswordPopUp(!changePasswordPopUp);
+    e.preventDefault();
+  }
+
 
   return (
     <>
       <div className="ProviderPage flex ">
-        <ProviderDetailsAndReviews provider={provider} />
+
+
+        <div className="ProviderReview ">
+          <div className="ProviderInfoDiv simpleBoxShadow">
+            <img
+              src="../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
+              alt=""
+            />
+
+            <div className="Rating flex justContentSpaceEvenly">
+              <h3 className="Providername">Arabian Country</h3>
+              <p className="ServiceRating">
+                3.9 <i className="fa-solid fa-star"></i>
+              </p>
+            </div>
+
+            <h5 className="ProviderAddress">
+              <i class="fa-solid fa-map-location"></i> Street 306 - Saqr Quraish
+              District
+            </h5>
+
+            <div>
+              <Link to="/ContactUs">
+              <button className="ContactUsbttn">
+                <i class="fa-solid fa-comments">
+                 </i> Contact Us
+              </button>
+               </Link>
+            </div>
+          </div>
+
+          <div className="ProviderRating simpleBoxShadow">
+            <h5 className="RateProviderH textAlignLeft defaultBlue">
+              Rate This Provider
+            </h5>
+            <div className=" StarsDiv flex justContentSpaceBet W60">
+              <div>
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <i
+                    key={star}
+                    className={`fa-star ${
+                      star <= (hover || rating)
+                        ? "fas text-yellow-400"
+                        : "far text-gray-400"
+                    }`}
+                    onClick={() => setRating(star)}
+                    onMouseEnter={() => setHover(star)}
+                    onMouseLeave={() => setHover(0)}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "28px",
+                      marginRight: "6px",
+                    }}
+                  ></i>
+                ))}
+              </div>
+            </div>
+
+                <div className="LeaveReview  padding-1">
+              <div className="simple-review-form">
+                <form onSubmit={handleSubmit}>
+                  <textarea className="W100"
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    placeholder="Write your review here..."
+                    rows={5}
+                    required
+                  />
+                  <button type="submit">Submit Review</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div className="ProviderRating-Review simpleBoxShadow">
+            <h5 className="RateProviderH textAlignLeft defaultBlue">
+              Rating & Reviews
+            </h5>
+
+            <div className="Review ">
+              <div className="userInfo flex">
+                <img
+                  src="../../Graduation project assestst/Graduation project/user.png
+                "
+                  alt=""
+                />
+                <h6 className="UserName LightBlue">Alaa Khaled</h6>
+                </div>
+                <div className="Stars&Date flex justContentSpaceArround">
+                 <div className="commentStars">
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  </div>
+                  <div className="date LightBlue">
+                    23/2/2025
+                  </div>
+                </div>
+
+                <p className="Comment LightBlue textAlignLeft">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Animi quis tempora, reprehenderit dolor voluptatem voluptates.
+                </p>         
+                   </div>
+
+
+                   <div className="Review ">
+              <div className="userImfo flex">
+                <img
+                  src="../../Graduation project assestst/Graduation project/user.png
+                "
+                  alt=""
+                />
+                <h6 className="UserName LightBlue">Alaa Khaled</h6>
+                </div>
+
+
+                <div className="Stars&Date flex justContentSpaceArround">
+                 <div className="commentStars">
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  </div>
+                  <div className="date LightBlue">
+                    23/2/2025
+                  </div>
+                </div>
+
+                <p className="Comment LightBlue textAlignLeft">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Animi quis tempora, reprehenderit dolor voluptatem voluptates.
+                </p>         
+                   </div>
+
+
+
+                   <div className="Review ">
+              <div className="userImfo flex">
+                <img
+                  src="../../Graduation project assestst/Graduation project/user.png
+                "
+                  alt=""
+                />
+                <h6 className="UserName LightBlue">Alaa Khaled</h6>
+                </div>
+
+
+                <div className="Stars&Date flex justContentSpaceArround">
+                 <div className="commentStars">
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  <i className="fa-solid fa-star LightBlue"></i>
+                  </div>
+                  <div className="date LightBlue">
+                    23/2/2025
+                  </div>
+                </div>
+
+                <p className="Comment LightBlue textAlignLeft">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Animi quis tempora, reprehenderit dolor voluptatem voluptates.
+                </p>         
+                   </div>
+
+                    <h6 className="moreReviews">
+                     <a href="" className="decorationNone moreReviews">See All Reviews</a> 
+                    </h6>
+
+                   
+          </div>
+        </div>
 
         <div className="ProviderServices flex simpleBoxShadow Wrap justifyContentSpaceBet">
           <h5 className="textAlignLeft W100 RepairServices ">Services</h5>
-
+     
           <div className="RepairProviderService">
             <img
               src="../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
@@ -45,62 +223,12 @@ function RepairsProviderComp({ provider }) {
 
             <div className="morePhotos">
               {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails">
-                <h4>+20</h4>
-              </Link>
+              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
             </div>
 
             <div className="ProviderInfo">
               <div className="Rating flex justContentSpaceBet">
-                <h5 className="Providername">
-                  <Link className="decorationNone" to="/RepairServiceDetails">
-                    Service
-                  </Link>
-                </h5>
-                <p className="ServiceRating">
-                  2.8 <i className="fa-solid fa-star"></i>
-                </p>
-              </div>
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur quod alias facere nisi amet culpa?{" "}
-              </p>
-              <div className="moreimgs">
-                {" "}
-                <p>200-3000EGP</p>
-              </div>
-            </div>
-          </div>
-
-          {provider.posts.map((post) => (
-            <ServiceItem
-              key={post._id}
-              post={post}
-              handleOnClick={handlePostSelection}
-            />
-          ))}
-
-          <div className="RepairProviderService">
-            <img
-              src="../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
-              alt=""
-            />
-
-            <div className="morePhotos">
-              {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails">
-                <h4>+20</h4>
-              </Link>
-            </div>
-
-            <div className="ProviderInfo">
-              <div className="Rating flex justContentSpaceBet">
-                <h5 className="Providername">
-                  <Link className="decorationNone" to="/RepairServiceDetails">
-                    Service
-                  </Link>
-                </h5>
+                <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
                 <p className="ServiceRating">
                   2.8 <i className="fa-solid fa-star"></i>
                 </p>
@@ -125,19 +253,13 @@ function RepairsProviderComp({ provider }) {
 
             <div className="morePhotos">
               {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails">
-                <h4>+20</h4>
-              </Link>
+              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
             </div>
 
             <div className="ProviderInfo">
               <div className="Rating flex justContentSpaceBet">
-                <h5 className="Providername">
-                  <Link className="decorationNone" to="/RepairServiceDetails">
-                    Service
-                  </Link>
-                </h5>
-                <p className="ServiceRating">
+              <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
+              <p className="ServiceRating">
                   2.8 <i className="fa-solid fa-star"></i>
                 </p>
               </div>
@@ -161,19 +283,13 @@ function RepairsProviderComp({ provider }) {
 
             <div className="morePhotos">
               {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails">
-                <h4>+20</h4>
-              </Link>
+              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
             </div>
 
             <div className="ProviderInfo">
               <div className="Rating flex justContentSpaceBet">
-                <h5 className="Providername">
-                  <Link className="decorationNone" to="/RepairServiceDetails">
-                    Service
-                  </Link>
-                </h5>
-                <p className="ServiceRating">
+              <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
+              <p className="ServiceRating">
                   2.8 <i className="fa-solid fa-star"></i>
                 </p>
               </div>
@@ -197,19 +313,43 @@ function RepairsProviderComp({ provider }) {
 
             <div className="morePhotos">
               {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails">
-                <h4>+20</h4>
-              </Link>
+              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
             </div>
 
             <div className="ProviderInfo">
               <div className="Rating flex justContentSpaceBet">
-                <h5 className="Providername">
-                  <Link className="decorationNone" to="/RepairServiceDetails">
-                    Service
-                  </Link>
-                </h5>
-                <p className="ServiceRating">
+              <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
+              <p className="ServiceRating">
+                  2.8 <i className="fa-solid fa-star"></i>
+                </p>
+              </div>
+
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consequuntur quod alias facere nisi amet culpa?{" "}
+              </p>
+              <div className="moreimgs">
+                {" "}
+                <p>200-3000EGP</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="RepairProviderService">
+            <img
+              src="../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
+              alt=""
+            />
+
+            <div className="morePhotos">
+              {" "}
+              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
+            </div>
+
+            <div className="ProviderInfo">
+              <div className="Rating flex justContentSpaceBet">
+              <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
+              <p className="ServiceRating">
                   2.8 <i className="fa-solid fa-star"></i>
                 </p>
               </div>
@@ -225,64 +365,10 @@ function RepairsProviderComp({ provider }) {
             </div>
           </div>
         </div>
+
+
       </div>
     </>
-  );
-}
-
-function ServiceItem({ post, handleOnClick }) {
-  // Calculate average rating
-  const postAvgRating =
-    post.reviews && post.reviews.length > 0
-      ? (
-          post.reviews.reduce((sum, review) => sum + review.rating, 0) /
-          post.reviews.length
-        ).toFixed(1)
-      : "0.0";
-
-  const postFirstImage = post.images[0].startsWith("http")
-    ? post.images[0]
-    : "https://placehold.co/1200x500?text=No+Image";
-
-  return (
-    <div className="RepairProviderService">
-      <img src={postFirstImage} alt="" />
-
-      <div
-        className="morePhotos"
-        style={{ cursor: "pointer" }}
-        onClick={() => handleOnClick(post, postAvgRating)}
-      >
-        {" "}
-        <h4>
-          {post.images.length > 10
-            ? `+${post.images.length - (post.images.length % 10)}`
-            : post.images.length}
-        </h4>
-      </div>
-
-      <div className="ProviderInfo">
-        <div className="Rating flex justContentSpaceBet">
-          <h5
-            className="Providername"
-            style={{ cursor: "pointer" }}
-            onClick={() => handleOnClick(post, postAvgRating)}
-          >
-            {" "}
-            {post.title}
-          </h5>
-          <p className="ServiceRating">
-            {postAvgRating} <i className="fa-solid fa-star"></i>
-          </p>
-        </div>
-
-        <p>{post.content} </p>
-        <div className="moreimgs">
-          {" "}
-          <p>{post.price} EGP</p>
-        </div>
-      </div>
-    </div>
   );
 }
 

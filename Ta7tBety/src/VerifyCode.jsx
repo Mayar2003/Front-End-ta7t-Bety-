@@ -8,11 +8,10 @@ import { ResponseStateContext } from "./Contexts/ResponseStateContext";
 import ApiManager from "./ApiManager/ApiManager";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./Contexts/AuthContext";
-import useUser from "./Hooks/useUser";
 
 function VerifyCode() {
   const navigate = useNavigate();
-  const { user, updateUser } = useUser();
+  const { setUser } = useContext(AuthContext);
   const { responseState, setResponseState } = useContext(ResponseStateContext);
   const location = useLocation();
   const [formData, setFormData] = useState({
@@ -37,7 +36,7 @@ function VerifyCode() {
           response,
           loading: false,
         });
-        updateUser(response.data.user);
+        setUser(response.data.user);
 
         localStorage.setItem("authToken", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));

@@ -5,7 +5,7 @@ function HelpCenterFAQ() {
         <h2 className="FAQheading">FAQ</h2>
 
         <div className="accordion accordion-flush" id="accordionFlushExample">
-          <div className="accordion-item ">
+          {/* <div className="accordion-item ">
             <h2 className="accordion-header">
               <button
                 className="accordion-button collapsed "
@@ -32,7 +32,7 @@ function HelpCenterFAQ() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="accordion-item">
             <h2 className="accordion-header">
@@ -44,7 +44,7 @@ function HelpCenterFAQ() {
                 aria-expanded="false"
                 aria-controls="flush-collapseTwo"
               >
-                Can I save my favorite items for later?
+                Can I save my favorite Providers for later?
               </button>
             </h2>
             <div
@@ -54,10 +54,7 @@ function HelpCenterFAQ() {
             >
               <div className="accordion-body">
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Rerum eos cumque molestias repellat, corrupti, ullam laborum,
-                  quis fuga aliquid rem unde deserunt. Quae illum ullam ut
-                  quaerat et fuga inventore!
+                  Yes, simply tap the heart icon to add Providers to your favorite Providers.
                 </p>
               </div>
             </div>
@@ -83,10 +80,7 @@ function HelpCenterFAQ() {
             >
               <div className="accordion-body">
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Rerum eos cumque molestias repellat, corrupti, ullam laborum,
-                  quis fuga aliquid rem unde deserunt. Quae illum ullam ut
-                  quaerat et fuga inventore!
+                 You can reach out through phone, WhatsApp, or Send an Email.
                 </p>{" "}
               </div>
             </div>
@@ -102,7 +96,7 @@ function HelpCenterFAQ() {
                 aria-expanded="false"
                 aria-controls="flush-collapseFour"
               >
-                How to add Review
+                How to add Review?
               </button>
             </h2>
             <div
@@ -112,10 +106,7 @@ function HelpCenterFAQ() {
             >
               <div className="accordion-body">
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Rerum eos cumque molestias repellat, corrupti, ullam laborum,
-                  quis fuga aliquid rem unde deserunt. Quae illum ullam ut
-                  quaerat et fuga inventore!
+                  Go to the product or Provider page you purchased, then click on "Write a Review"
                 </p>
               </div>
             </div>

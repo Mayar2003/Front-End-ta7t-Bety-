@@ -1,72 +1,42 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import BookAppointmentCalendar from "./BookAppointmentCalendar";
-import ApiManager from "../ApiManager/ApiManager";
-import useUser from "../Hooks/useUser";
-import Review from "./Review";
 
 function RepairServiceDetailsComp() {
-  const location = useLocation();
-  const { provider, post, providerAvgRating, postAvgRating } =
-    location.state || { provider: null, post: null };
-  const { user } = useUser();
-
   const [BookingPopUp, setchangeBookingPopUp] = useState(false);
-  const [rating, setRating] = useState(0); // selected stars
-  const [hover, setHover] = useState(0); // hovered stars
-  const [reviews, setReviews] = useState(post?.reviews || []);
+
 
   function BookingToggleModal(e) {
     setchangeBookingPopUp(!BookingPopUp);
     e.preventDefault();
   }
 
-  // function addRating(rating) {
-  //   setRating(rating);
+  const [rating, setRating] = useState(0); // selected stars
+  const [hover, setHover] = useState(0); // hovered stars
 
-  //   ApiManager.createReview({
-  //     user: user._id,
-  //     provider: provider._id,
-  //     post: post._id,
-  //     rating,
-  //     review: "Great service!",
-  //   })
-  //     .then((res) => {
-  //       const response = res.data;
-  //       console.log("Rating updated successfully:", response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error updating rating:", error);
-  //     });
-  // }
+   const [review, setReview] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
 
-  function handlePostRating(rating) {
-    setRating(rating);
-    const reviewData = {
-      review: "User's comment here",
-      rating: rating,
-    };
 
-    ApiManager.createPostReview(post._id, reviewData)
-      .then((res) => {
-        console.log("Review submitted successfully:", res.data);
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Review submitted:", review); // Replace with your API call
+    setSubmitted(true);
+  };
 
-        // TODO: dates aren't returned from the API
-        ApiManager.getPostReviews(post._id)
-          .then((res) => {
-            console.log("Fetched post reviews:", res.data);
-            const Response = res.data;
-            const reviews = Response.data.reviews;
-            setReviews(reviews);
-            console.log("Post reviews:", reviews);
-          })
-          .catch((error) => {
-            console.error("Error fetching post reviews:", error);
-          });
-      })
-      .catch((error) => {
-        console.error("Error submitting review:", error);
-      });
+  if (submitted) {
+    return (
+      <div className="submission-message">
+        <p>Thank you for your review!</p>
+      </div>
+    );
+  }
+
+  function PasswordToggleModal(e) {
+    setchangePasswordPopUp(!changePasswordPopUp);
+    e.preventDefault();
   }
 
   return (
@@ -74,14 +44,15 @@ function RepairServiceDetailsComp() {
       <div className="ProviderPage flex ">
         <div className="ProviderReview ">
           <div className="ProviderInfoDiv simpleBoxShadow">
-            <img src={provider?.providerID?.photo} alt="" />
+            <img
+              src="../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
+              alt=""
+            />
 
             <div className="Rating flex justContentSpaceEvenly">
-              <h3 className="Providername">
-                {provider?.providerID.name || "Unknown Provider"}
-              </h3>
+              <h3 className="Providername">Arabian Country</h3>
               <p className="ServiceRating">
-                {provider.avgRating} <i className="fa-solid fa-star"></i>
+                3.9 <i className="fa-solid fa-star"></i>
               </p>
             </div>
 
@@ -111,7 +82,7 @@ function RepairServiceDetailsComp() {
                         ? "fas text-yellow-400"
                         : "far text-gray-400"
                     }`}
-                    onClick={() => handlePostRating(star)}
+                    onClick={() => setRating(star)}
                     onMouseEnter={() => setHover(star)}
                     onMouseLeave={() => setHover(0)}
                     style={{
@@ -123,18 +94,27 @@ function RepairServiceDetailsComp() {
                 ))}
               </div>
             </div>
+  <div className="LeaveReview  padding-1">
+              <div className="simple-review-form">
+                <form onSubmit={handleSubmit}>
+                  <textarea className="W100"
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    placeholder="Write your review here..."
+                    rows={5}
+                    required
+                  />
+                  <button type="submit">Submit Review</button>
+                </form>
+              </div>
+            </div>
+
           </div>
 
           <div className="ProviderRating-Review simpleBoxShadow">
             <h5 className="RateProviderH textAlignLeft defaultBlue">
               Rating & Reviews
             </h5>
-
-            {reviews
-              .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
-              .map((review) => (
-                <Review review={review} key={review._id} />
-              ))}
 
             <div className="Review ">
               <div className="userInfo flex">
@@ -255,21 +235,7 @@ function RepairServiceDetailsComp() {
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div className="imgaSlide flex">
-                    {post?.images?.map((image, index) => {
-                      if (index >= 3) return null; // Limit to first 3 images
-                      image =
-                        image.startsWith("http") ||
-                        "https://placehold.co/300x500?text=No+Image";
-                      return (
-                        <img
-                          key={index}
-                          src={image}
-                          class="d-block w-100"
-                          alt="..."
-                        />
-                      );
-                    })}
-                    {/* <img
+                    <img
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-13.png"
                       class="d-block w-100"
                       alt="..."
@@ -283,27 +249,13 @@ function RepairServiceDetailsComp() {
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-19.png"
                       class="d-block w-100"
                       alt="..."
-                    /> */}
+                    />
                   </div>
                 </div>
 
                 <div class="carousel-item">
                   <div className="imgaSlide flex">
-                    {post?.images?.map((image, index) => {
-                      if (index >= 3 && index < 6) return null; // Limit to second 3 images
-                      image =
-                        image.startsWith("http") ||
-                        "https://placehold.co/300x500?text=No+Image";
-                      return (
-                        <img
-                          key={index}
-                          src={image}
-                          class="d-block w-100"
-                          alt="..."
-                        />
-                      );
-                    })}
-                    {/* <img
+                    <img
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-27.png"
                       class="d-block w-100"
                       alt="..."
@@ -317,26 +269,12 @@ function RepairServiceDetailsComp() {
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-27.png"
                       class="d-block w-100"
                       alt="..."
-                    /> */}
+                    />
                   </div>
                 </div>
                 <div class="carousel-item">
                   <div className="imgaSlide flex">
-                    {post?.images?.map((image, index) => {
-                      if (index >= 6 && index < 9) return null; // Limit to third 3 images
-                      image =
-                        image.startsWith("http") ||
-                        "https://placehold.co/300x500?text=No+Image";
-                      return (
-                        <img
-                          key={index}
-                          src={image}
-                          class="d-block w-100"
-                          alt="..."
-                        />
-                      );
-                    })}
-                    {/* <img
+                    <img
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-27.png"
                       class="d-block w-100"
                       alt="..."
@@ -350,7 +288,7 @@ function RepairServiceDetailsComp() {
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-19.png"
                       class="d-block w-100"
                       alt="..."
-                    /> */}
+                    />
                   </div>
                 </div>
               </div>
@@ -360,10 +298,10 @@ function RepairServiceDetailsComp() {
           <div className="ServiceDescriptionDetails ">
             <div className="ProviderServiceinfo  alignItemsBaseline flex justContentSpaceBet W80">
               <h5 className="textAlignLeft  RepairServices defaultBlue ">
-                {post?.title || "Unknown Service"}
+                Service
               </h5>
               <h5>
-                {postAvgRating} <i className="fa-solid fa-star"></i>
+                2.8 <i className="fa-solid fa-star"></i>
               </h5>
             </div>
 
@@ -374,7 +312,20 @@ function RepairServiceDetailsComp() {
                 className=" Seemoretoggle toggle"
               />
 
-              <p className="ServiceDetailsDescription text">{post.content}</p>
+              <p className="ServiceDetailsDescription text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
+                velit ut in animi nulla. Vel tenetur eius dolorum nostrum
+                voluptate, possimus aliquam vero nemo exercitationem in amet
+                suscipit quos cupiditate doloribus quas soluta. Iusto, magni
+                veritatis quas itaque illum quod deserunt praesentium adipisci
+                nihil consectetur perspiciatis eius aliquid odio repellendus
+                expedita eveniet eaque incidunt. Beatae labore iure, eligendi
+                sint alias iste maiores, modi excepturi corrupti, doloremque
+                animi quod aperiam velit! Amet eligendi expedita ea animi,
+                consequuntur tempore asperiores dolorum illo, dolores enim ad
+                laborum, dolore voluptates quas consequatur a. Dolorum commodi
+                velit molestias cum beatae quia deserunt dicta, iste blanditiis.
+              </p>
 
               <label
                 htmlFor="Seemoretoggle toggle"
@@ -382,7 +333,7 @@ function RepairServiceDetailsComp() {
               >
                 Read More
               </label>
-              <h5 className="price defaultBlue mrgntb-1">{post.price} EGP</h5>
+              <h5 className="price defaultBlue mrgntb-1">200 - 3000 EGP</h5>
             </div>
           </div>
 
@@ -497,7 +448,7 @@ function RepairServiceDetailsComp() {
  */}
 
                   <BookAppointmentCalendar></BookAppointmentCalendar>
-                  {/* // TODO: Implement booking functionality */}
+
                   <button className=" BookthisAppbttn ">
                     <i className="fa-regular fa-calendar-days"></i> Book This
                     appointment
@@ -511,7 +462,5 @@ function RepairServiceDetailsComp() {
     </>
   );
 }
-
-// TODO: Make it a separate component
 
 export default RepairServiceDetailsComp;

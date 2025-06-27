@@ -13,6 +13,10 @@ function ProfileMyOrders() {
               {" "}
               <p>Active</p>{" "}
             </Link>
+             <Link to="MyPendingOrders" className="decorationNone">
+              {" "}
+              <p>Pending</p>
+            </Link>
             <Link to="MyCanceldOrders" className="decorationNone">
               {" "}
               <p>Canceled</p>

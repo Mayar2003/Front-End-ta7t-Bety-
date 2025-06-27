@@ -13,7 +13,7 @@ function AboutUsSectionOne() {
         <div className="sectionOneHeadings">
           <h2>About Us</h2>
           <h4>
-            <span className="lobster-regular TBAboutUS">Ta7t Bety</span>{" "}
+            <span className="lobster-regular TBAboutUS">Taht Bety</span>{" "}
             <i className="fa-solid fa-chevron-right"></i> About Us
           </h4>
         </div>

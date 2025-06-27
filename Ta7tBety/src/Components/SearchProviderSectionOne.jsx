@@ -15,7 +15,7 @@ function SearchProviderSectionOne() {
         <div className="sectionOneHeadings">
           <h2>Search</h2>
           <h4>
-            <span className="lobster-regular TBAboutUS">Ta7t Bety</span>
+            <span className="lobster-regular TBAboutUS">Taht Bety</span>
             <i className="fa-solid fa-chevron-right"></i>Search
             <i className="fa-solid fa-chevron-right"></i>
             {decodeURIComponent(providerName)}
