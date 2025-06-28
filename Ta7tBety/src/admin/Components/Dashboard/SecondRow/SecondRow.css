@@ -1,0 +1,173 @@
+/* .second-row-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+} */
+
+/* @import url("https://cdn.syncfusion.com/ej2/material.css"); */
+@import "@syncfusion/ej2-base/styles/material.css";
+@import "@syncfusion/ej2-buttons/styles/material.css";
+@import "@syncfusion/ej2-inputs/styles/material.css";
+@import "@syncfusion/ej2-popups/styles/material.css";
+@import "@syncfusion/ej2-react-calendars/styles/material.css";
+
+.left-section {
+  padding: 30px 28px;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right-section {
+  width: 50%;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-container {
+  flex-grow: 1;
+}
+
+.revenue-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.revenue-label {
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 154%;
+}
+
+.revenue-value-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.revenue-value {
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 154%;
+  color: #15243f;
+}
+
+.percentage-change {
+  height: 18px;
+  border-radius: 2px;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.percentage-change.increase {
+  background-color: #05c16833;
+  border: 0.6px solid #05c16833;
+  color: #14ca74;
+}
+
+.percentage-change.decrease {
+  background-color: #ff5a6533;
+  border: 0.6px solid #ff5a6533;
+  color: #ce4d5c;
+}
+
+.filters-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 154%;
+}
+
+.revenue-color-indicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #15243f;
+}
+
+.expenses-color-indicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #99a8c2;
+}
+
+/* 
+
+ .date-picker {
+  cursor: pointer;
+  width: 120px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: "Inter";
+}
+
+// DatePicker overrides 
+.react-datepicker-wrapper {
+  width: auto;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  font-family: "Inter";
+  color: #333;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none;
+  border-color: #8884d8;
+} 
+ */
+
+/* .e-daterangepicker.e-popup .e-footer .e-btn.e-apply.e-flat.e-primary:disabled,
+.e-daterangepicker.e-popup .e-footer .e-btn.e-apply.e-flat.e-primary:disabled,
+.e-daterangepicker.e-popup
+  .e-footer
+  .e-css.e-btn.e-apply.e-flat.e-primary:disabled,
+.e-daterangepicker.e-popup
+  .e-footer
+  .e-css.e-btn.e-apply.e-flat.e-primary:disabled {
+  background-color: brown;
+  border-color: black;
+  color: blue;
+}
+.e-daterangepicker.e-popup .e-footer .e-btn.e-flat,
+.e-daterangepicker.e-popup .e-footer .e-css.e-btn.e-flat {
+  background-color: beige;
+  border-color: black;
+  color: red;
+} */

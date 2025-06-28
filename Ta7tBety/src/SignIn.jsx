@@ -29,13 +29,14 @@ function SignIn() {
           loading: false,
         });
 
-        setUser(response.data.user); // Ensure user is set correctly
-        console.log("User set in AuthContext:", response.data.user); // Log user for debugging
+        setUser(response.data.user);
+        console.log("User set in AuthContext:", response.data.user);
 
         localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("jwt", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
 
-        navigate("/"); // Redirect to home page after successful login
+        navigate("/");
       })
       .catch((err) => {
         console.error("Login error:", err);

@@ -39,6 +39,13 @@ import UserOrders from "./UserOrders.jsx";
 import ContactUs from "./ContactUs.jsx";
 import MainPage from "./MainPage.jsx";
 import { CartContext } from "./Contexts/CartContext.js";
+import AdminMain from "./admin/Pages/AdminMain.jsx";
+import Users from "./admin/Pages/Users.jsx";
+import Orders from "./admin/Pages/Orders.jsx";
+import ProvidersDash from "./admin/Pages/Providers.jsx";
+import Dashboard from "./admin/Pages/Dashboard.jsx";
+import ProviderTypeTable from "./admin/Pages/ProviderByType.jsx";
+import ProviderDetails from "./admin/Pages/ProviderDetails.jsx";
 // import LocationPickerModal from './Maps/location_picker.jsx';
 
 function App() {
@@ -92,7 +99,7 @@ function App() {
                 <Route path="/RepairsProvider" element={<RepairsProvider />} />
                 <Route path="/FoodProvider" element={<FoodProvider />} />
                 <Route path="/MarketProvider" element={<MarketProvider />} />
-                 {/* <Route path="/location-picker" element={<LocationPickerModal />} /> */}
+                {/* <Route path="/location-picker" element={<LocationPickerModal />} /> */}
                 <Route
                   path="/HealthCareProvider"
                   element={<HealthCareProvider />}
@@ -169,6 +176,21 @@ function App() {
             </PrivateRoute>
             }
             /> */}
+
+                <Route path="/dashboard" element={<AdminMain />}>
+                  <Route index element={<Dashboard />} />
+                  <Route path="users" element={<Users />} />
+                  <Route path="orders" element={<Orders />} />
+                  <Route path="providers" element={<ProvidersDash />} />
+                  <Route
+                    path="providers/:type"
+                    element={<ProviderTypeTable />}
+                  />
+                  <Route
+                    path="providers/:type/:id"
+                    element={<ProviderDetails />}
+                  />
+                </Route>
               </Routes>
             </Router>
           </CartContext.Provider>
