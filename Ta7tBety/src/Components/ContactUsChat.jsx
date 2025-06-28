@@ -31,7 +31,7 @@ function ContactUsChat() {
        <div className="TypeMessegeinput flex W100 JustifyContentCenter ">
         <div className="inputmessege W80">
         <input className="W100" type="text" name="" id=""  placeholder="Type here..."/>
-        <i class="fa-solid fa-microphone"></i>
+        {/* <i class="fa-solid fa-microphone"></i> */}
         </div>
         <div className="Sendbttn">
             <button><i class="fa-brands fa-telegram"></i></button>

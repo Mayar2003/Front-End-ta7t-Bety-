@@ -37,7 +37,9 @@ import { ResponseStateContext } from "./Contexts/ResponseStateContext.js";
 import SearchProvider from "./SearchProvider.jsx";
 import UserOrders from "./UserOrders.jsx";
 import ContactUs from "./ContactUs.jsx";
+import MainPage from "./MainPage.jsx";
 import { CartContext } from "./Contexts/CartContext.js";
+// import LocationPickerModal from './Maps/location_picker.jsx';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -81,6 +83,7 @@ function App() {
             <Router>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/MainPage" element={<MainPage />} />
                 <Route path="/AboutUS" element={<AboutUs />} />
                 <Route path="/HelpCenter" element={<HelpCenter />} />
                 <Route path="/Services" element={<Services />} />
@@ -89,6 +92,7 @@ function App() {
                 <Route path="/RepairsProvider" element={<RepairsProvider />} />
                 <Route path="/FoodProvider" element={<FoodProvider />} />
                 <Route path="/MarketProvider" element={<MarketProvider />} />
+                 {/* <Route path="/location-picker" element={<LocationPickerModal />} /> */}
                 <Route
                   path="/HealthCareProvider"
                   element={<HealthCareProvider />}

@@ -16,7 +16,9 @@ function HouseWorkServiceDetailsComp() {
   const [submitted, setSubmitted] = useState(false);
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
 
-
+ const LeavReviewALert = () => {
+        alert("Thank you for Your Review!"); // Alert on click
+    }; 
 
   
   const handleSubmit = (e) => {
@@ -103,7 +105,7 @@ function HouseWorkServiceDetailsComp() {
                     rows={5}
                     required
                   />
-                  <button type="submit">Submit Review</button>
+                  <button onClick={LeavReviewALert} type="submit">Submit Review</button>
                 </form>
               </div>
             </div>

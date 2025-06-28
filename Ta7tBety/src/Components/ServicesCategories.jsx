@@ -13,12 +13,44 @@ function ServicesCategories() {
   });
   const [distance, setDistance] = useState(1000000000); // TODO: set location and distance
 
-  function hadnleCategorySelection(type, genre) {
+  // function handleCategorySelection(type, genre) {
+  //   if (!user) {
+  //     // If user is not logged in, redirect to login page
+  //     navigate("/SignIn", {
+  //       state: { from: "/Services" },
+  //       search: `?type=${type}&genre=${genre}`,
+  //     });
+  //     alert("Please log in to view providers.");
+  //     return;
+  //   }
+  //   ApiManager.getNearbyProviders(
+  //     position.lng,
+  //     position.lat,
+  //     distance,
+  //     type,
+  //     genre
+  //   )
+  //     .then((res) => {
+  //       const Response = res.data;
+  //       console.log("Ressssss", Response);
+  //       setProviders(Response.data.providers);
+  //       navigate("/Providers", {
+  //         state: { type, genre, providers: Response.data.providers },
+  //         search: `?type=${type}&genre=${genre}`,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
+
+  
+  function handleCategorySelection(type, genre) {
     if (!user) {
       // If user is not logged in, redirect to login page
       navigate("/SignIn", {
         state: { from: "/Services" },
-        search: `?type=${type}&genre=${genre}`,
+        // search: ?type=${type}&genre=${genre},
       });
       alert("Please log in to view providers.");
       return;
@@ -33,9 +65,12 @@ function ServicesCategories() {
       .then((res) => {
         const Response = res.data;
         console.log("Ressssss", Response);
-        setProviders(Response.data.providers);
+        const filteredProviders = Response.data.providers.filter(
+          (provider) => provider.isActive && provider.isOnline
+        );
+        setProviders(filteredProviders);
         navigate("/Providers", {
-          state: { type, genre, providers: Response.data.providers },
+          state: { type, genre, providers: filteredProviders },
           search: `?type=${type}&genre=${genre}`,
         });
       })
@@ -43,6 +78,7 @@ function ServicesCategories() {
         console.log(err);
       });
   }
+  
 
   return (
     <>
@@ -57,7 +93,7 @@ function ServicesCategories() {
               <h6 className="Serv-catg-name">Repairs</h6>
               <button
                 className="viewbtn"
-                onClick={() => hadnleCategorySelection("all", "R")}
+                onClick={() => handleCategorySelection("all", "R")}
               >
                 <i className="fa-solid fa-chevron-right"></i>
               </button>
@@ -71,7 +107,7 @@ function ServicesCategories() {
               <h6 className="Serv-catg-name">Food</h6>
               <button
                 className="viewbtn"
-                onClick={() => hadnleCategorySelection("all", "F")}
+                onClick={() => handleCategorySelection("all", "F")}
               >
                 <i className="fa-solid fa-chevron-right"></i>
               </button>
@@ -86,7 +122,7 @@ function ServicesCategories() {
               <h6 className="Serv-catg-name">Market</h6>
               <button
                 className="viewbtn"
-                onClick={() => hadnleCategorySelection("all", "M")}
+                onClick={() => handleCategorySelection("all", "M")}
               >
                 <i className="fa-solid fa-chevron-right"></i>
               </button>
@@ -101,7 +137,7 @@ function ServicesCategories() {
               <h6 className="Serv-catg-name">House Work</h6>
               <button
                 className="viewbtn"
-                onClick={(e) => hadnleCategorySelection(e, "all", "HW")}
+                onClick={() => handleCategorySelection("all", "HW")}
               >
                 <i className="fa-solid fa-chevron-right"></i>
               </button>
@@ -116,7 +152,7 @@ function ServicesCategories() {
               <h6 className="Serv-catg-name">Health & Care</h6>
               <button
                 className="viewbtn"
-                onClick={() => hadnleCategorySelection("all", "HC")}
+                onClick={() => handleCategorySelection("all", "HC")}
               >
                 <i className="fa-solid fa-chevron-right"></i>
               </button>
@@ -129,3 +165,5 @@ function ServicesCategories() {
   );
 }
 export default ServicesCategories;
+
+

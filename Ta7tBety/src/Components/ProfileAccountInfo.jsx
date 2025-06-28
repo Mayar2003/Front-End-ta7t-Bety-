@@ -18,6 +18,39 @@ function ProfileAccountInfo() {
 
   const { user, updateUser } = useUser();
 
+
+
+   const [phoneNumber, setPhoneNumber] = useState(
+    user.phoneNumber || "+201234567890"
+  );
+
+  function handleEditPhonNumber() {
+    ApiManager.updateMe({
+      phoneNumber,
+    })
+      .then((res) => {
+        const updatedUser = res.data.data.user;
+        updateUser(updatedUser);
+        console.log("Phone number updated successfully:", updatedUser);
+      })
+      .catch((err) => {
+        console.error("Error updating phone number:", err);
+      });
+  }
+
+  function handleDeletePhoneNumber() {
+    ApiManager.updateMe({ phoneNumber: "" })
+      .then((res) => {
+        setPhoneNumber("");
+        const updatedUser = res.data.data.user;
+        updateUser(updatedUser);
+        console.log("Phone number deleted successfully:", updatedUser);
+      })
+      .catch((err) => {
+        console.error("Error deleting phone number:", err);
+      });
+  }
+
   console.log("User in ProfileAccountInfo:", user); // Log the user object to check if it's defined
   function EmailToggleModal(e) {
     setchangeEmailPopUp(!changeEmailPopUp);
@@ -155,21 +188,44 @@ function ProfileAccountInfo() {
                 <div className="col-3 PersonalInfolabel">
                   <label htmlFor="">Phone Number</label>
                 </div>
-                <div className="col-3">
+                {/* <div className="col-3">
                   <input
                     className="bgcBblueInput"
                     type="text"
                     placeholder={user.phone}
                     disabled
                   />
-                </div>
-                <div className="col-4 textAlignRight">
+                </div> */}
+                {/* <div className="col-4 textAlignRight">
                   <a href="" onClick={PhoneToggleModal}>
                     change phone number
                   </a>
+                </div> */}
+
+                     <div className="col-3">
+                  <div className="AddrsInfo">
+                    <input
+                      type="tel"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
+                    {/* <p>+201201111344</p> */}
+                  </div>
+                </div> 
+                <div className="col-3">
+ 
+            <div className="Edit-DeleteBtns W100 ">
+              <button className="Editbtn" onClick={handleEditPhonNumber}>
+                Edit
+              </button>
+              <button className="Deletebtn" onClick={handleDeletePhoneNumber}>
+                Delete
+              </button>
+            </div>
                 </div>
-                <div className="col-3"></div>
               </div>
+
+              
             </div>
           </div>
         </div>

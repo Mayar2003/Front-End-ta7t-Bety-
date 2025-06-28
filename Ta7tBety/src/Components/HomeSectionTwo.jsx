@@ -14,17 +14,30 @@ function HomeSectionTwo() {
   const [distance, setDistance] = useState(1000000000);
   const navigate = useNavigate();
 
+  // function handleCategorySelection(type, genre) {
+  //   if (!user) {
+  //     // If user is not logged in, redirect to login page
+  //     navigate("/SignIn", {
+  //       state: { from: "/Services" },
+  //       search: `?type=${type}&genre=${genre}`,
+  //     });
+  //     alert("Please log in to view providers.");
+  //     return;
+  //   }
+
+
+
+
   function handleCategorySelection(type, genre) {
     if (!user) {
       // If user is not logged in, redirect to login page
       navigate("/SignIn", {
         state: { from: "/Services" },
-        search: `?type=${type}&genre=${genre}`,
+        // search: ?type=${type}&genre=${genre},
       });
       alert("Please log in to view providers.");
       return;
     }
-    // TODO: Handle loading state
     ApiManager.getNearbyProviders(
       position.lng,
       position.lat,
@@ -35,9 +48,12 @@ function HomeSectionTwo() {
       .then((res) => {
         const Response = res.data;
         console.log("Ressssss", Response);
-        setProviders(Response.data.providers);
+        const filteredProviders = Response.data.providers.filter(
+          (provider) => provider.isActive && provider.isOnline
+        );
+        setProviders(filteredProviders);
         navigate("/Providers", {
-          state: { type, genre, providers: Response.data.providers },
+          state: { type, genre, providers: filteredProviders },
           search: `?type=${type}&genre=${genre}`,
         });
       })
@@ -45,6 +61,9 @@ function HomeSectionTwo() {
         console.log(err);
       });
   }
+  
+   
+  
 
   return (
     <>
@@ -122,80 +141,12 @@ function HomeSectionTwo() {
               </button>
             </div>
 
-            {/* <div className="category">
-              <img
-                src="../../Graduation project assestst/Graduation project/imresizer-1727387091980.jpg"
-                alt=""
-              />
-              <h6 className="catg-name">Health & Care</h6>
-              <button
-                className="viewbtn"
-                onClick={() => handleCategorySelection("all", "HC")}
-              >
-                <i className="fa-solid fa-chevron-right"></i>
-              </button>
-            </div> */}
+           
           </div>
         </div>
       </section>
 
-      {/* <section className="BestProvider">
-        <div className="container">
-          <div>
-            <h3 className="bestProvider">Best Provider For Last Month</h3>
-          </div>
-
-          <div className="BesProviderSlider">
-            <div className="slide">
-              <img
-                src="../../Graduation project assestst/Graduation project/super market.jpg"
-                alt=""
-              />
-              <h5>Family Market</h5>
-              <h6>
-                <i className="fa-solid fa-star"></i> 4.9 (+100)
-              </h6>
-            </div>
-
-            <div className="slide">
-              <img
-                src="../../Graduation project assestst/Graduation project/super market.jpg"
-                alt=""
-              />
-              <h5>Family Market</h5>
-              <h6>
-                <i className="fa-solid fa-star"></i> 4.9 (+100)
-              </h6>
-            </div>
-
-            <div className="slide">
-              <img
-                src="../../Graduation project assestst/Graduation project/super market.jpg"
-                alt=""
-              />
-              <h5>Family Market</h5>
-              <h6>
-                <i className="fa-solid fa-star"></i> 4.9 (+100)
-              </h6>
-            </div>
-
-            <div className="slide">
-              <img
-                src="../../Graduation project assestst/Graduation project/super market.jpg"
-                alt=""
-              />
-              <h5>Family Market</h5>
-              <h6>
-                <i className="fa-solid fa-star"></i> 4.9 (+100)
-              </h6>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* <div className="ChatbotIcon">
-        <i className="fa-regular fa-comment"></i>
-      </div> */}
+   
     </>
   );
 }

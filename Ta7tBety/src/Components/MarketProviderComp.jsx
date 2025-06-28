@@ -10,6 +10,9 @@ function MarketProviderComp({ provider }) {
   const [review, setReview] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+   const LeavReviewALert = () => {
+        alert("Thank you for Your Review!"); // Alert on click
+    }; 
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: change it to createPostReview with post._id if needed
@@ -112,7 +115,7 @@ function MarketProviderComp({ provider }) {
                     rows={5}
                     required
                   />
-                  <button type="submit">Submit Review</button>
+                  <button onClick={LeavReviewALert} type="submit">Submit Review</button>
                 </form>
               </div>
             </div>

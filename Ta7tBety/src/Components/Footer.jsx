@@ -4,7 +4,12 @@ function Footer() {
       <div className="container-fluid Footer">
         <div className="container FooterContent">
           <div className="hotline">
+            <div className="Logo-name-footer  flex">
+
+            <img className="TahtBety-Logo" src="../../G.Project assets2.png (2)/converted-files.png/TahtBetLogo-removebg-preview (1).png" alt="" />
             <h3 className="lobster-regular">Taht Bety</h3>
+            </div>
+
             <p>
               {" "}
               <i className="fa-solid fa-phone"></i> Hotline :

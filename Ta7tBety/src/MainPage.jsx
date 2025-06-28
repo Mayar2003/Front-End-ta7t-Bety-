@@ -1,6 +1,9 @@
-import servicesProviders from "../assets/servicesProviders.png";
-import Location from "../assets/Location.png";
+// import servicesProviders from "../assets/servicesProviders.png";
+import servicesProviders from "./assets/servicesProviders.png";
+import Location from "./assets/Location.png";
 import {useState} from "react";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function MainPage() {
 
@@ -12,6 +15,7 @@ function MainPage() {
 
   return (
     <>
+    <Header/>
       <div className="container-fluid ExtraLightBG">
         <div className="container HomeSectionOne">
           <div className="LeftSection">
@@ -37,6 +41,7 @@ function MainPage() {
           </div>
         </div>
       </div>
+      <Footer/>
      </>
   );
 }

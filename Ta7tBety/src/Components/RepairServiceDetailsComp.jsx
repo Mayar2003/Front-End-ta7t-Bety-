@@ -9,6 +9,11 @@ function RepairServiceDetailsComp() {
     location.state || { provider: null, post: null };
   const [BookingPopUp, setchangeBookingPopUp] = useState(false);
 
+
+   const LeavReviewALert = () => {
+        alert("Thank you for Your Review!"); // Alert on click
+    }; 
+
   function BookingToggleModal(e) {
     setchangeBookingPopUp(!BookingPopUp);
     e.preventDefault();
@@ -21,6 +26,7 @@ function RepairServiceDetailsComp() {
   const [submitted, setSubmitted] = useState(false);
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: change it to createPostReview with post._id if needed
@@ -115,7 +121,7 @@ function RepairServiceDetailsComp() {
                     rows={5}
                     required
                   />
-                  <button type="submit">Submit Review</button>
+                  <button onClick={LeavReviewALert} type="submit">Submit Review</button>
                 </form>
               </div>
             </div>

@@ -18,6 +18,11 @@ function FoodProviderComp({ provider }) {
   const increment = () => setCount((prev) => prev + 1);
   const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
 
+
+   const LeavReviewALert = () => {
+        alert("Thank you for Your Review!"); // Alert on click
+    };
+    
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: change it to createPostReview with post._id if needed
@@ -144,7 +149,7 @@ function FoodProviderComp({ provider }) {
                     rows={5}
                     required
                   />
-                  <button type="submit">Submit Review</button>
+                  <button onClick={LeavReviewALert} type="submit">Submit Review</button>
                 </form>
               </div>
             </div>

@@ -2,8 +2,9 @@ import servicesProviders from "../assets/servicesProviders.png";
 import Location from "../assets/Location.png";
 import {useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from 'react-router-dom';
 function HomeSectionOne() {
-
+  const navigate = useNavigate();
     const [showLearnMoreText, setShowLearnMoreText] = useState(false);
 
     const toggleLearnMoreText = () => {
@@ -67,7 +68,7 @@ function HomeSectionOne() {
               className="LocInput"
               placeholder="search for area, street name, landmark..."
             ></input>
-            <button className="LocBtn">Let's go</button>
+            <button  className="LocBtn"  >Let's go</button>
           </div>
         </div>
       </div>

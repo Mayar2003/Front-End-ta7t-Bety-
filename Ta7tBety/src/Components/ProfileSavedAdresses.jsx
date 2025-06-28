@@ -43,54 +43,45 @@ function ProfileSavedAdresses() {
 
             <div className="container overflow-hidden text-center">
               <div className="row ">
-                <div className="col-5 textAlignCenter">
+                {/* <div className="col-5 textAlignCenter">
                   <div className=" AddrsInfoName">
                     <p>Address</p>
                   </div>
-                </div>
-                <div className="col-7 ">
+                </div> */}
+                <div className="col-12 ">
                   <div className="AddrsInfo">
                     <p>{user.locations[0]?.address}</p>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="container overflow-hidden text-center">
               <div className="row ">
-                <div className="col-5 textAlignCenter">
-                  <div className=" AddrsInfoName">
-                    <p>Mobile Number</p>
-                  </div>
-                </div>
-                <div className="col-7">
-                  <div className="AddrsInfo">
-                    <input
-                      type="tel"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                    />
-                    {/* <p>+201201111344</p> */}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="SavedAdressesBtnDiv flex JustifyContentCenter Wrap">
-            <div className="addAddressbtn W100">
+                <div className="addAddressbtn W100 mrgnt-1 ">
               <button className="addAdressbtn">CHANGE ADDRESS</button>{" "}
               {/* // TODO: change address */}
             </div>
 
-            <div className="Edit-DeleteBtns W100 ">
+<div/>
+            </div>
+
+            <div className="container overflow-hidden text-center">
+           
+            </div>
+          </div>
+
+          <div className="SavedAdressesBtnDiv flex JustifyContentCenter Wrap">
+            {/* <div className="addAddressbtn W100">
+              <button className="addAdressbtn">CHANGE ADDRESS</button>{" "}
+              {/* // TODO: change address */}
+            </div> 
+
+            {/* <div className="Edit-DeleteBtns W100 ">
               <button className="Editbtn" onClick={handleEditPhonNumber}>
                 Edit
               </button>
               <button className="Deletebtn" onClick={handleDeletePhoneNumber}>
                 Delete
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

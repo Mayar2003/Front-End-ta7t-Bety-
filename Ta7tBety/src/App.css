@@ -14,6 +14,9 @@
 b .decorationNone {
   text-decoration: none;
 }
+ .decorationNone {
+  text-decoration: none;
+}
 .textAlignCenter {
   text-align: center;
 }
@@ -546,6 +549,11 @@ span {
   width: 70%;
 }
 
+.Logo-name-footer{
+    justify-content: center;
+    align-items: center;
+    padding-right: 4rem;
+}
 .hotline {
   width: 50%;
 }
@@ -1233,7 +1241,7 @@ h4,
 }
 
 .SignUpName label {
-  top: 7.5rem;
+  top: 7rem;
   left: 7rem;
 }
 .SignUpEmail label {
@@ -1365,7 +1373,7 @@ h4,
 }
 
 .gender-options button  {
-      border: none;
+    border: none;
     background-color: white;
     border: solid 0.2rem #99a8c2;
     border-radius: 2rem;
@@ -1374,6 +1382,12 @@ h4,
     margin: 0 2rem;
     padding:0.5rem;
 }
+.gender-options :hover{
+  background-color: #99a8c2;
+  color: #15243f;
+  transition: 0.3s;
+}
+
 .gender-icon{
 color: #3a4d6f;
 }
@@ -1622,7 +1636,7 @@ color: #3a4d6f;
   height: 2.5rem;
   width: 2.5rem;
   position: relative;
-  left: 4rem;
+  left: 10rem;
   bottom: 3rem;
   border-radius: 6rem;
   border: none;
@@ -1702,6 +1716,9 @@ color: #3a4d6f;
 .ProviderInfo {
   text-align: left;
   padding: 1rem 2rem;
+}
+.ProviderInfo .Providername{
+  width:max-content ;
 }
 .RepairComponent {
   height: 20rem;
