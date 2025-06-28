@@ -1,9 +1,39 @@
 import { useState } from "react";
 import useUser from "../Hooks/useUser";
+import ApiManager from "../ApiManager/ApiManager";
 
 function ProfileSavedAdresses() {
-  const user = useUser();
+  const { user, updateUser } = useUser();
+  const [phoneNumber, setPhoneNumber] = useState(
+    user.phoneNumber || "+201234567890"
+  );
 
+  function handleEditPhonNumber() {
+    ApiManager.updateMe({
+      phoneNumber,
+    })
+      .then((res) => {
+        const updatedUser = res.data.data.user;
+        updateUser(updatedUser);
+        console.log("Phone number updated successfully:", updatedUser);
+      })
+      .catch((err) => {
+        console.error("Error updating phone number:", err);
+      });
+  }
+
+  function handleDeletePhoneNumber() {
+    ApiManager.updateMe({ phoneNumber: "" })
+      .then((res) => {
+        setPhoneNumber("");
+        const updatedUser = res.data.data.user;
+        updateUser(updatedUser);
+        console.log("Phone number deleted successfully:", updatedUser);
+      })
+      .catch((err) => {
+        console.error("Error deleting phone number:", err);
+      });
+  }
   return (
     <>
       <div className="ProfileSavedAdresses justContentSpaceBet JustifyContentCenter flex W100 ">
@@ -35,7 +65,11 @@ function ProfileSavedAdresses() {
                 </div>
                 <div className="col-7">
                   <div className="AddrsInfo">
-                    <input type="tel" defaultValue="+201201111344" />
+                    <input
+                      type="tel"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
                     {/* <p>+201201111344</p> */}
                   </div>
                 </div>
@@ -45,12 +79,17 @@ function ProfileSavedAdresses() {
 
           <div className="SavedAdressesBtnDiv flex JustifyContentCenter Wrap">
             <div className="addAddressbtn W100">
-              <button className="addAdressbtn">CHANGE ADDRESS</button>
+              <button className="addAdressbtn">CHANGE ADDRESS</button>{" "}
+              {/* // TODO: change address */}
             </div>
 
             <div className="Edit-DeleteBtns W100 ">
-              <button className="Editbtn">Edit</button>
-              <button className="Deletebtn">Delete</button>
+              <button className="Editbtn" onClick={handleEditPhonNumber}>
+                Edit
+              </button>
+              <button className="Deletebtn" onClick={handleDeletePhoneNumber}>
+                Delete
+              </button>
             </div>
           </div>
         </div>

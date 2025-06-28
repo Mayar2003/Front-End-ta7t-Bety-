@@ -18,5 +18,5 @@ export default function useMyOrders(status) {
       });
   }, [status]);
 
-  return orders;
+  return { orders, setOrders };
 }

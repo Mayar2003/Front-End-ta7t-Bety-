@@ -1,19 +1,48 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import useCart from "../Hooks/useCart";
 
 function MarketServiceDetailsComp() {
-  
+  const location = useLocation();
+  const { provider, category } = location.state || {
+    provider: null,
+    category: null,
+  };
+  const { cart, updateCart } = useCart();
+
   const [count, setCount] = useState(1);
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
-
+  const [choosedPost, setChoosedPost] = useState({});
 
   const increment = () => setCount((prev) => prev + 1);
-  const decrement = () => setCount((prev) => prev - 1);
+  const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
 
-  
-  function PasswordToggleModal(e) {
+  function passwordToggleModal(e) {
     setchangePasswordPopUp(!changePasswordPopUp);
     e.preventDefault();
+  }
+
+  function handleAddToCart(e) {
+    e.preventDefault();
+    console.log("Adding to cart:", choosedPost);
+    let updatedCart = [];
+    if (cart.some((item) => item._id === choosedPost._id)) {
+      updatedCart = cart.map((item) =>
+        item._id === choosedPost._id
+          ? { ...item, quantity: item.quantity + count }
+          : item
+      );
+    } else {
+      updatedCart = [...cart, { ...choosedPost, quantity: count }];
+    }
+
+    updateCart(updatedCart);
+  }
+
+  function handleCloseAddToCart() {
+    setchangePasswordPopUp(false);
+    setChoosedPost({});
+    setCount(1);
   }
 
   return (
@@ -22,188 +51,56 @@ function MarketServiceDetailsComp() {
         <div className="ProviderReview ">
           <div className="ProviderInfoDiv simpleBoxShadow">
             <img
-              src="../../Graduation project assestst/Graduation project/imresizer-1727387237741.jpg"
+              src={
+                provider?.providerID?.photo ||
+                "../../Graduation project assestst/Graduation project/imresizer-1727387237741.jpg"
+              }
               alt=""
             />
 
             <div className="Rating flex justContentSpaceEvenly">
-              <h3 className="Providername">Family Market</h3>
+              <h3 className="Providername">
+                {provider?.providerID?.name || "Family Market"}
+              </h3>
               <p className="ServiceRating">
-                3.9 <i className="fa-solid fa-star"></i>
+                {provider?.avgRating || "3.9"}{" "}
+                <i className="fa-solid fa-star"></i>
               </p>
             </div>
 
             <h5 className="ProviderAddress">
-              <i class="fa-solid fa-map-location"></i> Street 306 - Saqr Quraish
-              District
+              <i class="fa-solid fa-map-location"></i>{" "}
+              {provider?.locations?.[0]?.address ||
+                "Street 306 - Saqr Quraish District"}
             </h5>
 
             <div>
-              <button className="ContactUsbttn">
-                <i class="fa-solid fa-comments"></i> Contact Us
-              </button>
+              <Link to="/ContactUs">
+                <button className="ContactUsbttn">
+                  <i class="fa-solid fa-comments"></i> Contact Us
+                </button>
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="ProviderServices flex simpleBoxShadow Wrap justifyContentSpaceBet">
           <h4 className="ShopByCategory LightBlue textAlignLeft W100">
-            Dairy & Eggs
+            {category || "Dairy & Eggs"}
           </h4>
 
-          <div className="RepairProviderService MarketProduct">
-            <img
-              src="../../G.Project assets2.png (2)/converted-files.png/download__1_-removebg-preview.png"
-              alt=""
+          {provider?.posts?.map((post) => (
+            <ProductItem
+              post={post}
+              key={post._id}
+              passwordToggleModal={passwordToggleModal}
+              setChoosedPost={setChoosedPost}
             />
-
-            <div className="ProviderInfo">
-              <h5>Almarai plain milk 1L Skimmed</h5>
-              <div className="Price">
-                {" "}
-                <h5 className="defaultBlue">{count * 76.5} EGP</h5>
-                <div className="justContentSpaceBet flex ">
-                   <div className="addToCart">
-                <button className="addToCartbtn LightBlue ">
-                  {" "}
-                  <a href="" onClick={PasswordToggleModal}>
-                    <i className="fa-solid fa-plus"></i>
-                  </a>
-                </button>
-              </div>
-                  <button className="OrderCounterbtn flex">
-                    <a onClick={decrement}>-</a>
-                    <p className="orderNumber"> {count} </p>
-                    <a onClick={increment}>+</a>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="RepairProviderService MarketProduct">
-            <img
-              src="../../G.Project assets2.png (2)/converted-files.png/download__1_-removebg-preview.png"
-              alt=""
-            />
-
-            <div className="ProviderInfo">
-              <h5>Almarai plain milk 1L Skimmed</h5>
-              <div className="Price">
-                {" "}
-                <h5 className="defaultBlue">{count * 76.5} EGP</h5>
-                <div className="justContentSpaceBet flex">
-                   <div className="addToCart">
-                <button className="addToCartbtn LightBlue ">
-                  {" "}
-                  <a href="" onClick={PasswordToggleModal}>
-                    <i className="fa-solid fa-plus"></i>
-                  </a>
-                </button>
-              </div>
-                  <button className="OrderCounterbtn flex">
-                    <a onClick={decrement}>-</a>
-                    <p className="orderNumber"> {count} </p>
-                    <a onClick={increment}>+</a>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="RepairProviderService MarketProduct">
-            <img
-              src="../../G.Project assets2.png (2)/converted-files.png/download__1_-removebg-preview.png"
-              alt=""
-            />
-
-            <div className="ProviderInfo">
-              <h5>Almarai plain milk 1L Skimmed</h5>
-              <div className="Price">
-                {" "}
-                <h5 className="defaultBlue">{count * 76.5} EGP</h5>
-                <div className="justContentSpaceBet flex">
-                   <div className="addToCart">
-                <button className="addToCartbtn LightBlue ">
-                  {" "}
-                  <a href="" onClick={PasswordToggleModal}>
-                    <i className="fa-solid fa-plus"></i>
-                  </a>
-                </button>
-              </div>
-                  <button className="OrderCounterbtn flex">
-                    <a onClick={decrement}>-</a>
-                    <p className="orderNumber"> {count} </p>
-                    <a onClick={increment}>+</a>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="RepairProviderService MarketProduct">
-            <img
-              src="../../G.Project assets2.png (2)/converted-files.png/download__1_-removebg-preview.png"
-              alt=""
-            />
-
-            <div className="ProviderInfo">
-              <h5>Almarai plain milk 1L Skimmed</h5>
-              <div className="Price">
-                {" "}
-                <h5 className="defaultBlue">{count * 76.5} EGP</h5>
-                <div className="justContentSpaceBet flex">
-                   <div className="addToCart">
-                <button className="addToCartbtn LightBlue ">
-                  {" "}
-                  <a href="" onClick={PasswordToggleModal}>
-                    <i className="fa-solid fa-plus"></i>
-                  </a>
-                </button>
-              </div>
-                  <button className="OrderCounterbtn flex">
-                    <a onClick={decrement}>-</a>
-                    <p className="orderNumber"> {count} </p>
-                    <a onClick={increment}>+</a>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="RepairProviderService MarketProduct">
-            <img
-              src="../../G.Project assets2.png (2)/converted-files.png/download__1_-removebg-preview.png"
-              alt=""
-            />
-
-            <div className="ProviderInfo">
-              <h5>Almarai plain milk 1L Skimmed</h5>
-              <div className="Price">
-                {" "}
-                <h5 className="defaultBlue">{count * 76.5} EGP</h5>
-                <div className="justContentSpaceBet flex">
-                   <div className="addToCart">
-                <button className="addToCartbtn LightBlue ">
-                  {" "}
-                  <a href="" onClick={PasswordToggleModal}>
-                    <i className="fa-solid fa-plus"></i>
-                  </a>
-                </button>
-              </div>
-                  <button className="OrderCounterbtn flex">
-                    <a onClick={decrement}>-</a>
-                    <p className="orderNumber"> {count} </p>
-                    <a onClick={increment}>+</a>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
-
-        {changePasswordPopUp && (
+      {changePasswordPopUp && (
         <div className="PasswordPopUp ">
           <div className="lightOverlay">
             <div className="popUp AddItemPopUp">
@@ -211,20 +108,20 @@ function MarketServiceDetailsComp() {
                 <h5 className="ChangeEmail">Add item </h5>
                 <i
                   className="fa-solid fa-xmark"
-                  onClick={() => setchangePasswordPopUp(false)}
+                  onClick={handleCloseAddToCart}
                 ></i>
               </div>
 
               <div className="OrderDetails mrgn-1">
                 <div className="TotalPrice-counterbtn flex justContentSpaceArround">
-                  <h5 className="OrderName">Pizza</h5>
+                  <h5 className="OrderName">{choosedPost.title}</h5>
                   <button className="OrderCounterbtn flex">
                     <a onClick={decrement}>-</a>
                     <p className="orderNumber"> {count} </p>
                     <a onClick={increment}>+</a>
                   </button>
                   <p>Price:</p>
-                  <p> {count * 200} EGP</p>
+                  <p> {count * choosedPost.price} EGP</p>
                 </div>
               </div>
               <div className="OrderDescription">
@@ -237,12 +134,7 @@ function MarketServiceDetailsComp() {
                     />
 
                     <p className="ServiceDetailsDescription text">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Soluta velit ut in animi nulla. Vel tenetur eius dolorum
-                      nostrum voluptate, possimus aliquam vero nemo
-                      exercitationem in amet suscipit quos cupiditate doloribus
-                      quas soluta. Iusto, magni veritatis quas itaque illum quod
-                      deserunt praesentium adipisci
+                      {choosedPost.content}
                     </p>
 
                     <label
@@ -270,7 +162,10 @@ function MarketServiceDetailsComp() {
                 </div>
               </div> */}
 
-              <button className="AddToCartBttn BookAppointmentbttn">
+              <button
+                className="AddToCartBttn BookAppointmentbttn"
+                onClick={handleAddToCart}
+              >
                 <i class="fa-solid fa-cart-plus"></i>
                 Add To Cart
               </button>
@@ -279,6 +174,54 @@ function MarketServiceDetailsComp() {
         </div>
       )}
     </>
+  );
+}
+
+function ProductItem({ post, passwordToggleModal, setChoosedPost }) {
+  const [count, setCount] = useState(1);
+
+  const increment = () => setCount((prev) => prev + 1);
+  const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
+
+  function handleChoosePost(e) {
+    e.preventDefault();
+    setChoosedPost({ ...post, quantity: count });
+    passwordToggleModal(e);
+  }
+
+  return (
+    <div className="RepairProviderService MarketProduct">
+      <img
+        src={
+          post.images?.[0] ||
+          "../../G.Project assets2.png (2)/converted-files.png/download__1_-removebg-preview.png"
+        }
+        alt=""
+      />
+
+      <div className="ProviderInfo">
+        <h5>{post.title}</h5>
+        <div className="Price">
+          {" "}
+          <h5 className="defaultBlue">{count * post.price} EGP</h5>
+          <div className="justContentSpaceBet flex ">
+            <div className="addToCart">
+              <button className="addToCartbtn LightBlue ">
+                {" "}
+                <a href="" onClick={handleChoosePost}>
+                  <i className="fa-solid fa-plus"></i>
+                </a>
+              </button>
+            </div>
+            <button className="OrderCounterbtn flex">
+              <a onClick={decrement}>-</a>
+              <p className="orderNumber"> {count} </p>
+              <a onClick={increment}>+</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

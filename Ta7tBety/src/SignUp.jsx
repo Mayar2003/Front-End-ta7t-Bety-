@@ -15,8 +15,8 @@ function SignUp() {
     passwordConfirm: "",
     region: "Cairo",
     gender: "male",
-    age: "40",
-    signUpPlatform: "mobile",
+    age: "25", // TODO: add age
+    signUpPlatform: "website",
   });
   const { responseState, setResponseState } = useContext(ResponseStateContext);
   const navigate = useNavigate();

@@ -1,18 +1,29 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ApiManager from "../ApiManager/ApiManager";
 
-function RepairsProviderComp() {
+function RepairsProviderComp({ provider }) {
   const [rating, setRating] = useState(0); // selected stars
   const [hover, setHover] = useState(0); // hovered stars
 
-   const [review, setReview] = useState("");
+  const [review, setReview] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
 
-
-  
   const handleSubmit = (e) => {
     e.preventDefault();
+    // TODO: change it to createPostReview with post._id if needed
+    ApiManager.createProviderReview(provider.providerID._id, {
+      rating,
+      review,
+    })
+      .then((res) => {
+        console.log("Review submitted successfully:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error submitting review:", err);
+      });
+
     console.log("Review submitted:", review); // Replace with your API call
     setSubmitted(true);
   };
@@ -30,38 +41,37 @@ function RepairsProviderComp() {
     e.preventDefault();
   }
 
-
   return (
     <>
       <div className="ProviderPage flex ">
-
-
         <div className="ProviderReview ">
           <div className="ProviderInfoDiv simpleBoxShadow">
             <img
-              src="../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
+              src={
+                provider.providerID.photo ||
+                "../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
+              }
               alt=""
             />
 
             <div className="Rating flex justContentSpaceEvenly">
-              <h3 className="Providername">Arabian Country</h3>
+              <h3 className="Providername">{provider.providerID.name}</h3>
               <p className="ServiceRating">
-                3.9 <i className="fa-solid fa-star"></i>
+                {provider.avgRating} <i className="fa-solid fa-star"></i>
               </p>
             </div>
 
             <h5 className="ProviderAddress">
-              <i class="fa-solid fa-map-location"></i> Street 306 - Saqr Quraish
-              District
+              <i class="fa-solid fa-map-location"></i>{" "}
+              {provider.locations[0].address}
             </h5>
 
             <div>
               <Link to="/ContactUs">
-              <button className="ContactUsbttn">
-                <i class="fa-solid fa-comments">
-                 </i> Contact Us
-              </button>
-               </Link>
+                <button className="ContactUsbttn">
+                  <i class="fa-solid fa-comments"></i> Contact Us
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -92,10 +102,11 @@ function RepairsProviderComp() {
               </div>
             </div>
 
-                <div className="LeaveReview  padding-1">
+            <div className="LeaveReview  padding-1">
               <div className="simple-review-form">
                 <form onSubmit={handleSubmit}>
-                  <textarea className="W100"
+                  <textarea
+                    className="W100"
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                     placeholder="Write your review here..."
@@ -113,262 +124,120 @@ function RepairsProviderComp() {
               Rating & Reviews
             </h5>
 
-            <div className="Review ">
-              <div className="userInfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-                </div>
-                <div className="Stars&Date flex justContentSpaceArround">
-                 <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  </div>
-                  <div className="date LightBlue">
-                    23/2/2025
-                  </div>
-                </div>
+            {provider.reviews.map((review) => (
+              <Review review={review} key={review._id} />
+            ))}
 
-                <p className="Comment LightBlue textAlignLeft">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Animi quis tempora, reprehenderit dolor voluptatem voluptates.
-                </p>         
-                   </div>
-
-
-                   <div className="Review ">
-              <div className="userImfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-                </div>
-
-
-                <div className="Stars&Date flex justContentSpaceArround">
-                 <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  </div>
-                  <div className="date LightBlue">
-                    23/2/2025
-                  </div>
-                </div>
-
-                <p className="Comment LightBlue textAlignLeft">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Animi quis tempora, reprehenderit dolor voluptatem voluptates.
-                </p>         
-                   </div>
-
-
-
-                   <div className="Review ">
-              <div className="userImfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-                </div>
-
-
-                <div className="Stars&Date flex justContentSpaceArround">
-                 <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  </div>
-                  <div className="date LightBlue">
-                    23/2/2025
-                  </div>
-                </div>
-
-                <p className="Comment LightBlue textAlignLeft">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Animi quis tempora, reprehenderit dolor voluptatem voluptates.
-                </p>         
-                   </div>
-
-                    <h6 className="moreReviews">
-                     <a href="" className="decorationNone moreReviews">See All Reviews</a> 
-                    </h6>
-
-                   
+            <h6 className="moreReviews">
+              <a href="" className="decorationNone moreReviews">
+                {" "}
+                {/* // TODO: make it show all reviews */}
+                See All Reviews
+              </a>
+            </h6>
           </div>
         </div>
 
         <div className="ProviderServices flex simpleBoxShadow Wrap justifyContentSpaceBet">
           <h5 className="textAlignLeft W100 RepairServices ">Services</h5>
-     
-          <div className="RepairProviderService">
-            <img
-              src="../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
-              alt=""
-            />
 
-            <div className="morePhotos">
-              {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
-            </div>
-
-            <div className="ProviderInfo">
-              <div className="Rating flex justContentSpaceBet">
-                <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
-                <p className="ServiceRating">
-                  2.8 <i className="fa-solid fa-star"></i>
-                </p>
-              </div>
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur quod alias facere nisi amet culpa?{" "}
-              </p>
-              <div className="moreimgs">
-                {" "}
-                <p>200-3000EGP</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="RepairProviderService">
-            <img
-              src="../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
-              alt=""
-            />
-
-            <div className="morePhotos">
-              {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
-            </div>
-
-            <div className="ProviderInfo">
-              <div className="Rating flex justContentSpaceBet">
-              <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
-              <p className="ServiceRating">
-                  2.8 <i className="fa-solid fa-star"></i>
-                </p>
-              </div>
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur quod alias facere nisi amet culpa?{" "}
-              </p>
-              <div className="moreimgs">
-                {" "}
-                <p>200-3000EGP</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="RepairProviderService">
-            <img
-              src="../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
-              alt=""
-            />
-
-            <div className="morePhotos">
-              {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
-            </div>
-
-            <div className="ProviderInfo">
-              <div className="Rating flex justContentSpaceBet">
-              <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
-              <p className="ServiceRating">
-                  2.8 <i className="fa-solid fa-star"></i>
-                </p>
-              </div>
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur quod alias facere nisi amet culpa?{" "}
-              </p>
-              <div className="moreimgs">
-                {" "}
-                <p>200-3000EGP</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="RepairProviderService">
-            <img
-              src="../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
-              alt=""
-            />
-
-            <div className="morePhotos">
-              {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
-            </div>
-
-            <div className="ProviderInfo">
-              <div className="Rating flex justContentSpaceBet">
-              <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
-              <p className="ServiceRating">
-                  2.8 <i className="fa-solid fa-star"></i>
-                </p>
-              </div>
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur quod alias facere nisi amet culpa?{" "}
-              </p>
-              <div className="moreimgs">
-                {" "}
-                <p>200-3000EGP</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="RepairProviderService">
-            <img
-              src="../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
-              alt=""
-            />
-
-            <div className="morePhotos">
-              {" "}
-              <Link className="decorationNone" to="/RepairServiceDetails"><h4>+20</h4></Link>
-            </div>
-
-            <div className="ProviderInfo">
-              <div className="Rating flex justContentSpaceBet">
-              <h5 className="Providername"><Link className="decorationNone" to="/RepairServiceDetails">Service</Link></h5>
-              <p className="ServiceRating">
-                  2.8 <i className="fa-solid fa-star"></i>
-                </p>
-              </div>
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur quod alias facere nisi amet culpa?{" "}
-              </p>
-              <div className="moreimgs">
-                {" "}
-                <p>200-3000EGP</p>
-              </div>
-            </div>
-          </div>
+          {provider.posts.map((post) => (
+            <ServiceItem post={post} provider={provider} key={post._id} />
+          ))}
         </div>
-
-
       </div>
     </>
+  );
+}
+
+function Review({ review }) {
+  return (
+    <div className="Review ">
+      <div className="userInfo flex">
+        <img src={review.user.photo} alt="" />
+        <h6 className="UserName LightBlue">{review.user.name}</h6>
+      </div>
+      <div className="Stars&Date flex justContentSpaceArround">
+        <div className="commentStars">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <i
+              key={star}
+              className={`fa-star LightBlue ${
+                star <= review.rating ? "fa-solid" : "fa-regular"
+              }`}
+            ></i>
+          ))}
+        </div>
+        <div className="date LightBlue">{review.createdAt}</div>
+      </div>
+
+      <p className="Comment LightBlue textAlignLeft">{review.review}</p>
+    </div>
+  );
+}
+
+function ServiceItem({ post, provider }) {
+  const navigate = useNavigate();
+  console.log("Post:", post);
+  const postAvgRating =
+    post.reviews && post.reviews.length > 0
+      ? (
+          post.reviews.reduce((sum, review) => sum + review.rating, 0) /
+          post.reviews.length
+        ).toFixed(1)
+      : "0.0";
+
+  function handleServieceSelection() {
+    ApiManager.getPostById(post._id)
+      .then((res) => {
+        navigate(`/RepairServiceDetails`, {
+          state: { provider, post: res.data.data.doc, postAvgRating },
+        });
+        console.log("Post details:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching post details:", err);
+      });
+  }
+
+  return (
+    <div className="RepairProviderService">
+      <img
+        src={
+          post.images[0] ||
+          "../../Graduation project assestst/Graduation project/Romania Modern Bed Room-20180819092202913.jpg"
+        }
+        alt=""
+      />
+
+      <div className="morePhotos">
+        {" "}
+        <Link className="decorationNone" to="/RepairServiceDetails">
+          <h4>+{post.images ? post.images.length - 1 : 0}</h4>
+        </Link>
+      </div>
+
+      <div className="ProviderInfo">
+        <div className="Rating flex justContentSpaceBet">
+          <h5
+            className="Providername"
+            style={{ cursor: "pointer" }}
+            onClick={handleServieceSelection}
+          >
+            {post.title}
+          </h5>
+          <p className="ServiceRating">
+            {postAvgRating} <i className="fa-solid fa-star"></i>
+          </p>
+        </div>
+
+        <p>{post.content}</p>
+        <div className="moreimgs">
+          {" "}
+          <p>{post.price} EGP</p>
+        </div>
+      </div>
+    </div>
   );
 }
 

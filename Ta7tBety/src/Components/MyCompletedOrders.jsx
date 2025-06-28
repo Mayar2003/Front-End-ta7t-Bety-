@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import useMyOrders from "../Hooks/useMyOrders";
 
 function MyCompletedOrders() {
-  const orders = useMyOrders("completed");
+  const { orders } = useMyOrders("completed");
 
   return (
     <>
@@ -105,7 +105,7 @@ function Item({ order }) {
           <p>{order.providerID.name}</p>
         </div>
       </div>
-        {/* <div className="trackOrderBtnDiv alignselfCenter">
+      {/* <div className="trackOrderBtnDiv alignselfCenter">
           <button className="trackOrderBtn">Leave Review</button>
         </div> */}
     </div>

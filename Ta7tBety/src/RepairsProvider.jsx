@@ -1,22 +1,19 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-
 import "./App.css";
+import { useLocation } from "react-router-dom";
 import Header from "./Components/Header";
 import RepairSectionOne from "./Components/RepairSectionOne";
 import RepairsProviderComp from "./Components/RepairsProviderComp";
 import Footer from "./Components/Footer";
 
-
 function RepairsProvider() {
+  const location = useLocation();
+  const { provider } = location.state || { provider: null };
 
   return (
     <>
       <Header></Header>
       <RepairSectionOne />
-      <RepairsProviderComp />
+      <RepairsProviderComp provider={provider} />
       <Footer></Footer>
     </>
   );

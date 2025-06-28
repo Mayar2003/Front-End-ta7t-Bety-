@@ -7,13 +7,32 @@ import ApiManager from "../ApiManager/ApiManager";
 import useMyOrders from "../Hooks/useMyOrders";
 
 function MyActiveOrders() {
-  const orders = useMyOrders("accepted");
+  const { orders, setOrders } = useMyOrders("accepted");
+
+  function handleCancelOrder(e, orderId) {
+    e.preventDefault();
+    ApiManager.cancelOrder(orderId)
+      .then((res) => {
+        console.log("Order cancelled successfully:", res.data);
+        // Update the orders state after cancellation
+        setOrders((prevOrders) =>
+          prevOrders.filter((order) => order._id !== orderId)
+        );
+      })
+      .catch((err) => {
+        console.error("Error cancelling order:", err);
+      });
+  }
 
   return (
     <>
       <div className="ActiveOrders flex Wrap">
         {orders.map((order) => (
-          <Item key={order.id} order={order} />
+          <Item
+            key={order.id}
+            order={order}
+            onCancelOrder={handleCancelOrder}
+          />
         ))}
         <div className="Order flex justContentSpaceBet W100">
           <div className="Photo-Info flex justContentSpaceBet">
@@ -91,7 +110,7 @@ function MyActiveOrders() {
   );
 }
 
-function Item({ order }) {
+function Item({ order, onCancelOrder }) {
   return (
     <div className="Order flex justContentSpaceBet W100">
       <div className="Photo-Info flex justContentSpaceBet">
@@ -107,7 +126,12 @@ function Item({ order }) {
         </div>
       </div>
       <div className="trackOrderBtnDiv alignselfCenter">
-        <button className="trackOrderBtn">Cancel</button>
+        <button
+          className="trackOrderBtn"
+          onClick={(e) => onCancelOrder(e, order._id)}
+        >
+          Cancel
+        </button>
       </div>
     </div>
   );

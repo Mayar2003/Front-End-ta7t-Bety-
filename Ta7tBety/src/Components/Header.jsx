@@ -4,10 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
+import useUser from "../Hooks/useUser";
+import useCart from "../Hooks/useCart";
 
 function Header() {
+  const { user, updateUser } = useUser();
+  const { cart, updateCart } = useCart();
   const [count, setCount] = useState(1);
   const [Ordervisible, setOrderVisible] = useState(true);
+  const [Cartvisible, setCartVisible] = useState(true);
 
   const [showInput, setShowInput] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,26 +26,38 @@ function Header() {
     }
   };
 
-  const handleOrderClose = () => {
+  const handleOrderClose = (e, id) => {
+    e.preventDefault();
+    const updatedCart = cart.filter((item) => item._id !== id);
+    updateCart(updatedCart);
     setOrderVisible(false);
   };
-
-  const [Cartvisible, setCartVisible] = useState(true);
 
   const handleCartClose = () => {
     setCartVisible(false);
   };
 
   const increment = () => setCount((prev) => prev + 1);
-  const decrement = () => setCount((prev) => prev - 1);
+  const decrement = () => setCount((prev) => (prev <= 1 ? 1 : prev - 1));
+
+  const handleLogout = () => {
+    updateUser(null); // Clear user context
+    localStorage.removeItem("authToken"); // Clear token from local storage
+    navigate("/"); // Redirect to home page
+    window.location.reload();
+  };
 
   return (
     <>
       <div className="container-fluid HeaderBorderBottom">
         <div className="Ta7tBety-Header">
           <div className="Logo-Name">
-          <img className="TahtBety-Logo" src="../../G.Project assets2.png (2)/converted-files.png/TahtBetLogo-removebg-preview (1).png" alt="" />
-          <span className="lobster-regular">Taht Bety</span>
+            <img
+              className="TahtBety-Logo"
+              src="../../G.Project assets2.png (2)/converted-files.png/TahtBetLogo-removebg-preview (1).png"
+              alt=""
+            />
+            <span className="lobster-regular">Taht Bety</span>
           </div>
           <div className="header-Elements W40">
             <nav>
@@ -83,135 +100,263 @@ function Header() {
                   )}
                 </div>
               </li>
-              <li>
-                <Link to="/WishList" title="Favorite Providers">
+              {user && (
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={() => checkLoggedIn("/WishList")}
+                  title="Wish List"
+                >
                   <i className="fa-regular fa-heart"></i>
-                </Link>
-              </li>
+                </li>
+              )}
 
-              <li>
-                <Dropdown>
-                  <Dropdown.Toggle className="btn-light">
-                    <Link to="/Profile" title="Profile">
-                      <i className="fa-regular fa-user Headerfa-user"></i>
-                    </Link>
-                  </Dropdown.Toggle>
+              {user ? (
+                <li>
+                  <Dropdown>
+                    <Dropdown.Toggle className="btn-light">
+                      <i
+                        className="fa-regular fa-user Headerfa-user"
+                        onClick={() => checkLoggedIn("/Profile")}
+                        title="Profile"
+                      ></i>
+                    </Dropdown.Toggle>
 
-                  <Dropdown.Menu className="DropDownMenue ProfileDropDowMenue">
-                    <Dropdown.Item
-                      className="DropdownItem no-hover"
-                    >
-                      <Link to="/Profile/ProfileMyOrders">
+                    <Dropdown.Menu className="DropDownMenue ProfileDropDowMenue">
+                      <Dropdown.Item
+                        className="DropdownItem"
+                        onClick={() =>
+                          checkLoggedIn("/Profile/ProfileMyOrders")
+                        }
+                        style={{ cursor: "pointer", color: "white" }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor =
+                            "rgba(255, 255, 255, 0.1)";
+                          e.target.style.color = "white";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "transparent";
+                          e.target.style.color = "white";
+                        }}
+                      >
                         {" "}
                         <i className="fa-solid fa-file-lines"></i> My Orders
-                      </Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      className="DropdownItem no-hover"
-                    >
-                      <Link to="/Profile/ProfileAccountInfo">
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="DropdownItem"
+                        as={Link}
+                        to="/Profile/ProfileAccountInfo"
+                        style={{ cursor: "pointer", color: "white" }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor =
+                            "rgba(255, 255, 255, 0.1)";
+                          e.target.style.color = "white";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "transparent";
+                          e.target.style.color = "white";
+                        }}
+                      >
                         <i className="fa-regular fa-user"></i> Account Info
-                      </Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      className="DropdownItem no-hover"
-                    >
-                      <Link to="/Profile/ProfileSavedAdresses">
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="DropdownItem"
+                        as={Link}
+                        to="/Profile/ProfileSavedAdresses"
+                        style={{ cursor: "pointer", color: "white" }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor =
+                            "rgba(255, 255, 255, 0.1)";
+                          e.target.style.color = "white";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "transparent";
+                          e.target.style.color = "white";
+                        }}
+                      >
                         <i className="fa-solid fa-map-location-dot"></i> Saved
                         Addresses
-                      </Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      className="DropdownItem no-hover"
-                    >
-                      <Link to="/">
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="DropdownItem"
+                        onClick={handleLogout}
+                        style={{ cursor: "pointer", color: "white" }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor =
+                            "rgba(255, 255, 255, 0.1)";
+                          e.target.style.color = "white";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "transparent";
+                          e.target.style.color = "white";
+                        }}
+                      >
                         <i className="fa-solid fa-arrow-right-from-bracket"></i>{" "}
                         Log Out
-                      </Link>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </li>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
+              ) : (
+                <li>
+                  <Dropdown>
+                    <Dropdown.Toggle className="btn-light">
+                      Login
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="DropDownMenue">
+                      <Dropdown.Item
+                        className="SignOption"
+                        as={Link}
+                        to="/Signin"
+                        style={{
+                          cursor: "pointer",
+                          backgroundColor: "#fff",
+                          color: "#15243f",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor =
+                            "rgba(255, 255, 255, 0.9)";
+                          e.target.style.color = "#15243f";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "#fff";
+                          e.target.style.color = "#15243f";
+                        }}
+                      >
+                        Sign In
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        className="SignupOption"
+                        as={Link}
+                        to="/Signup"
+                        style={{ cursor: "pointer", color: "#fff" }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor =
+                            "rgba(255, 255, 255, 0.1)";
+                          e.target.style.color = "#fff";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "transparent";
+                          e.target.style.color = "#fff";
+                        }}
+                      >
+                        Not a Member?{" "}
+                        <span style={{ color: "#fff" }}>Sign Up</span>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
+              )}
 
-              <li>
-                <Dropdown>
-                  <Dropdown.Toggle className="btn-light">Login</Dropdown.Toggle>
+              {user && (
+                <li>
+                  <Dropdown>
+                    <Dropdown.Toggle className="btn-light">
+                      <i className="fa-solid fa-cart-shopping HeaderCart no-hover "></i>
+                    </Dropdown.Toggle>
 
-                  <Dropdown.Menu className="DropDownMenue">
-                    <Dropdown.Item className="SignOption" href="#/action-1">
-                      <Link to="/Signin">Sign In</Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item className="SignupOption" href="#/action-2">
-                      <Link to="/Signup">
-                        Not a Memeber? <span>Sign Up</span>
-                      </Link>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </li>
+                    {Cartvisible && (
+                      <Dropdown.Menu className="CartDropDowMenue">
+                        <div className="CartHeader flex justContentSpaceBet alignItemsBaseline">
+                          <p className="YourCart White">Your Cart</p>
+                          <a onClick={handleCartClose}>
+                            <i className="fa-solid fa-xmark White cursor"></i>
+                          </a>
+                        </div>
 
-              <li>
-                <Dropdown>
-                  <Dropdown.Toggle className="btn-light">
-                    <i className="fa-solid fa-cart-shopping HeaderCart no-hover "></i>
-                  </Dropdown.Toggle>
-
-                  {Cartvisible && (
-                    <Dropdown.Menu className=" CartDropDowMenue ">
-                      <div className="CartHeader flex justContentSpaceBet alignItemsBaseline ">
-                        <p className="YourCart White ">Your Cart</p>
-                        <a onClick={handleCartClose}>
-                          <i className="fa-solid fa-xmark no-hover White cursor"></i>
-                        </a>
-                      </div>
-
-                      <div className="CartOrders">
-                        <p className="ProviderName White">Buona Pizza</p>
-
-                        {Ordervisible && (
-                          <div className="Order flex justContentSpaceBet alignItemsCenter">
-                            <img src="../../G.Project assets2.png (2)/converted-files.png/d104b2c3e-b169-4226-930a-7794de0dde12.jpg" />
-                            <div className="CartPrice">
-                              <h5 className="OrderName White">Pizza</h5>
-                              <p className="White"> {count * 200} EGP</p>
-                            </div>
-                            <button className="OrderCounterbtn flex">
-                              <a onClick={decrement}>-</a>
-                              <p className="orderNumber"> {count} </p>
-                              <a onClick={increment}>+</a>
-                            </button>
-                            <div className="CancelOrder">
-                              <a onClick={handleOrderClose}>
-                                <i className="fa-solid fa-xmark no-hover White "></i>
-                              </a>
-                            </div>
+                        {cart && cart.length > 0 ? (
+                          cart.map((item) => (
+                            <CartItem
+                              key={item._id}
+                              item={item}
+                              cart={cart}
+                              updateCart={updateCart}
+                              handleOrderClose={handleOrderClose}
+                            />
+                          ))
+                        ) : (
+                          <div className="EmptyCart">
+                            <p className="White">Your cart is empty</p>
                           </div>
                         )}
 
-                        <div className="CartFooter flex justContentSpaceBet mrgnt-1 mrgnb-1">
-                          <div className="TotalBill  ">
-                            <p className="White">Total Bill</p>
-                            <h5 className="White">{count * 200} EGP</h5>
+                        <div className="CartFooter flex justContentSpaceBet alignItemsCenter">
+                          <div className="TotalBill">
+                            <p className="White">Total bill</p>
+                            <h5 className="White">
+                              {cart.reduce(
+                                (total, item) =>
+                                  total + item.price * item.quantity,
+                                0
+                              )}{" "}
+                              EGP
+                            </h5>
                           </div>
-
                           <Link to="/UserOrders">
-                            <button className="PlaceOrderbtn bordernone defaultBlue no-hover cursor ">
-                              {" "}
-                              Place Order{" "}
-                              <i class="fa-solid fa-chevron-right defaultBlue"></i>
+                            <button className="PlaceOrderbtn">
+                              Place order
+                              <i className="fa-solid fa-chevron-right"></i>
                             </button>
                           </Link>
                         </div>
-                      </div>
-                    </Dropdown.Menu>
-                  )}
-                </Dropdown>
-              </li>
+                      </Dropdown.Menu>
+                    )}
+                  </Dropdown>
+                </li>
+              )}
             </ul>
           </div>
         </div>
       </div>
     </>
+  );
+}
+
+function CartItem({ item, cart, updateCart, handleOrderClose }) {
+  function increment() {
+    const updatedCart = cart.map((cartItem) =>
+      cartItem._id === item._id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    );
+    updateCart(updatedCart);
+  }
+
+  function decrement() {
+    const updatedCart = cart.map((cartItem) =>
+      cartItem._id === item._id
+        ? {
+            ...cartItem,
+            quantity: Math.max(cartItem.quantity - 1, 1),
+          }
+        : cartItem
+    );
+    updateCart(updatedCart);
+  }
+
+  return (
+    <div className="Order flex justContentSpaceBet alignItemsCenter">
+      <img
+        style={{ width: 70, height: 70, borderRadius: "10%" }}
+        src={item.images[0]}
+        alt={item.title}
+      />
+      <div className="CartPrice">
+        <h5 className="OrderName White">{item.title}</h5>
+        <p className="White">{item.price * item.quantity} EGP</p>
+      </div>
+      <div className="OrderCounterSection">
+        <button className="OrderCounterbtn flex alignItemsCenter">
+          <a onClick={decrement}>-</a>
+          <p className="orderNumber">{item.quantity}</p>
+          <a onClick={increment}>+</a>
+        </button>
+      </div>
+      <div className="CancelOrder">
+        <a onClick={(e) => handleOrderClose(e, item._id)}>
+          <i className="fa-solid fa-xmark White cursor"></i>
+        </a>
+      </div>
+    </div>
   );
 }
 

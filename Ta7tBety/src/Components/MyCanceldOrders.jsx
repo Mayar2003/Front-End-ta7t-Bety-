@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import useMyOrders from "../Hooks/useMyOrders";
 
 function MyCanceledOrders() {
-  const orders = useMyOrders("canceled");
+  const { orders } = useMyOrders("canceled");
 
   // TODO: make the scroll inside the div
   return (

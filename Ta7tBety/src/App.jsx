@@ -21,22 +21,23 @@ import MyActiveOrders from "./Components/MyActiveOrders";
 import MyCompletedOrders from "./Components/MyCompletedOrders";
 import MyCanceldOrders from "./Components/MyCanceldOrders";
 import MyPendingOrders from "./Components/MyPendingOrders";
-import WishList from './WishList.jsx';
-import Providers from './Providers.jsx';
-import RepairsProvider from './RepairsProvider.jsx';
-import FoodProvider from './FoodProvider.jsx';
-import MarketProvider from './MarketProvider.jsx';
-import HealthCareProvider from './HealthCareProvider.jsx';
-import HouseWorkProvider from './HouseWorkProvider.jsx';
-import RepairServiceDetails from './RepairServiceDetails.jsx';
-import MarketServiceDetails from './MarketServiceDetails.jsx';
-import HealthCareServiceDetails from './HealthCareServiceDetails.jsx';
-import HouseWorkServiceDetails from './HouseWorkServiceDetails.jsx';
+import WishList from "./WishList.jsx";
+import Providers from "./Providers.jsx";
+import RepairsProvider from "./RepairsProvider.jsx";
+import FoodProvider from "./FoodProvider.jsx";
+import MarketProvider from "./MarketProvider.jsx";
+import HealthCareProvider from "./HealthCareProvider.jsx";
+import HouseWorkProvider from "./HouseWorkProvider.jsx";
+import RepairServiceDetails from "./RepairServiceDetails.jsx";
+import MarketServiceDetails from "./MarketServiceDetails.jsx";
+import HealthCareServiceDetails from "./HealthCareServiceDetails.jsx";
+import HouseWorkServiceDetails from "./HouseWorkServiceDetails.jsx";
 import { AuthContext } from "./Contexts/AuthContext.js";
 import { ResponseStateContext } from "./Contexts/ResponseStateContext.js";
 import SearchProvider from "./SearchProvider.jsx";
 import UserOrders from "./UserOrders.jsx";
 import ContactUs from "./ContactUs.jsx";
+import { CartContext } from "./Contexts/CartContext.js";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -45,83 +46,118 @@ function App() {
     error: null,
     loading: false,
   });
-
+  const [cart, setCart] = useState([]);
 
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
-   const handleSend = async () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { sender: 'user', text: input };
-    setMessages(prev => [...prev, userMessage]);
-    setInput('');
+    const userMessage = { sender: "user", text: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
 
     const botReply = await getBotResponse(input);
-    setMessages(prev => [...prev, userMessage, { sender: 'bot', text: botReply }]);
+    setMessages((prev) => [
+      ...prev,
+      userMessage,
+      { sender: "bot", text: botReply },
+    ]);
   };
 
   const getBotResponse = async (msg) => {
     return `Bot: You said "${msg}"`;
   };
 
-
-
   return (
+    <>
+      <AuthContext.Provider value={{ user, setUser }}>
+        <ResponseStateContext.Provider
+          value={{ responseState, setResponseState }}
+        >
+          <CartContext.Provider value={{ cart, setCart }}>
+            <Router>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/AboutUS" element={<AboutUs />} />
+                <Route path="/HelpCenter" element={<HelpCenter />} />
+                <Route path="/Services" element={<Services />} />
+                <Route path="/WishList" element={<WishList />} />
+                <Route path="/Providers" element={<Providers />} />
+                <Route path="/RepairsProvider" element={<RepairsProvider />} />
+                <Route path="/FoodProvider" element={<FoodProvider />} />
+                <Route path="/MarketProvider" element={<MarketProvider />} />
+                <Route
+                  path="/HealthCareProvider"
+                  element={<HealthCareProvider />}
+                />
+                <Route
+                  path="/HouseWorkProvider"
+                  element={<HouseWorkProvider />}
+                />
+                <Route
+                  path="/RepairServiceDetails"
+                  element={<RepairServiceDetails />}
+                />
+                <Route
+                  path="/MarketServiceDetails"
+                  element={<MarketServiceDetails />}
+                />
+                <Route
+                  path="/HealthCareServiceDetails"
+                  element={<HealthCareServiceDetails />}
+                />
+                <Route
+                  path="/HouseWorkServiceDetails"
+                  element={<HouseWorkServiceDetails />}
+                />
+                <Route
+                  path="/search/:providerName"
+                  element={<SearchProvider />}
+                />
+                <Route path="/UserOrders" element={<UserOrders />} />
+                <Route path="/ContactUs" element={<ContactUs />} />
 
- <AuthContext.Provider value={{ user, setUser }}>
-      <ResponseStateContext.Provider
-        value={{ responseState, setResponseState }}
-      >
-    <Router>
-   
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/AboutUS' element={<AboutUs />} />
-        <Route path='/HelpCenter' element={<HelpCenter />} />
-        <Route path='/Services' element={<Services />} />
-        <Route path="/WishList" element={<WishList />} />
-        <Route path="/Providers" element={<Providers />} />
-        <Route path="/RepairsProvider" element={<RepairsProvider />} />
-        <Route path="/FoodProvider" element={<FoodProvider />} />
-        <Route path="/MarketProvider" element={<MarketProvider />} />
-        <Route path="/HealthCareProvider" element={<HealthCareProvider />} />
-        <Route path="/HouseWorkProvider" element={<HouseWorkProvider />} />
-        <Route path="/RepairServiceDetails" element={<RepairServiceDetails />} />
-        <Route path="/MarketServiceDetails" element={<MarketServiceDetails />} />
-        <Route path="/HealthCareServiceDetails" element={<HealthCareServiceDetails />} />
-        <Route path="/HouseWorkServiceDetails" element={<HouseWorkServiceDetails />} />
-        <Route path="/search/:providerName" element={<SearchProvider />} />
-        <Route path="/UserOrders" element={<UserOrders />} />
-        <Route path="/ContactUs" element={<ContactUs  />} />
+                <Route path="/Profile" element={<Profile />}>
+                  <Route index element={<ProfileAccountInfo />} />
+                  <Route
+                    path="ProfileAccountInfo"
+                    element={<ProfileAccountInfo />}
+                  />
+                  <Route path="ProfileMyOrders" element={<ProfileMyOrders />}>
+                    <Route index element={<MyActiveOrders />} />
+                    <Route path="MyActiveOrders" element={<MyActiveOrders />} />
+                    <Route
+                      path="MyCompletedOrders"
+                      element={<MyCompletedOrders />}
+                    />
+                    <Route
+                      path="MyCanceldOrders"
+                      element={<MyCanceldOrders />}
+                    />
+                    <Route
+                      path="MyPendingOrders"
+                      element={<MyPendingOrders />}
+                    />
+                  </Route>
 
+                  <Route
+                    path="ProfileSavedAdresses"
+                    element={<ProfileSavedAdresses />}
+                  />
+                </Route>
 
-        <Route path="/Profile" element={<Profile />}>
-        
-          <Route index element={<ProfileAccountInfo />} />
-          <Route path="ProfileAccountInfo" element={<ProfileAccountInfo />} />
-          <Route path="ProfileMyOrders" element={<ProfileMyOrders />}>
-            <Route index element={<MyActiveOrders />} />
-            <Route path="MyActiveOrders" element={<MyActiveOrders />} />
-            <Route path="MyCompletedOrders" element={<MyCompletedOrders />} />
-            <Route path="MyCanceldOrders" element={<MyCanceldOrders />} />
-            <Route path="MyPendingOrders" element={<MyPendingOrders />} />
-          </Route>
-          
+                <Route path="/Signin" element={<SignIn user={user} />} />
+                <Route path="/Signup" element={<SignUp />} />
+                <Route
+                  path="/VerifyCode"
+                  element={<VerifyCode user={user} />}
+                />
+                <Route path="/NewPassword" element={<NewPassword />} />
 
-              <Route
-                path="ProfileSavedAdresses"
-                element={<ProfileSavedAdresses />}
-              />
-            </Route>
-
-            <Route path="/Signin" element={<SignIn user={user} />} />
-            <Route path="/Signup" element={<SignUp />} />
-            <Route path="/VerifyCode" element={<VerifyCode user={user} />} />
-            <Route path="/NewPassword" element={<NewPassword />} />
-
-            {/* <Route
+                {/* <Route
           path="/profile"
           element={
             <PrivateRoute>
@@ -129,34 +165,52 @@ function App() {
             </PrivateRoute>
             }
             /> */}
-          </Routes>
-        </Router>
-      </ResponseStateContext.Provider>
+              </Routes>
+            </Router>
+          </CartContext.Provider>
+        </ResponseStateContext.Provider>
+      </AuthContext.Provider>
 
-       <div>
-      <button className="ChatbotBtn toggle-btn" onClick={() => setShowChat(!showChat)}>
-        {/* {showChat ? 'Close Chat' : 'Chat with us'} */}
-        <i class="fa-solid fa-robot"></i>
-      </button>
+      <div>
+        <button
+          className="ChatbotBtn toggle-btn"
+          onClick={() => setShowChat(!showChat)}
+        >
+          {/* {showChat ? 'Close Chat' : 'Chat with us'} */}
+          <i class="fa-solid fa-robot"></i>
+        </button>
 
-      {showChat && (
-        <div className="chat-container flex justify-content-between">
-          <div className="AI-ChatDiv">
-          <div className="messageContainer flex W50 ">
-          <img src="../G.Project assets2.png (2)/converted-files.png/Chatbot icon.jpg.png" alt="" />
-          <div className="AImessage defaultBlue">Hi Jane!</div>
-          </div>
+        {showChat && (
+          <div className="chat-container flex justify-content-between">
+            <div className="AI-ChatDiv">
+              <div className="messageContainer flex W50 ">
+                <img
+                  src="../G.Project assets2.png (2)/converted-files.png/Chatbot icon.jpg.png"
+                  alt=""
+                />
+                <div className="AImessage defaultBlue">Hi Jane!</div>
+              </div>
 
-           <div className="messageContainer flex ">
-          <img src="../G.Project assets2.png (2)/converted-files.png/Chatbot icon.jpg.png" alt="" />
-          <div className="AImessage defaultBlue">How Can i asist you ?</div>
-          </div>
+              <div className="messageContainer flex ">
+                <img
+                  src="../G.Project assets2.png (2)/converted-files.png/Chatbot icon.jpg.png"
+                  alt=""
+                />
+                <div className="AImessage defaultBlue">
+                  How Can i asist you ?
+                </div>
+              </div>
 
-          <div className="ChatbotUserMessage mrgnt-1 flex">
-            <div className="ChatbotUserMessageContent">What is the nearest Market to my locattion?.</div>
-          <img src="../../Graduation project assestst/Graduation project/user.png" alt="" />
-          </div>
-</div>
+              <div className="ChatbotUserMessage mrgnt-1 flex">
+                <div className="ChatbotUserMessageContent">
+                  What is the nearest Market to my locattion?.
+                </div>
+                <img
+                  src="../../Graduation project assestst/Graduation project/user.png"
+                  alt=""
+                />
+              </div>
+            </div>
 
             {messages.map((msg, index) => (
               <div key={index} className={`message ${msg.sender}`}>
@@ -164,28 +218,23 @@ function App() {
               </div>
             ))}
 
-          <div className="chat-input flex">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-            />
-               <div className="ChatbotSendbttn">
-            <button onClick={handleSend}><i class="fa-brands fa-telegram"></i></button>
-        </div>
+            <div className="chat-input flex">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Type your message..."
+              />
+              <div className="ChatbotSendbttn">
+                <button onClick={handleSend}>
+                  <i class="fa-brands fa-telegram"></i>
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
-
-
-
-    </AuthContext.Provider>
-
-
-
-
+        )}
+      </div>
+    </>
   );
 }
 

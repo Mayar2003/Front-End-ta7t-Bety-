@@ -117,7 +117,6 @@ function SignUpComp({ formData, setFormData, handleSubmit, loading, error }) {
                   </div>
                 </div>
 
-
                 <button className="SignUpbtn" type="submit" disabled={loading}>
                   {loading ? "Signing up..." : "Sign Up"}{" "}
                   {/* <Link to="/VerifyCode">Sign Up</Link> */}

@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BookAppointmentCalendar from "./BookAppointmentCalendar";
+import ApiManager from "../ApiManager/ApiManager";
 
 function RepairServiceDetailsComp() {
+  const location = useLocation();
+  const { provider, post, providerAvgRating, postAvgRating } =
+    location.state || { provider: null, post: null };
   const [BookingPopUp, setchangeBookingPopUp] = useState(false);
-
 
   function BookingToggleModal(e) {
     setchangeBookingPopUp(!BookingPopUp);
@@ -14,14 +17,24 @@ function RepairServiceDetailsComp() {
   const [rating, setRating] = useState(0); // selected stars
   const [hover, setHover] = useState(0); // hovered stars
 
-   const [review, setReview] = useState("");
+  const [review, setReview] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [changePasswordPopUp, setchangePasswordPopUp] = useState(false);
 
-
-  
   const handleSubmit = (e) => {
     e.preventDefault();
+    // TODO: change it to createPostReview with post._id if needed
+    ApiManager.createProviderReview(provider.providerID._id, {
+      rating,
+      review,
+    })
+      .then((res) => {
+        console.log("Review submitted successfully:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error submitting review:", err);
+      });
+
     console.log("Review submitted:", review); // Replace with your API call
     setSubmitted(true);
   };
@@ -44,21 +57,18 @@ function RepairServiceDetailsComp() {
       <div className="ProviderPage flex ">
         <div className="ProviderReview ">
           <div className="ProviderInfoDiv simpleBoxShadow">
-            <img
-              src="../../Graduation project assestst/Graduation project/نجار-من-إدلب-فوكس-حلب-6.jpg"
-              alt=""
-            />
+            <img src={provider.providerID.photo} alt="" />
 
             <div className="Rating flex justContentSpaceEvenly">
-              <h3 className="Providername">Arabian Country</h3>
+              <h3 className="Providername">{provider.providerID.name}</h3>
               <p className="ServiceRating">
-                3.9 <i className="fa-solid fa-star"></i>
+                {provider.avgRating} <i className="fa-solid fa-star"></i>
               </p>
             </div>
 
             <h5 className="ProviderAddress">
-              <i class="fa-solid fa-map-location"></i> Street 306 - Saqr Quraish
-              District
+              <i class="fa-solid fa-map-location"></i>{" "}
+              {provider.locations[0].address}
             </h5>
 
             <div>
@@ -94,10 +104,11 @@ function RepairServiceDetailsComp() {
                 ))}
               </div>
             </div>
-  <div className="LeaveReview  padding-1">
+            <div className="LeaveReview  padding-1">
               <div className="simple-review-form">
                 <form onSubmit={handleSubmit}>
-                  <textarea className="W100"
+                  <textarea
+                    className="W100"
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                     placeholder="Write your review here..."
@@ -108,7 +119,6 @@ function RepairServiceDetailsComp() {
                 </form>
               </div>
             </div>
-
           </div>
 
           <div className="ProviderRating-Review simpleBoxShadow">
@@ -116,85 +126,9 @@ function RepairServiceDetailsComp() {
               Rating & Reviews
             </h5>
 
-            <div className="Review ">
-              <div className="userInfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                         "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-              </div>
-              <div className="Stars&Date flex justContentSpaceArround">
-                <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                </div>
-                <div className="date LightBlue">23/2/2025</div>
-              </div>
-
-              <p className="Comment LightBlue textAlignLeft">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-                quis tempora, reprehenderit dolor voluptatem voluptates.
-              </p>
-            </div>
-
-            <div className="Review ">
-              <div className="userImfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                         "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-              </div>
-
-              <div className="Stars&Date flex justContentSpaceArround">
-                <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                </div>
-                <div className="date LightBlue">23/2/2025</div>
-              </div>
-
-              <p className="Comment LightBlue textAlignLeft">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-                quis tempora, reprehenderit dolor voluptatem voluptates.
-              </p>
-            </div>
-
-            <div className="Review ">
-              <div className="userImfo flex">
-                <img
-                  src="../../Graduation project assestst/Graduation project/user.png
-                         "
-                  alt=""
-                />
-                <h6 className="UserName LightBlue">Alaa Khaled</h6>
-              </div>
-
-              <div className="Stars&Date flex justContentSpaceArround">
-                <div className="commentStars">
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                  <i className="fa-solid fa-star LightBlue"></i>
-                </div>
-                <div className="date LightBlue">23/2/2025</div>
-              </div>
-
-              <p className="Comment LightBlue textAlignLeft">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-                quis tempora, reprehenderit dolor voluptatem voluptates.
-              </p>
-            </div>
+            {provider.reviews.map((review) => (
+              <Review review={review} key={review._id} />
+            ))}
 
             <h6 className="moreReviews">
               <a href="" className="decorationNone moreReviews">
@@ -235,6 +169,7 @@ function RepairServiceDetailsComp() {
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div className="imgaSlide flex">
+                    {/* // TODO: user post's photos instead */}
                     <img
                       src="../../Graduation project assestst/Graduation project/صور-اثاث-منزلي-مودرن-2025-بتصميمات-راقية-13.png"
                       class="d-block w-100"
@@ -301,7 +236,7 @@ function RepairServiceDetailsComp() {
                 Service
               </h5>
               <h5>
-                2.8 <i className="fa-solid fa-star"></i>
+                {postAvgRating} <i className="fa-solid fa-star"></i>
               </h5>
             </div>
 
@@ -312,20 +247,7 @@ function RepairServiceDetailsComp() {
                 className=" Seemoretoggle toggle"
               />
 
-              <p className="ServiceDetailsDescription text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                velit ut in animi nulla. Vel tenetur eius dolorum nostrum
-                voluptate, possimus aliquam vero nemo exercitationem in amet
-                suscipit quos cupiditate doloribus quas soluta. Iusto, magni
-                veritatis quas itaque illum quod deserunt praesentium adipisci
-                nihil consectetur perspiciatis eius aliquid odio repellendus
-                expedita eveniet eaque incidunt. Beatae labore iure, eligendi
-                sint alias iste maiores, modi excepturi corrupti, doloremque
-                animi quod aperiam velit! Amet eligendi expedita ea animi,
-                consequuntur tempore asperiores dolorum illo, dolores enim ad
-                laborum, dolore voluptates quas consequatur a. Dolorum commodi
-                velit molestias cum beatae quia deserunt dicta, iste blanditiis.
-              </p>
+              <p className="ServiceDetailsDescription text">{post.content}</p>
 
               <label
                 htmlFor="Seemoretoggle toggle"
@@ -333,7 +255,7 @@ function RepairServiceDetailsComp() {
               >
                 Read More
               </label>
-              <h5 className="price defaultBlue mrgntb-1">200 - 3000 EGP</h5>
+              <h5 className="price defaultBlue mrgntb-1">{post.price} EGP</h5>
             </div>
           </div>
 
@@ -341,7 +263,8 @@ function RepairServiceDetailsComp() {
             className=" BookAppointmentbttn marginauto"
             onClick={BookingToggleModal}
           >
-            <i className="fa-regular fa-calendar-days"></i> Book an appointment
+            <i className="fa-regular fa-calendar-days"></i> Book an appointment{" "}
+            {/* // TODO: booking */}
           </button>
         </div>
 
@@ -460,6 +383,32 @@ function RepairServiceDetailsComp() {
         )}
       </div>
     </>
+  );
+}
+
+function Review({ review }) {
+  return (
+    <div className="Review ">
+      <div className="userInfo flex">
+        <img src={review.user.photo} alt="" />
+        <h6 className="UserName LightBlue">{review.user.name}</h6>
+      </div>
+      <div className="Stars&Date flex justContentSpaceArround">
+        <div className="commentStars">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <i
+              key={star}
+              className={`fa-star LightBlue ${
+                star <= review.rating ? "fa-solid" : "fa-regular"
+              }`}
+            ></i>
+          ))}
+        </div>
+        <div className="date LightBlue">{review.createdAt}</div>
+      </div>
+
+      <p className="Comment LightBlue textAlignLeft">{review.review}</p>
+    </div>
   );
 }
 
