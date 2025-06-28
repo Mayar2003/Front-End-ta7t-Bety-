@@ -1,61 +1,63 @@
-import { useState } from 'react'
-import './App.css'
-import React from 'react';
-import SignInComp from './Components/SignInComp'
-import { useSelector , useDispatch } from 'react-redux';
-// import { authStart , authFailure , authSuccess } from './Features/auth/authSlice'
-import { loginUser } from './Features/auth/authSlice'
-// import { Login} from './Features/auth/authSlice';
+import { useContext, useState } from "react";
+import "./App.css";
+import React from "react";
+import SignInComp from "./Components/SignInComp";
+import ApiManager from "./ApiManager/ApiManager";
+import { ResponseStateContext } from "./Contexts/ResponseStateContext";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./Contexts/AuthContext";
 
 function SignIn() {
-  const dispatch = useDispatch();
-  const {loading , error , token} = useSelector((state) => state.auth);
-  const [formData , setFormData] = useState({email : '' , password : ''});
-  // const [count, setCount] = useState(0)
-
-  // const [email , setEmail] = useState('');
-  // const [password , setPassword] = useState('');
-  // const {loading , error }  = useSelector((state) => state.auth);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+  const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { responseState, setResponseState } = useContext(ResponseStateContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Logging in with:", formData); // 👈 check if this logs
 
-    dispatch(loginUser(formData));
+    setResponseState({ ...responseState, loading: true });
+
+    ApiManager.login(formData)
+      .then((res) => {
+        const response = res.data;
+        console.log("Login response:", response); // Log the response data
+        setResponseState({
+          ...responseState,
+          response,
+          loading: false,
+        });
+
+        setUser(response.data.user); // Ensure user is set correctly
+        console.log("User set in AuthContext:", response.data.user); // Log user for debugging
+
+        localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+
+        navigate("/"); // Redirect to home page after successful login
+      })
+      .catch((err) => {
+        console.error("Login error:", err);
+        setResponseState({
+          ...responseState,
+          error: err || "Login failed",
+          loading: false,
+        });
+      });
   };
-
-  // const handleChange = async (e) =>{
-  //   e.preventDefault();
-  //   dispatch(authStart());
-
-  //   try {
-  //     const data = await loginUser(formData);
-  //     dispatch(authSuccess(data.token));
-  //     localStorage.setItem('token', data.token);
-
-  // }
-  // catch (err) {
-  //   dispatch(authFailure(err.response?.data?.message || 'Login failed'));
-  // }
-  // };
-
 
   return (
     <>
-     <SignInComp
-     formData={formData}
-     setFormData={setFormData}
-     handleSubmit={handleSubmit}
-     loading={loading}
-     error={error} 
-     ></SignInComp>
+      <SignInComp
+        formData={formData}
+        setFormData={setFormData}
+        handleSubmit={handleSubmit}
+        loading={responseState.loading}
+        error={responseState.error}
+      ></SignInComp>
     </>
-  )
+  );
 }
 
 export default SignIn;

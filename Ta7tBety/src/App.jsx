@@ -1,28 +1,79 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
-import './App.css';
-import Header from './Components/Header'; 
-import Home from './Home';
-import AboutUs from './AboutUs';
-import HelpCenter from './HelpCenter';
-import Profile from './Profile';
-import Services from './Services';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import VerifyCode from './VerifyCode';
-import NewPassword from './NewPassword'; 
-import PrivateRoute from './Components/PrivateRoute.jsx';
-import ProfileAccountInfo from './Components/ProfileAccountInfo';
-import ProfileMyOrders from './Components/ProfileMyOrders';
-import ProfileSavedAdresses from './Components/ProfileSavedAdresses';
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import SearchToggle from "./SearchToggle";
+// import SearchProviderComp from "./SearchProviderComp";
+import "./App.css";
+import Header from "./Components/Header";
+import Home from "./Home";
+import AboutUs from "./AboutUs";
+import HelpCenter from "./HelpCenter";
+import Profile from "./Profile";
+import Services from "./Services";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import VerifyCode from "./VerifyCode";
+import NewPassword from "./NewPassword";
+import PrivateRoute from "./Components/PrivateRoute.jsx";
+import ProfileAccountInfo from "./Components/ProfileAccountInfo";
+import ProfileMyOrders from "./Components/ProfileMyOrders";
+import ProfileSavedAdresses from "./Components/ProfileSavedAdresses";
 import MyActiveOrders from "./Components/MyActiveOrders";
 import MyCompletedOrders from "./Components/MyCompletedOrders";
 import MyCanceldOrders from "./Components/MyCanceldOrders";
+import MyPendingOrders from "./Components/MyPendingOrders";
 import WishList from './WishList.jsx';
+import Providers from './Providers.jsx';
+import RepairsProvider from './RepairsProvider.jsx';
+import FoodProvider from './FoodProvider.jsx';
+import MarketProvider from './MarketProvider.jsx';
+import HealthCareProvider from './HealthCareProvider.jsx';
+import HouseWorkProvider from './HouseWorkProvider.jsx';
+import RepairServiceDetails from './RepairServiceDetails.jsx';
+import MarketServiceDetails from './MarketServiceDetails.jsx';
+import HealthCareServiceDetails from './HealthCareServiceDetails.jsx';
+import HouseWorkServiceDetails from './HouseWorkServiceDetails.jsx';
+import { AuthContext } from "./Contexts/AuthContext.js";
+import { ResponseStateContext } from "./Contexts/ResponseStateContext.js";
+import SearchProvider from "./SearchProvider.jsx";
+import UserOrders from "./UserOrders.jsx";
+import ContactUs from "./ContactUs.jsx";
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [responseState, setResponseState] = useState({
+    response: null,
+    error: null,
+    loading: false,
+  });
+
+
+  const [showChat, setShowChat] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+
+   const handleSend = async () => {
+    if (!input.trim()) return;
+
+    const userMessage = { sender: 'user', text: input };
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
+
+    const botReply = await getBotResponse(input);
+    setMessages(prev => [...prev, userMessage, { sender: 'bot', text: botReply }]);
+  };
+
+  const getBotResponse = async (msg) => {
+    return `Bot: You said "${msg}"`;
+  };
+
+
 
   return (
+
+ <AuthContext.Provider value={{ user, setUser }}>
+      <ResponseStateContext.Provider
+        value={{ responseState, setResponseState }}
+      >
     <Router>
    
       <Routes>
@@ -31,7 +82,23 @@ function App() {
         <Route path='/HelpCenter' element={<HelpCenter />} />
         <Route path='/Services' element={<Services />} />
         <Route path="/WishList" element={<WishList />} />
+        <Route path="/Providers" element={<Providers />} />
+        <Route path="/RepairsProvider" element={<RepairsProvider />} />
+        <Route path="/FoodProvider" element={<FoodProvider />} />
+        <Route path="/MarketProvider" element={<MarketProvider />} />
+        <Route path="/HealthCareProvider" element={<HealthCareProvider />} />
+        <Route path="/HouseWorkProvider" element={<HouseWorkProvider />} />
+        <Route path="/RepairServiceDetails" element={<RepairServiceDetails />} />
+        <Route path="/MarketServiceDetails" element={<MarketServiceDetails />} />
+        <Route path="/HealthCareServiceDetails" element={<HealthCareServiceDetails />} />
+        <Route path="/HouseWorkServiceDetails" element={<HouseWorkServiceDetails />} />
+        <Route path="/search/:providerName" element={<SearchProvider />} />
+        <Route path="/UserOrders" element={<UserOrders />} />
+        <Route path="/ContactUs" element={<ContactUs  />} />
+
+
         <Route path="/Profile" element={<Profile />}>
+        
           <Route index element={<ProfileAccountInfo />} />
           <Route path="ProfileAccountInfo" element={<ProfileAccountInfo />} />
           <Route path="ProfileMyOrders" element={<ProfileMyOrders />}>
@@ -39,32 +106,87 @@ function App() {
             <Route path="MyActiveOrders" element={<MyActiveOrders />} />
             <Route path="MyCompletedOrders" element={<MyCompletedOrders />} />
             <Route path="MyCanceldOrders" element={<MyCanceldOrders />} />
+            <Route path="MyPendingOrders" element={<MyPendingOrders />} />
           </Route>
           
 
-          <Route path="ProfileSavedAdresses" element={<ProfileSavedAdresses />} />
-        </Route>
+              <Route
+                path="ProfileSavedAdresses"
+                element={<ProfileSavedAdresses />}
+              />
+            </Route>
 
-        
+            <Route path="/Signin" element={<SignIn user={user} />} />
+            <Route path="/Signup" element={<SignUp />} />
+            <Route path="/VerifyCode" element={<VerifyCode user={user} />} />
+            <Route path="/NewPassword" element={<NewPassword />} />
 
-        <Route path='/Signin' element={<SignIn />} />
-        <Route path='/Signup' element={<SignUp />} />
-        <Route path='/VerifyCode' element={<VerifyCode />} />
-        <Route path='/NewPassword' element={<NewPassword />} /> 
-
-        {/* <Route
+            {/* <Route
           path="/profile"
           element={
             <PrivateRoute>
-              <Profile />
+            <Profile />
             </PrivateRoute>
-          }
-        /> */}
-      </Routes>
-    </Router>
+            }
+            /> */}
+          </Routes>
+        </Router>
+      </ResponseStateContext.Provider>
+
+       <div>
+      <button className="ChatbotBtn toggle-btn" onClick={() => setShowChat(!showChat)}>
+        {/* {showChat ? 'Close Chat' : 'Chat with us'} */}
+        <i class="fa-solid fa-robot"></i>
+      </button>
+
+      {showChat && (
+        <div className="chat-container flex justify-content-between">
+          <div className="AI-ChatDiv">
+          <div className="messageContainer flex W50 ">
+          <img src="../G.Project assets2.png (2)/converted-files.png/Chatbot icon.jpg.png" alt="" />
+          <div className="AImessage defaultBlue">Hi Jane!</div>
+          </div>
+
+           <div className="messageContainer flex ">
+          <img src="../G.Project assets2.png (2)/converted-files.png/Chatbot icon.jpg.png" alt="" />
+          <div className="AImessage defaultBlue">How Can i asist you ?</div>
+          </div>
+
+          <div className="ChatbotUserMessage mrgnt-1 flex">
+            <div className="ChatbotUserMessageContent">What is the nearest Market to my locattion?.</div>
+          <img src="../../Graduation project assestst/Graduation project/user.png" alt="" />
+          </div>
+</div>
+
+            {messages.map((msg, index) => (
+              <div key={index} className={`message ${msg.sender}`}>
+                {msg.text}
+              </div>
+            ))}
+
+          <div className="chat-input flex">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your message..."
+            />
+               <div className="ChatbotSendbttn">
+            <button onClick={handleSend}><i class="fa-brands fa-telegram"></i></button>
+        </div>
+          </div>
+        </div>
+      )}
+    </div>
+
+
+
+    </AuthContext.Provider>
+
+
+
+
   );
 }
 
 export default App;
-
-

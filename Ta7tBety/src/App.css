@@ -7,7 +7,11 @@
   text-align: center;
 }
 /**********General**********/
-.decorationNone {
+* {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+b .decorationNone {
   text-decoration: none;
 }
 .textAlignCenter {
@@ -24,6 +28,10 @@
 }
 .alignItemsCenter {
   align-items: center;
+}
+
+.alignItemsBaseline {
+  align-items: baseline;
 }
 .alignContentCenter {
   align-content: center;
@@ -45,41 +53,156 @@
   justify-content: space-evenly;
 }
 
+.justContentFlexStart {
+  justify-content: flex-start;
+}
+.justContentFlexEnd {
+  justify-content: flex-end;
+}
 .alignItemsCenter {
   align-items: center;
+}
+
+.alignItemsBaseline {
+  align-items: baseline;
 }
 
 .W100 {
   width: 100%;
 }
 
+.W90 {
+  width: 90%;
+}
+
 .W80 {
   width: 80%;
 }
-.W90 {
-  width: 90%;
+
+.W70 {
+  width: 70%;
+}
+.W60 {
+  width: 60%;
 }
 .W50 {
   width: 50%;
 }
+.W40 {
+  width: 40%;
+}
+.W30 {
+  width: 30%;
+}
 .W20 {
   width: 20%;
+}
+.W10 {
+  width: 10%;
 }
 
 .Wrap {
   flex-wrap: wrap;
 }
 
-.fa-star{
+.fa-star {
   color: #ffd43b;
 }
+
+.White {
+  color: #fff;
+}
+
+.Mbot-0 {
+  margin-bottom: 0rem;
+}
+
+.Mtop-0 {
+  margin-top: 0rem;
+}
+.Mbottom-0 {
+  margin-bottom: 0rem;
+}
+.mrgn-1 {
+  margin: 1rem;
+}
+
+.padding-1 {
+  padding: 1rem;
+}
+
+.mrgntb-1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mrgnt-1 {
+  margin-top: 1rem;
+}
+
+.mrgnb-1 {
+  margin-bottom: 1rem;
+}
+
+.simpleBoxShadow {
+  box-shadow: 0rem 0rem 1rem #cfd9e9;
+}
+
+.borderRadius-1rem {
+  border-radius: 1rem;
+}
+
+.defaultBlue {
+  color: #15243f;
+}
+
+.LightBlue {
+  color: #3a4d6f;
+}
+
+.babyBlue {
+  color: #99a8c2;
+}
+
+.greyBlue {
+  color: #cfd9e9;
+}
+
+.FitContentHeight {
+  height: fit-content;
+}
+
+.marginauto {
+  margin: auto;
+}
+
+.Paddingauto {
+  padding: auto;
+}
+
+.no-hover {
+  pointer-events: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.bordernone {
+  border: none;
+}
+
 /********************/
 .Ta7tBety-Header {
   display: flex;
-  justify-content: space-between;
-  margin: 0 1rem;
+  justify-content: space-around;
+  /* margin: 0 1rem; */
   align-items: baseline;
-  padding: 0 3rem;
+}
+.TahtBety-Logo {
+  width: 4rem;
+  height: 4rem;
+  /* margin-left: 1rem; */
 }
 
 .HeaderBorderBottom {
@@ -100,8 +223,8 @@
 
 .header-Elements li {
   display: flex;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
+  /* margin-left: 2.5rem; */
+  /* margin-right: 2.5rem; */
 }
 
 .header-Elements a:hover {
@@ -109,13 +232,17 @@
 }
 
 .header-icons li {
-  margin-left: 1.5rem;
+  margin-left: 0.5rem;
   font-size: 1.5rem;
 }
 
 .header-icons i:hover {
   font-weight: 700;
   font-size: 1.6rem;
+}
+
+.HeaderCart {
+  font-size: 1.5rem;
 }
 
 a,
@@ -130,6 +257,22 @@ span {
   font-weight: 600;
   font-size: 2em;
   font-style: normal;
+}
+
+.HeaderSearchInput {
+  border-radius: 0.7rem;
+  border: none;
+  border: #cfd9e9 solid 0.1rem;
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+.HeaderSearch {
+  margin-right: 0rem;
+}
+.HeaderSearch .fa-magnifying-glass {
+  position: relative;
+  right: 1.8rem;
+  font-size: 1.5rem;
 }
 
 /**********Home Page**********/
@@ -185,12 +328,9 @@ span {
 
 /**********Location Section**********/
 
-
-
 .LocationSection,
 .HomeSectionTwo,
-.BestProvider 
-{
+.BestProvider {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -313,7 +453,6 @@ span {
   width: 100%;
   height: 8rem;
   border-radius: 1.5rem;
-
 }
 .category .viewbtn {
   height: 2.5rem;
@@ -697,8 +836,9 @@ h4,
 }
 .ContactUsIcons {
   align-content: center;
-  justify-content: space-between;
-  margin: 3rem;
+  justify-content: space-around;
+  margin-left: 5rem;
+  cursor: pointer;
 }
 
 .ContactUsIcons i {
@@ -997,9 +1137,12 @@ h4,
 }
 
 .Order {
-  margin: 0.7rem 5rem;
-  border-bottom: #cfd9e9 solid 0.1rem;
-  width: 80%;
+  margin: auto;
+  padding: 0.5rem;
+
+  border: #cfd9e9 solid 0.1rem;
+  border-radius: 0.5rem;
+  width: 95%;
 }
 
 .LastOrder {
@@ -1093,36 +1236,43 @@ h4,
   top: 7.5rem;
   left: 7rem;
 }
-
 .SignUpEmail label {
   top: 12.5rem;
   left: 7rem;
 }
-.SignUpPassword label {
-  top: 18rem;
-  left: 7rem;
-}
-.SignUpConfirmPassword label {
-  top: 23rem;
+
+.SignUpPhone label {
+  top: 17.5rem;
   left: 7rem;
 }
 
-.SigninPassword label {
+.PasswordLabelonframe{
+  top: 11rem;
+  left: 7rem;
+  position: absolute;
+
+}
+.SignUpPassword label {
   background-color: #fff;
   padding: 0.5rem;
   position: absolute;
-  top: 11rem;
-  left: 8rem;
+  top: 23rem;
+  left: 7rem;
   color: #3a4d6f;
   font-size: 1.2rem;
 }
 
+.SignUpConfirmPassword label {
+  top: 28rem;
+  left: 7rem;
+}
 .SigninEmail,
 .SigninPassword,
 .SignUpName,
 .SignUpEmail,
 .SignUpPassword,
-.SignUpConfirmPassword {
+.SignUpConfirmPassword,
+.SignUpPhone {
   margin-top: 2rem;
 }
 
@@ -1144,7 +1294,7 @@ h4,
   color: #99a8c2;
   text-decoration: underline;
   font-weight: 500;
-  text-align: end;
+  /* text-align: end; */
   margin: 2rem 1rem;
 }
 
@@ -1212,6 +1362,20 @@ h4,
 
 .forgetPass a {
   color: #99a8c2;
+}
+
+.gender-options button  {
+      border: none;
+    background-color: white;
+    border: solid 0.2rem #99a8c2;
+    border-radius: 2rem;
+    font-size: 1.3rem;
+    color:#3a4d6f;
+    margin: 0 2rem;
+    padding:0.5rem;
+}
+.gender-icon{
+color: #3a4d6f;
 }
 
 /************ Verify Code ********************/
@@ -1425,39 +1589,40 @@ h4,
   text-decoration: none !important;
 }
 
-
 /************** Services Categories page *************/
 .ServicesCategories {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 0rem ;
+  margin: 0rem;
 }
-.Servicecategory , .WishListComponent{
+.Servicecategory,
+.WishListComponent,
+.RepairComponent,
+.RepairProviderService,
+.SearchProviderComponent {
   display: flex;
   flex-direction: column;
   position: relative;
   width: 20%;
-  height: 15rem;
+  height: fit-content;
   background-color: #fff;
   margin: 2rem;
   border-radius: 1.5rem;
   border: 0.1rem solid #cfd9e9;
 }
 
-
 .Servicecategory img {
-    width: 100%;
-    height: 12rem;
-    border-radius: 1.5rem;
+  width: 100%;
+  height: 12rem;
+  border-radius: 1.5rem;
 }
 
-
-  .Servicecategory .viewbtn, .WishListComponent .viewbtn {
+.Servicecategory .viewbtn {
   height: 2.5rem;
   width: 2.5rem;
   position: relative;
-  left: 10rem;
+  left: 4rem;
   bottom: 3rem;
   border-radius: 6rem;
   border: none;
@@ -1466,7 +1631,7 @@ h4,
   border: #fff solid 0.2rem;
 }
 
- .Servicecategory .Serv-catg-name {  
+.Servicecategory .Serv-catg-name {
   color: #15243f;
   position: relative;
   text-align: left;
@@ -1476,8 +1641,7 @@ h4,
   font-size: 1rem;
 }
 
-
-.HomeSectionTwoCategories{
+.HomeSectionTwoCategories {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1485,15 +1649,20 @@ h4,
   padding: 5rem 0rem;
 }
 
-
 /************** WishList *************/
-.WishListComponent{
-  box-shadow: 0rem 0rem 1rem #cfd9e9; 
-  height:18rem ; 
+.WishListComponent,
+.RepairComponent,
+.RepairProviderService,
+.SearchProviderComponent {
+  box-shadow: 0rem 0rem 1rem #cfd9e9;
+  height: 18rem;
   border-radius: 1rem;
 }
 
- .WishListComponent img{
+.WishListComponent img,
+.RepairComponent img,
+.RepairProviderService img,
+.SearchProviderComponent img {
   width: 85%;
   height: 11rem;
   margin-bottom: auto;
@@ -1503,18 +1672,851 @@ h4,
   border-radius: 1rem;
 }
 
-.WishHeartIcon{
+.WishHeartIcon {
   background-color: #cfd9e9;
   opacity: 0.8;
-  border-radius: 1rem;  
-  width: 2rem;  
+  border-radius: 1rem;
+  width: 2rem;
   height: 2rem;
   line-height: 2rem;
   position: relative;
   bottom: 14.5rem;
-  left: 10.5rem;  
+  left: 10.5rem;
+}
+
+/****************** Repairs Page *************/
+.carousel-indicators button {
+  width: 1rem !important;
+  height: 1rem !important;
+  border-radius: 50% !important;
+}
+
+.carousel {
+  margin: 2rem;
+  /* height: 50rem !important; */
+}
+.carousel-item {
+  min-height: 50rem;
+}
+
+.ProviderInfo {
+  text-align: left;
+  padding: 1rem 2rem;
+}
+.RepairComponent {
+  height: 20rem;
+  margin: 5rem;
+}
+
+.RepairHeartIcon .fa-heart {
+  font-size: 1.5rem;
+}
+
+.heart-toggle input {
+  display: none;
+}
+
+.heart-toggle i {
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.heart-toggle input:checked + i {
+  font-weight: bold;
+  color: gold;
+  font-family: "Font Awesome 6 Free"; /* ensure bold is respected */
+  font-style: normal;
+}
+
+.heart-toggle input:checked + i:before {
+  content: "\f004"; /* unicode for solid heart */
+  font-weight: 900; /* solid version */
+}
+
+.Providername {
+  font-weight: 700;
+}
+
+/* .ReviewProviderName{
+  width: 80;
+} */
+/************** RepairProviderServices *************/
+
+.ProviderPage {
+  margin: 3rem 2rem;
+}
+.ProviderReview {
+  width: 30%;
+}
+
+.ProviderServices {
+  width: 70%;
+  border-radius: 1rem;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+.RepairServices {
+  margin: 2rem 0rem 0rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.RepairProviderService {
+  width: 40%;
+  height: fit-content;
+}
+
+.RepairProviderService img {
+  filter: brightness(0.8);
+}
+.morePhotos {
+  position: relative;
+  bottom: 8rem;
+  color: white;
+}
+
+.ServiceRating {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.ProviderInfoDiv,
+.ProviderRating,
+.ProviderRating-Review {
+  width: 90%;
+  height: fit-content;
+  border-radius: 1rem;
+}
+
+.ProviderInfoDiv img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 5rem;
+  margin: 1.5rem;
+}
+
+.ProviderAddress {
+  color: #3a4d6f;
+}
+.ProviderAddress .fa-map-location {
+  font-size: 1.5rem;
+}
+
+.Providername {
+  color: #15243f;
+}
+
+.ContactUsbttn,
+.LeaveReview button,
+.BookAppointmentbttn,
+.BookthisAppbttn {
+  border-radius: 2rem;
+  border: none;
+  background-color: #3a4d6f;
+  color: #fff;
+  padding: 0.5rem;
+  margin: 1.5rem;
+}
+
+.ProviderAddress {
+  width: 80%;
+  margin: auto;
+}
+
+.ProviderRating,
+.ProviderRating-Review {
+  margin-top: 2rem;
+  /* height: 10rem; */
+}
+.RateProviderH {
+  padding: 2rem;
+  font-weight: 700;
+}
+.LeaveReview textarea{
+  height: 5rem;
+  border-radius: 0.5rem;
+  border: #cfd9e9 solid 0.2rem;
+  padding: 0.5rem;
+  color: #3a4d6f;
+}
+
+.LeaveReview button{
+  margin-bottom: 0;
+}
+
+.StarsDiv {
+  margin: auto;
+  font-size: 1.5rem;
+}
+
+.Review img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2.5rem;
+  align-self: flex-start;
+}
+
+.ProviderRating-Review {
+  height: fit-content;
+  padding-bottom: 1rem;
+}
+
+.Review {
+  border-bottom: 0.1rem #cfd9e9 solid;
+  width: 90%;
+  margin: 1rem;
+}
+.Review .UserName {
+  align-self: center;
+}
+.commentStars .fa-star {
+  margin-right: 0.3rem;
+}
+
+.Review div {
+  margin-bottom: 0.5rem;
+}
+
+.moreReviews {
+  color: #cfd9e9;
+  text-align: right;
+  margin: 1rem;
+}
+
+/************** Service Details *************/
+
+.ServiceDetaials {
+  margin: 1rem 3rem;
+}
+
+.ServiceDetailsDescription {
+  overflow: hidden;
+  color: #99a8c2;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  transition: all 0.3s ease;
+}
+
+.Seemoretoggle {
+  display: none;
+}
+
+.Seemoretoggle:checked ~ .ServiceDetailsDescription {
+  -webkit-line-clamp: unset;
+  max-height: none;
+  display: block;
+}
+
+.Seemoretoggle:checked ~ .Seemoretogglelabel {
+  display: none;
+}
+
+.Seemoretogglelabel {
+  color: #3a4d6f;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.BookAppointmentbttn {
+  padding: 0.5rem 2rem;
+  margin: auto;
+}
+
+.imgaSlide {
+  width: 100%;
+}
+.imgaSlide img {
+  margin: 0.5rem;
+  height: 15rem;
+  border-radius: 0.5rem;
+}
+
+.ServicePhotoscarousel .carousel-indicators button {
+  background-color: #15243f !important;
+}
+
+.ServicePhotoscarousel {
+  width: 100%;
+  /* height: 20rem; */
+  height: fit-content;
+  overflow: visible;
+  margin: auto;
+}
+
+.carousel-item {
+  /* height: max-content !important; */
+  min-height: fit-content;
+}
+
+.ServicePhotoscarousel .carousel-indicators {
+  top: 16rem;
+}
+
+.ServiceDescriptionDetails {
+  margin-top: 3rem;
+}
+
+/************** Booking PoUp *************/
+.BookingPopUp {
+  position: absolute;
+  z-index: 1000;
+  top: 1%;
+}
+
+.BookingCalendar {
+  margin: auto;
+  padding-bottom: 1rem;
+}
+
+.CalendarDiv {
+  margin: auto;
+  border: #cfd9e9 solid 0.1rem;
+  border-radius: 1rem;
+}
+
+.CalendarDiv th {
+  color: #99a8c2;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.CalendarDiv td {
+  color: #15243f;
+}
+
+.month-yearP {
+  border-bottom: #cfd9e9 solid 0.1rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.selectDateBttns,
+.time-slots {
+  margin-top: 1rem;
+}
+
+.Date,
+.time-slots button {
+  border: #cfd9e9 solid 0.1rem;
+  border-radius: 1rem;
+  padding: 0.2rem 0.5rem;
+  margin: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: white;
+  color: #99a8c2;
+}
+
+.Date:hover {
+  color: #15243f;
+}
+
+.BookthisAppbttn {
+  margin-top: 0.1rem;
+  margin-bottom: 0;
+}
+
+/*********************/
+/*
+.calendar-container {
+  max-width: 500px;
+  margin:  auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+
+
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.time-slot {
+  padding: 0.5rem 1rem;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  background-color: white;
+  color: #99a8c2;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.time-slot:hover {
+  /* background-color: #007bff; */
+/* color: #3a4d6f; */
+/* } */
+
+/* .time-slot.selected {
+  background-color: #3a4d6f;
+  color: white;
+} */
+
+/* 
+.calendar-result {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: green;
+} */
+
+/* Calendar container */
+/* .react-calendar {
+  width: 100%;
+  max-width: 100%;
+  background: #f8f9fa;
+  border: none;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+} */
+
+/* Weekday headers */
+/* .react-calendar__month-view__weekdays {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #333;
+} */
+
+/* Day tiles */
+/* .react-calendar__tile {
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 0;
+  transition: background 0.2s;
+} */
+
+/* Hover effect */
+/* .react-calendar__tile:hover {
+  background: #007bff;
+  color: #fff;
+} */
+
+/* Active (clicked) day */
+/* .react-calendar__tile--active {
+  background: #28a745;
+  color: white;
+} */
+
+/* Today's date */
+/* .react-calendar__tile--now {
+  background: #ffeeba;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Navigation buttons */
+/* .react-calendar__navigation button {
+  background: none;
+  font-size: 1rem;
+  color: #007bff;
+  padding: 0.5rem;
+  border: none;
+}
+
+.react-calendar__navigation button:hover {
+  background: #e9ecef;
+  border-radius: 6px;
+} */
+
+/*********************/
+
+.react-calendar {
+  border-radius: 1rem;
+  margin: auto;
+}
+
+.react-calendar__navigation__label {
+  border-bottom: #cfd9e9 solid 0.1rem !important;
+}
+.react-calendar__navigation__label {
+}
+
+.react-calendar__navigation__arrow,
+.react-calendar__navigation__prev-button {
+  border-radius: 1rem;
+}
+
+.time-slots {
+  margin-top: 0rem;
+}
+.time-slots button {
+  font-size: 1rem;
+  /* background-color: #15243f; */
+}
+
+/*  */
+.react-calendar__navigation__label {
+  pointer-events: none;
+}
+
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  display: none;
+}
+
+.react-calendar__tile--now {
+  background: grey !important;
+  color: #fff;
+  border-radius: 2rem;
+}
+
+.react-calendar__tile--active {
+  background-color: #3a4d6f !important;
+}
+
+.react-calendar__month-view__days button {
+  border-radius: 1rem;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+  color: #99a8c2;
+}
+
+/**********Food Provider Component Styles***********/
+.addToCartbtn {
+  background-color: #fff;
+  border: solid #cfd9e9 0.1rem;
+  border-radius: 1rem;
+  box-shadow: 0rem 0.1rem 0.3rem #cfd9e9;
+  margin-left: auto;
+  padding: 0.1rem 0.5rem;
+}
+
+.addToCart {
+  text-align: right;
+}
+
+.OrderCounterbtn {
+  background-color: #fff;
+  border: solid #cfd9e9 0.1rem;
+  border-radius: 1rem;
+  height: 2rem;
+}
+
+.OrderCounterbtn a,
+.OrderCounterbtn p {
+  font-weight: 500;
+  margin: 0.2rem;
+}
+
+.AddItemPopUp {
+  position: absolute;
+  top: 5%;
+}
+
+.ServiceDetaials {
+  border-bottom: solid #cfd9e9 0.1rem;
+}
+
+.Optional {
+  background-color: #cfd9e9;
+  border-radius: 1rem;
+  padding: 0.1rem 0.5rem;
+  margin-bottom: 0%;
+}
+.OptionalChoose {
+  text-align: left;
+}
+
+.AddToCartBttn .fa-cart-plus {
+  margin-right: 1rem;
+}
+.AddToCartBttn {
+  margin-bottom: 2rem;
+}
+.CartDropDowMenue {
+  background-color: #15243f;
+  border-radius: 1rem;
+  width: 30rem;
+}
+.CartHeader {
+  padding-right: 2rem;
+  border-bottom: white solid 0.1rem;
+}
+.YourCart {
+  padding: 0.2rem 0.8rem;
+}
+
+.CartDropDowMenue .ProviderName,
+.CartDropDowMenue .CartFooter {
+  padding: 0.2rem 0.8rem;
+}
+
+.YourOrders .Order {
+  border: 0.1rem solid white;
+  border-radius: 1rem;
+}
+
+.OrderCounterbtn a {
+  border: none;
+}
+
+.CartOrders .Order img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+}
+.PlaceOrderbtn {
+  background-color: #fff;
+  padding: 0rem 1rem;
+  border-radius: 1rem;
+  border: none;
+  height: 2rem;
+  align-self: center;
+}
+
+.PlaceOrderbtn .fa-chevron-right {
+  font-size: 1rem;
+  color: #3a4d6f;
+}
+
+.YourCart .fa-xmark {
+  font-size: 1rem;
+}
+
+/************** Food Provider Page *************/
+.FoodCategories {
+  padding: 3rem 2rem;
+}
+
+.ShopByCategory {
+  margin: 2rem;
+  font-weight: 700;
+}
+
+.FoodCategoriesPhotos {
+  justify-content: center;
+}
+
+.Category {
+  width: 25%;
+  margin-bottom: 2rem;
+}
+
+.Category img {
+  width: 70%;
+  height: 7rem;
+  margin-bottom: 1rem;
+}
+
+.MarketProduct img {
+  height: 20rem;
+  width: 50%;
+  border-radius: 1rem;
+}
+
+/************ Health and Care Provider Page *************/
+.ServiceDoctorPhoto {
+  width: 40%;
+  height: 20rem;
+  border-radius: 2rem;
+}
+
+/************ User Orders *************/
+.UserOrdersComp .Order {
+  background-color: #3a4d6f;
+  margin: 2rem;
+  border-radius: 2rem;
+}
+
+.UserOrdersComp .Order img {
+  width: 15rem;
+  height: fit-content;
+  border-radius: 2rem;
+}
+
+.UserOrdersComp {
+  min-height: 20rem;
+}
+.UserOrdersComp .Order {
+}
+
+/************ Contact Us Chat *************/
+.ContactusChat {
+  width: 50%;
+  margin: 5rem auto;
+  border: #CFD9E9 solid 0.2rem;
+}
+.ProviderName {
+  padding: 1rem;
+  border-bottom: #CFD9E9   solid 0.2rem;
+  justify-content: left;
+  align-items:end;
+}
+
+.ProviderName img {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 3rem;
+}
+
+.ProviderMessage , .UserMessage  {
+  margin: 2rem;
+  width: 40%;
+  
+}
+
+.UserMessage {
+justify-self: flex-end;
+}
+.ProviderMessageContent , .chat-container .AImessage {
+  border: #CFD9E9 solid 0.1rem;
+  border-top-right-radius: 0.7rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.UserMessageContent ,.chat-container .ChatbotUserMessageContent  {
+  border-top-right-radius: 0.7rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #CFD9E9;
+}
+.Chat img ,.chat-container .AI-ChatDiv img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  align-self: end;
+}
+.ProviderMessageContent ,.UserMessageContent , .chat-container .messageContainer .AImessage , .ChatbotUserMessageContent {
+  padding: 0.5rem;
+  text-align: left;
+ color: #15243f;
+}
+
+.TypeMessegeinput input{
+  border-radius: 2rem;
+  border: #CFD9E9 solid 0.1rem;
+  padding: 0.8rem;
+  /* width: 60%; */
+}
+
+.TypeMessegeinput .fa-microphone{
+    position: relative;
+    left: 15rem;
+    bottom:2.5rem;
+    color: #3a4d6f;
+    font-size: 1.5rem;
+}
+
+.Sendbttn button{
+    color: #3a4d6f;
+    border: none;
+    font-size: 2.8rem;
+    background-color: white;
+    padding-left: 2rem;
+    line-height: normal;
 
 }
 
-.WishHeartIcon .fa-heart{
+/************** Chat bot *************/
+
+.chat-container {
+  position: fixed;
+  bottom: 6rem;
+  right: 5rem;
+  width: 22rem;
+  height: 25rem;
+  background: white;
+
+  border: 1px solid #3a4d6f;
+  flex-direction: column;
+  z-index: 1000;
+  border-bottom-left-radius: 2rem;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  padding: 2rem;
+
 }
+
+
+.message {
+  
+  padding: 0.5rem;
+  max-width: 70%;
+}
+
+.message.user {
+    border-bottom-left-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background: #99a8c2;
+  align-self: flex-end;
+}
+
+.message.bot {
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  background: white;
+  border: 0.1rem #CFD9E9 solid ;
+  align-self: flex-start;
+}
+
+
+
+.chat-input input {
+  border-radius: 2rem;
+  border: #CFD9E9 solid 0.1rem;
+  padding: 0.5rem;
+}
+
+.chat-input button {
+    color: #3a4d6f;
+    border: none;
+    font-size: 2rem;
+    background-color: white;
+    padding-left: 1rem;
+    line-height: normal;
+}
+
+
+
+.ChatbotBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  background-color: #15243f;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 2rem;
+}
+/* 
+.chat-container img{
+  width: 3rem;
+  height: 3rem;
+  margin-right: 3rem;
+  border-radius: 2rem;
+} */
+
+.chat-container{
+  border: #3a4d6f 0.2rem solid;
+}
+
+.chat-container .messageContainer {
+ /* width: fit-content; */
+ max-width: 100% ;
+}
+
+.AI-ChatDiv{
+overflow-y: auto;
+}
+

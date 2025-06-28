@@ -4,11 +4,11 @@ function HelpCenterFAQ() {
       <div className="FAQ">
         <h2 className="FAQheading">FAQ</h2>
 
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
+        <div className="accordion accordion-flush" id="accordionFlushExample">
+          {/* <div className="accordion-item ">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed "
+                className="accordion-button collapsed "
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseOne"
@@ -20,10 +20,10 @@ function HelpCenterFAQ() {
             </h2>
             <div
               id="flush-collapseOne"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <p>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Rerum eos cumque molestias repellat, corrupti, ullam laborum,
@@ -32,41 +32,38 @@ function HelpCenterFAQ() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseTwo"
                 aria-expanded="false"
                 aria-controls="flush-collapseTwo"
               >
-                Can I save my favorite items for later?
+                Can I save my favorite Providers for later?
               </button>
             </h2>
             <div
               id="flush-collapseTwo"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Rerum eos cumque molestias repellat, corrupti, ullam laborum,
-                  quis fuga aliquid rem unde deserunt. Quae illum ullam ut
-                  quaerat et fuga inventore!
+                  Yes, simply tap the heart icon to add Providers to your favorite Providers.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseThree"
@@ -78,44 +75,38 @@ function HelpCenterFAQ() {
             </h2>
             <div
               id="flush-collapseThree"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Rerum eos cumque molestias repellat, corrupti, ullam laborum,
-                  quis fuga aliquid rem unde deserunt. Quae illum ullam ut
-                  quaerat et fuga inventore!
+                 You can reach out through phone, WhatsApp, or Send an Email.
                 </p>{" "}
               </div>
             </div>
           </div>
 
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseFour"
                 aria-expanded="false"
                 aria-controls="flush-collapseFour"
               >
-                How to add Review
+                How to add Review?
               </button>
             </h2>
             <div
               id="flush-collapseFour"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Rerum eos cumque molestias repellat, corrupti, ullam laborum,
-                  quis fuga aliquid rem unde deserunt. Quae illum ullam ut
-                  quaerat et fuga inventore!
+                  Go to the product or Provider page you purchased, then click on "Write a Review"
                 </p>
               </div>
             </div>

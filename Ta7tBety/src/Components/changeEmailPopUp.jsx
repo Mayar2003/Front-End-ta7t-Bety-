@@ -1,7 +1,4 @@
-function changeEmailPopUp (){
-    return(
-        <>
-        </>
-    )
+function changeEmailPopUp() {
+  return <></>;
 }
 export default changeEmailPopUp;
