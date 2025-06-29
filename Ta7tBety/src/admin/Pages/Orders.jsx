@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ReusableTable from "../Components/ReusableTable.jsx";
 import "../Components/Components.css";
 import axios from "axios";
+import ApiManager from "../../ApiManager/ApiManager.js";
 
 const SearchIcon = () => (
   <svg
@@ -73,22 +74,19 @@ export default function Orders() {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get(
-        "https://ta7t-bety.vercel.app/api/v1/orders",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        }
-      );
+      const res = await ApiManager.getAllOrders();
       const data = res.data?.data?.data || [];
 
+      console.log("Fetched orders:", data);
+
       const formatted = data.map((order, index) => ({
-        id: `#${index + 1000}`,
+        id: `#${order._id.slice(order._id.length - 6, order._id.length)}`,
         client: order.userID?.name || "Unknown",
         provider: order.providerID?.name || "Unknown",
         rawDate: order.createdAt,
-        date: new Date(order.createdAt).toLocaleDateString(),
+        date: order.createdAt
+          ? new Date(order.createdAt).toLocaleDateString()
+          : new Date().toLocaleDateString(),
         status: order.status || "Unknown",
         country: order.userID?.region || "N/A",
         total: `$${order.price?.toFixed(2) || "N/A"}`,

@@ -39,7 +39,7 @@ function VerifyCode() {
         setUser(response.data.user);
 
         localStorage.setItem("authToken", response.data.token);
-        localStorage.setItem("jwt", response.data.token);
+        localStorage.setItem("authToken", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/"); // Redirect to home page after successful verification
       })

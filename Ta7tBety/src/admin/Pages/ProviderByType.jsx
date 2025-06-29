@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ReusableTable from "../Components/ReusableTable.jsx";
 import "../Components/Components.css";
+import ApiManager from "../../ApiManager/ApiManager.js";
 
 const ProviderTypeTable = () => {
   const { type } = useParams();
@@ -39,28 +40,32 @@ const ProviderTypeTable = () => {
 
   const fetchProviders = async () => {
     try {
-      const res = await axios.get(
-        "https://ta7t-bety.vercel.app/api/v1/providers/31.6515165165165/30.211548651613/1000000000/all/all",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        }
-      );
-      const providers = res.data?.data?.providers || [];
+      // const res = await axios.get(
+      //   "https://ta7t-bety.vercel.app/api/v1/providers",
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+      //     },
+      //   }
+      // );
+      const res = await ApiManager.getAllProviders();
+      const providers = res.data?.data?.data || [];
+      console.log("Fetched providers:", providers);
       const rows = providers
         .filter((p) => normalizeProviderType(p.providerType) === type)
         .map((p) => ({
-          id: p.providerId,
+          id: p.userId,
           name: p.name,
           image:
             p.photo ||
             "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=",
           location: p.locations?.[0]?.address || "Unknown",
-          rawDate: new Date().toISOString(),
-          date: new Date().toLocaleDateString(),
+          rawDate: p.createdAt || new Date().toISOString(),
+          date: p.createdAt
+            ? new Date(p.createdAt).toLocaleDateString()
+            : new Date().toLocaleDateString(),
           status: p.isActive ? "active" : "inactive",
-          attention: p.isOnline ? "high" : "low",
+          attention: p.actionBy === "ai" ? "high" : "low",
         }));
       setAllUsers(rows);
     } catch (err) {
@@ -104,6 +109,7 @@ const ProviderTypeTable = () => {
   const renderUserRow = (user, index) => (
     <tr
       key={index}
+      style={{ cursor: "pointer" }}
       onClick={() => navigate(`/dashboard/providers/${type}/${user.id}`)}
     >
       <td>

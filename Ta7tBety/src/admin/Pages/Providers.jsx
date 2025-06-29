@@ -17,7 +17,7 @@ const ProvidersPage = () => {
         "https://ta7t-bety.vercel.app/api/v1/providers/31.6515165165165/30.211548651613/1000000000/all/all",
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
         }
       );

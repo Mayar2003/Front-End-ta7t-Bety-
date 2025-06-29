@@ -168,27 +168,62 @@ function App() {
                 />
                 <Route path="/NewPassword" element={<NewPassword />} />
 
-                {/* <Route
-          path="/profile"
-          element={
-            <PrivateRoute>
-            <Profile />
-            </PrivateRoute>
-            }
-            /> */}
-
-                <Route path="/dashboard" element={<AdminMain />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="users" element={<Users />} />
-                  <Route path="orders" element={<Orders />} />
-                  <Route path="providers" element={<ProvidersDash />} />
+                {/* Admin Routes - Protected with adminOnly */}
+                <Route
+                  path="/dashboard"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <AdminMain />
+                    </PrivateRoute>
+                  }
+                >
+                  <Route
+                    index
+                    element={
+                      <PrivateRoute adminOnly={true}>
+                        <Dashboard />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="users"
+                    element={
+                      <PrivateRoute adminOnly={true}>
+                        <Users />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="orders"
+                    element={
+                      <PrivateRoute adminOnly={true}>
+                        <Orders />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="providers"
+                    element={
+                      <PrivateRoute adminOnly={true}>
+                        <ProvidersDash />
+                      </PrivateRoute>
+                    }
+                  />
                   <Route
                     path="providers/:type"
-                    element={<ProviderTypeTable />}
+                    element={
+                      <PrivateRoute adminOnly={true}>
+                        <ProviderTypeTable />
+                      </PrivateRoute>
+                    }
                   />
                   <Route
                     path="providers/:type/:id"
-                    element={<ProviderDetails />}
+                    element={
+                      <PrivateRoute adminOnly={true}>
+                        <ProviderDetails />
+                      </PrivateRoute>
+                    }
                   />
                 </Route>
               </Routes>

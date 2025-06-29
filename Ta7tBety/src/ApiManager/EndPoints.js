@@ -21,7 +21,7 @@ const EndPoints = {
   DELETE_ME: "/users/delete-me",
 
   // Providers
-  GET_ALL_PROVIDERS: "/providers",
+  GET_ALL_PROVIDERS: "/providers?limit=1000",
   GET_PROVIDER_BY_ID: (id) => `/providers/${id}`,
   GET_NEARBY_PROVIDERS: (lng, lat, distance, providerType, providerGenre) =>
     `/providers/${lng}/${lat}/${distance}/${providerType}/${providerGenre}`,
@@ -45,7 +45,7 @@ const EndPoints = {
   DELETE_POST: (id) => `/posts/${id}`,
 
   // Orders
-  GET_ALL_ORDERS: "/orders",
+  GET_ALL_ORDERS: "/orders?limit=1000",
   GET_USER_ORDERS: (userId) => `/orders/user-orders/${userId}`,
   GET_ORDER_BY_ID: (id) => `/orders/${id}`,
   GET_MY_ORDERS: "/orders/my-orders",

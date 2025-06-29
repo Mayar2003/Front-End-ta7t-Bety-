@@ -22,20 +22,22 @@ function SignIn() {
     ApiManager.login(formData)
       .then((res) => {
         const response = res.data;
-        console.log("Login response:", response); // Log the response data
+        const { user, token } = response.data;
         setResponseState({
           ...responseState,
           response,
           loading: false,
         });
 
-        setUser(response.data.user);
-        console.log("User set in AuthContext:", response.data.user);
+        setUser(user);
 
-        localStorage.setItem("authToken", response.data.token);
-        localStorage.setItem("jwt", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("authToken", token);
+        localStorage.setItem("user", JSON.stringify(user));
 
+        if (user.role === "admin") {
+          navigate("/dashboard");
+          return;
+        }
         navigate("/");
       })
       .catch((err) => {

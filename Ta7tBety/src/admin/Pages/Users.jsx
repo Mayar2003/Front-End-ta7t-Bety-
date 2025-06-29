@@ -81,7 +81,7 @@ export default function Users() {
       `https://ta7t-bety.vercel.app/api/v1/users?page=${filtersState.page}&limit=${filtersState.pageSize}&sort=${filtersState.sort}&fields=${filtersState.limitFields}`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
       }
     );
